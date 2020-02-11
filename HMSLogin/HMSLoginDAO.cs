@@ -14,8 +14,8 @@ namespace HMSLogin
         public bool InputLogin(HMSLoginDetails hmslogindetails)
         {
             string connectionString =
-            "Data Source=SD-;" +
-            "Initial Catalog=;" +
+            "Data Source=SD-14;" +
+            "Initial Catalog=Doctors;" +
             "Integrated Security=True";
 
             try
@@ -42,6 +42,7 @@ namespace HMSLogin
                     Console.WriteLine(password);
                     if (password == hmslogindetails.Password)
                     {
+                        Console.WriteLine("match on password!!!");
                         selectCommand =
                         "SELECT Role FROM HMSLogin WHERE Name = @Name";
                         command.CommandText = selectCommand;
@@ -52,6 +53,7 @@ namespace HMSLogin
                     else
                     {
                         hmslogindetails.Password = string.Empty;
+                        Console.WriteLine("no match on password...");
                         return false;
                     }
                 }
