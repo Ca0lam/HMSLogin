@@ -1,6 +1,6 @@
 ﻿namespace HMSLogin
 {
-	partial class PatientDetails
+	partial class FrmPatientDetails
 	{
 		/// <summary>
 		/// Required designer variable.

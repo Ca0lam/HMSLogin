@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HMSLogin
 {
-	public partial class PatientDetails : Form
+	public partial class FrmPatientDetails : Form
 	{
-		public PatientDetails()
+		public FrmPatientDetails()
 		{
 			InitializeComponent();
 		}
