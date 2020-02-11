@@ -54,6 +54,11 @@
 			this.LblDivider2 = new System.Windows.Forms.Label();
 			this.RdoMale = new System.Windows.Forms.RadioButton();
 			this.RdoFemale = new System.Windows.Forms.RadioButton();
+			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.BtnEditCancel = new System.Windows.Forms.Button();
+			this.BtnSave = new System.Windows.Forms.Button();
+			this.BtnNew = new System.Windows.Forms.Button();
+			this.BtnCancel = new System.Windows.Forms.Button();
 			this.GbxNOK.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -233,7 +238,7 @@
 			this.GbxNOK.Controls.Add(this.TxtNOKName);
 			this.GbxNOK.Controls.Add(this.LblNOKPhoneNum);
 			this.GbxNOK.Controls.Add(this.TxtNOKPhoneNum);
-			this.GbxNOK.Location = new System.Drawing.Point(331, 119);
+			this.GbxNOK.Location = new System.Drawing.Point(331, 96);
 			this.GbxNOK.Name = "GbxNOK";
 			this.GbxNOK.Size = new System.Drawing.Size(255, 100);
 			this.GbxNOK.TabIndex = 29;
@@ -280,11 +285,60 @@
 			this.RdoFemale.Text = "Female";
 			this.RdoFemale.UseVisualStyleBackColor = true;
 			// 
+			// listBox1
+			// 
+			this.listBox1.FormattingEnabled = true;
+			this.listBox1.Location = new System.Drawing.Point(73, 304);
+			this.listBox1.Name = "listBox1";
+			this.listBox1.Size = new System.Drawing.Size(120, 95);
+			this.listBox1.TabIndex = 34;
+			// 
+			// BtnEditCancel
+			// 
+			this.BtnEditCancel.Location = new System.Drawing.Point(412, 236);
+			this.BtnEditCancel.Name = "BtnEditCancel";
+			this.BtnEditCancel.Size = new System.Drawing.Size(57, 23);
+			this.BtnEditCancel.TabIndex = 35;
+			this.BtnEditCancel.Text = "Edit";
+			this.BtnEditCancel.UseVisualStyleBackColor = true;
+			// 
+			// BtnSave
+			// 
+			this.BtnSave.Location = new System.Drawing.Point(538, 236);
+			this.BtnSave.Name = "BtnSave";
+			this.BtnSave.Size = new System.Drawing.Size(53, 50);
+			this.BtnSave.TabIndex = 36;
+			this.BtnSave.Text = "Save";
+			this.BtnSave.UseVisualStyleBackColor = true;
+			// 
+			// BtnNew
+			// 
+			this.BtnNew.Location = new System.Drawing.Point(475, 236);
+			this.BtnNew.Name = "BtnNew";
+			this.BtnNew.Size = new System.Drawing.Size(57, 23);
+			this.BtnNew.TabIndex = 37;
+			this.BtnNew.Text = "New";
+			this.BtnNew.UseVisualStyleBackColor = true;
+			// 
+			// BtnCancel
+			// 
+			this.BtnCancel.Location = new System.Drawing.Point(412, 263);
+			this.BtnCancel.Name = "BtnCancel";
+			this.BtnCancel.Size = new System.Drawing.Size(120, 23);
+			this.BtnCancel.TabIndex = 38;
+			this.BtnCancel.Text = "Cancel";
+			this.BtnCancel.UseVisualStyleBackColor = true;
+			// 
 			// PatientDetails
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.BtnCancel);
+			this.Controls.Add(this.BtnNew);
+			this.Controls.Add(this.BtnSave);
+			this.Controls.Add(this.BtnEditCancel);
+			this.Controls.Add(this.listBox1);
 			this.Controls.Add(this.RdoFemale);
 			this.Controls.Add(this.RdoMale);
 			this.Controls.Add(this.LblDivider2);
@@ -344,5 +398,10 @@
 		private System.Windows.Forms.Label LblDivider2;
 		private System.Windows.Forms.RadioButton RdoMale;
 		private System.Windows.Forms.RadioButton RdoFemale;
+		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.Button BtnEditCancel;
+		private System.Windows.Forms.Button BtnSave;
+		private System.Windows.Forms.Button BtnNew;
+		private System.Windows.Forms.Button BtnCancel;
 	}
 }
