@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Bed.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\Room.cs" />
     <Compile Include="HMSLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +67,7 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Ward.cs" />
     <EmbeddedResource Include="HMSLoginForm.resx">
       <DependentUpon>HMSLoginForm.cs</DependentUpon>
     </EmbeddedResource>

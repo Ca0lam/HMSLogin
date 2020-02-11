@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 16.75" name="HMS">
+  <DataContextMoniker Name="/HMSDataContext" />
+  <nestedChildShapes>
+    <classShape Id="62bcc2dc-a98b-4db6-9554-a46a42f511be" absoluteBounds="3.75, 1, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/HMSDataContext/tblBedDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="baf0f8e7-5042-458c-af65-71158b6e42bf" absoluteBounds="3.765, 1.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5d3f244d-2008-4de9-9c54-6e08c57902fb" absoluteBounds="1.75, 8.625, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/HMSDataContext/tblWardDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="310bad6d-4d70-410c-89e5-2aee108f84bf" absoluteBounds="1.7650000000000001, 9.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d4704b90-97b4-42bb-9d3f-c9c9e0c6f893" absoluteBounds="9.25, 4.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/HMSDataContext/tblBillingDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="038b1ad3-79f5-49ff-90d9-03a3ec606ce0" absoluteBounds="9.265, 4.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ca77d930-7bbe-49ec-b7bc-6bb1dd9f90d5" absoluteBounds="2, 11.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/HMSDataContext/tblDeptDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="30a9d1c6-3236-4309-9c50-bc07964175af" absoluteBounds="2.015, 12.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9353fee0-8a9e-475e-96ab-34e7d898aebc" absoluteBounds="3.75, 14, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/HMSDataContext/tblDoctorDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd78d9bf-0488-4181-beb2-e82ccbf72231" absoluteBounds="3.765, 14.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3cb8a832-ea95-4864-a6b8-e2300febdd5a" absoluteBounds="0.75, 4.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/HMSDataContext/tblPatientDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="46087c6b-2d48-4dbb-ba2e-84c895e1a116" absoluteBounds="0.765, 4.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f1c2d968-05e6-41a0-8d30-55824bc255c7" absoluteBounds="3.5, 3.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/HMSDataContext/tblPatientNote" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a92c6120-80b6-4811-8d78-cdbb7f8711df" absoluteBounds="3.515, 3.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f57c1953-5548-413c-95a9-5b3cb8c3fa4d" absoluteBounds="3.5, 5.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/HMSDataContext/tblPrescriptionDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2f59eebc-a365-47af-bdd9-9b1020ee2179" absoluteBounds="3.515, 6.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5a72d585-efee-48f9-8a90-676f3b3062ed" absoluteBounds="1, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/HMSDataContext/tblRoomDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f6bd2790-d9f0-431b-a918-03a396dcaf02" absoluteBounds="1.0150000000000001, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="abab0792-2ee1-4d8b-8d12-a875fc63b82a" absoluteBounds="6.5, 4.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/HMSDataContext/tblVisitDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ab9c987e-c00a-431b-89a4-6bc306dcd6e2" absoluteBounds="6.515, 4.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.875 : 11.625); (2.875 : 10.0112939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblDeptDetail/tblDeptDetail_tblWardDetail" />
+      <nodes>
+        <classShapeMoniker Id="ca77d930-7bbe-49ec-b7bc-6bb1dd9f90d5" />
+        <classShapeMoniker Id="5d3f244d-2008-4de9-9c54-6e08c57902fb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.47679768880208); (2.82291666666667 : 4.47679768880208 : JumpStart); (2.98958333333333 : 4.47679768880208 : JumpEnd); (3.5 : 4.47679768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblPatientDetail/tblPatientDetail_tblPatientNote" />
+      <nodes>
+        <classShapeMoniker Id="3cb8a832-ea95-4864-a6b8-e2300febdd5a" />
+        <classShapeMoniker Id="f1c2d968-05e6-41a0-8d30-55824bc255c7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.04890055338542); (2.82291666666667 : 6.04890055338542 : JumpStart); (2.98958333333333 : 6.04890055338542 : JumpEnd); (3.5 : 6.04890055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblPatientDetail/tblPatientDetail_tblPrescriptionDetail" />
+      <nodes>
+        <classShapeMoniker Id="3cb8a832-ea95-4864-a6b8-e2300febdd5a" />
+        <classShapeMoniker Id="f57c1953-5548-413c-95a9-5b3cb8c3fa4d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 1.56814697265625); (3.75 : 1.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblRoomDetail/tblRoomDetail_tblBedDetail" />
+      <nodes>
+        <classShapeMoniker Id="5a72d585-efee-48f9-8a90-676f3b3062ed" />
+        <classShapeMoniker Id="62bcc2dc-a98b-4db6-9554-a46a42f511be" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.90625 : 8.625); (2.90625 : 2.1362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblWardDetail/tblWardDetail_tblRoomDetail" />
+      <nodes>
+        <classShapeMoniker Id="5d3f244d-2008-4de9-9c54-6e08c57902fb" />
+        <classShapeMoniker Id="5a72d585-efee-48f9-8a90-676f3b3062ed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 5.20274983723958); (9.25 : 5.20274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblVisitDetail/tblVisitDetail_tblBillingDetail" />
+      <nodes>
+        <classShapeMoniker Id="abab0792-2ee1-4d8b-8d12-a875fc63b82a" />
+        <classShapeMoniker Id="d4704b90-97b4-42bb-9d3f-c9c9e0c6f893" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.65625 : 2.19399251302083); (5.65625 : 5.22679768880208); (6.5 : 5.22679768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblBedDetail/tblBedDetail_tblVisitDetail" />
+      <nodes>
+        <classShapeMoniker Id="62bcc2dc-a98b-4db6-9554-a46a42f511be" />
+        <classShapeMoniker Id="abab0792-2ee1-4d8b-8d12-a875fc63b82a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.703125 : 14); (5.703125 : 5.42590134440104); (6.5 : 5.42590134440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblDoctorDetail/tblDoctorDetail_tblVisitDetail" />
+      <nodes>
+        <classShapeMoniker Id="9353fee0-8a9e-475e-96ab-34e7d898aebc" />
+        <classShapeMoniker Id="abab0792-2ee1-4d8b-8d12-a875fc63b82a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.99644653320312); (2.82291666666667 : 4.99644653320312 : JumpStart); (2.98958333333333 : 4.99644653320312 : JumpEnd); (5.57291666666667 : 4.99644653320312 : JumpStart); (5.73958333333333 : 4.99644653320312 : JumpEnd); (6.5 : 4.99644653320312)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/HMSDataContext/tblPatientDetail/tblPatientDetail_tblVisitDetail" />
+      <nodes>
+        <classShapeMoniker Id="3cb8a832-ea95-4864-a6b8-e2300febdd5a" />
+        <classShapeMoniker Id="abab0792-2ee1-4d8b-8d12-a875fc63b82a" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
