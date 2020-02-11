@@ -71,8 +71,8 @@ namespace HMSLogin
         public bool Testlogin()
         {
             string connectionString =
-            "Data Source=SD-18;" +
-            "Initial Catalog=Banking;" +
+            "Data Source=;" +
+            "Initial Catalog=;" +
             "Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
