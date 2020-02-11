@@ -31,3 +31,15 @@ C:\Users\dsd17\Dropbox\Health Management System\HMSLogin\HMSLogin\obj\Debug\HMSL
 C:\Users\dsd17\Dropbox\Health Management System\HMSLogin\HMSLogin\obj\Debug\HMSLogin.csproj.CoreCompileInputs.cache
 C:\Users\dsd17\Dropbox\Health Management System\HMSLogin\HMSLogin\obj\Debug\HMSLogin.exe
 C:\Users\dsd17\Dropbox\Health Management System\HMSLogin\HMSLogin\obj\Debug\HMSLogin.pdb
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\bin\Debug\HMSLogin.exe.config
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\bin\Debug\HMSLogin.exe
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\bin\Debug\HMSLogin.pdb
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.csprojAssemblyReference.cache
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.Form1.resources
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.Properties.Resources.resources
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.RegisterForm.resources
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.csproj.GenerateResource.cache
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.csproj.CoreCompileInputs.cache
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.exe
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.pdb
+C:\Users\DSD14\Documents\GitHub\HMSLogin\HMSLogin\obj\Debug\HMSLogin.DoctorSearchForm.resources
