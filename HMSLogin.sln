@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMSLogin", "HMSLogin\HMSLogin.csproj", "{51B31F51-1B93-4D39-A3B2-5B8012C54AFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51B31F51-1B93-4D39-A3B2-5B8012C54AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B31F51-1B93-4D39-A3B2-5B8012C54AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B31F51-1B93-4D39-A3B2-5B8012C54AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B31F51-1B93-4D39-A3B2-5B8012C54AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C087327-CAF1-4CAE-9E9B-439ACACD1F88}
+	EndGlobalSection
+EndGlobal
