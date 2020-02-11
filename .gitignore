@@ -1,2 +1,4 @@
 .vs/
 *.cache
+HMSLogin/obj/*
+HMSLogin/bin/*
