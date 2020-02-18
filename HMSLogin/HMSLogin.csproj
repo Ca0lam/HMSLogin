@@ -54,10 +54,6 @@
     <Compile Include="HMSBilling.Designer.cs">
       <DependentUpon>HMSBilling.cs</DependentUpon>
     </Compile>
-    <Compile Include="HMSBilling1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HMSBilling.dbml</DependentUpon>
     <Compile Include="Entities\Bed.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\Room.cs" />
@@ -136,13 +132,6 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="HMSBilling.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>HMSBilling1.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="HMSBilling.dbml.layout">
-      <DependentUpon>HMSBilling.dbml</DependentUpon>
     <EmbeddedResource Include="ViewBed.resx">
       <DependentUpon>ViewBed.cs</DependentUpon>
     </EmbeddedResource>
