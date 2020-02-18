@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HospitalMS" Class="HMSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SD-15;Initial Catalog=HospitalMS;Integrated Security=True" SettingsObjectName="HMSLogin.Properties.Settings" SettingsPropertyName="HospitalMSConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblBedDetails" Member="tblBedDetails">
+    <Type Name="tblBedDetail">
+      <Column Name="BedId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblBedDetail_tblVisitDetail" Member="tblVisitDetails" ThisKey="BedId" OtherKey="BedId" Type="tblVisitDetail" />
+      <Association Name="tblRoomDetail_tblBedDetail" Member="tblRoomDetail" ThisKey="RoomId" OtherKey="RoomId" Type="tblRoomDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblWardDetails" Member="tblWardDetails">
+    <Type Name="tblWardDetail">
+      <Column Name="WardId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DeptId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WardName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tblWardDetail_tblRoomDetail" Member="tblRoomDetails" ThisKey="WardId" OtherKey="WardId" Type="tblRoomDetail" />
+      <Association Name="tblDeptDetail_tblWardDetail" Member="tblDeptDetail" ThisKey="DeptId" OtherKey="DeptId" Type="tblDeptDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblBillingDetails" Member="tblBillingDetails">
+    <Type Name="tblBillingDetail">
+      <Column Name="VisitId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BillingDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PatientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomCharge" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="DoctorsFee" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="BillingNote" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MiscBillingFee" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="tblVisitDetail_tblBillingDetail" Member="tblVisitDetail" ThisKey="VisitId" OtherKey="VisitId" Type="tblVisitDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDeptDetails" Member="tblDeptDetails">
+    <Type Name="tblDeptDetail">
+      <Column Name="DeptId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DeptName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tblDeptDetail_tblWardDetail" Member="tblWardDetails" ThisKey="DeptId" OtherKey="DeptId" Type="tblWardDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDoctorDetails" Member="tblDoctorDetails">
+    <Type Name="tblDoctorDetail">
+      <Column Name="DocId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DocForename" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DocSurname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DocPhoto" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="DocGender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DocAddress" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="DocPhoneNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DocQualification" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DeptId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblDoctorDetail_tblVisitDetail" Member="tblVisitDetails" ThisKey="DocId" OtherKey="DocId" Type="tblVisitDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPatientDetails" Member="tblPatientDetails">
+    <Type Name="tblPatientDetail">
+      <Column Name="PatientId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatientForename" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PatientSurename" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PatientDOB" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PatientGender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PatientAddress" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PatientPhoneNum" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PatientNOK" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="tblPatientDetail_tblPatientNote" Member="tblPatientNotes" ThisKey="PatientId" OtherKey="PatientId" Type="tblPatientNote" />
+      <Association Name="tblPatientDetail_tblPrescriptionDetail" Member="tblPrescriptionDetails" ThisKey="PatientId" OtherKey="PatientId" Type="tblPrescriptionDetail" />
+      <Association Name="tblPatientDetail_tblVisitDetail" Member="tblVisitDetails" ThisKey="PatientId" OtherKey="PatientId" Type="tblVisitDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPatientNotes" Member="tblPatientNotes">
+    <Type Name="tblPatientNote">
+      <Column Name="PatientNoteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NoteDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PatientNotes" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="tblPatientDetail_tblPatientNote" Member="tblPatientDetail" ThisKey="PatientId" OtherKey="PatientId" Type="tblPatientDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPrescriptionDetails" Member="tblPrescriptionDetails">
+    <Type Name="tblPrescriptionDetail">
+      <Column Name="PrescriptionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PrescriptionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PrescriptionNotes" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="tblPatientDetail_tblPrescriptionDetail" Member="tblPatientDetail" ThisKey="PatientId" OtherKey="PatientId" Type="tblPatientDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRoomDetails" Member="tblRoomDetails">
+    <Type Name="tblRoomDetail">
+      <Column Name="RoomId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="WardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblRoomDetail_tblBedDetail" Member="tblBedDetails" ThisKey="RoomId" OtherKey="RoomId" Type="tblBedDetail" />
+      <Association Name="tblWardDetail_tblRoomDetail" Member="tblWardDetail" ThisKey="WardId" OtherKey="WardId" Type="tblWardDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVisitDetails" Member="tblVisitDetails">
+    <Type Name="tblVisitDetail">
+      <Column Name="VisitId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DocId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DeptId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AdmissionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DischargeDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BedId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VisitTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblVisitDetail_tblBillingDetail" Member="tblBillingDetail" ThisKey="VisitId" OtherKey="VisitId" Type="tblBillingDetail" Cardinality="One" />
+      <Association Name="tblBedDetail_tblVisitDetail" Member="tblBedDetail" ThisKey="BedId" OtherKey="BedId" Type="tblBedDetail" IsForeignKey="true" />
+      <Association Name="tblDoctorDetail_tblVisitDetail" Member="tblDoctorDetail" ThisKey="DocId" OtherKey="DocId" Type="tblDoctorDetail" IsForeignKey="true" />
+      <Association Name="tblPatientDetail_tblVisitDetail" Member="tblPatientDetail" ThisKey="PatientId" OtherKey="PatientId" Type="tblPatientDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
