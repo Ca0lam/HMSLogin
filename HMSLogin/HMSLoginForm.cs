@@ -47,6 +47,7 @@ namespace HMSLogin
                 if (hmslogindetails.Role == "Doctor")
                 {
                     this.Hide();
+                    //this.Dispose();
                     DoctorSearchForm doctorSearch = new DoctorSearchForm();
                     doctorSearch.Show();
                 }
