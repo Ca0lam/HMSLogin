@@ -46,8 +46,30 @@ body {
 
 #main-content {
 	       background-color: white;
-		   color: black;
-		   text-align: center;	
+		   color: black;	
+}
+
+#maincontentheading {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+#par {
+	font-size: 20px;
+}
+
+#pic1 {
+	
+}
+
+#par2 {
+	padding-top: 20px;
+	font-size: 20px;
+}
+
+#par3 {
+	padding-top: 20px;
+	font-size: 20px;
 }
 
 #main-footer {
