@@ -195,6 +195,7 @@
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Cancel Update";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // pictureBox1
             // 

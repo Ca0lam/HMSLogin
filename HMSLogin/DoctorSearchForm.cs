@@ -273,5 +273,12 @@ namespace HMSLogin
                 txtDocSurnameSearch.Enabled = true;
             }*/
         }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            frmDoctor newDoctor = new frmDoctor(null);
+            newDoctor.Show();
+        }
     }
 }

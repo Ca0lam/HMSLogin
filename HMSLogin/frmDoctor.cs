@@ -57,54 +57,68 @@ namespace HMSLogin
                 ImageConverter _imageConverter = new ImageConverter();
                 byte[] photoByte = (byte[])_imageConverter.ConvertTo(pictureBox1.Image, typeof(byte[]));
                 bool gender = false;
+                Console.WriteLine("lblDocID.text is "+lblDocID.Text);
                 if (cboGender.SelectedIndex == 0)
                     gender = true;
                 // The TryParse method takes two parameters.  The first a String to convert into the specified type
                 // The second an out parameter to store the converted value into
                 // If successful, it will return true and the number will be stored in the out parameter
                 // If unsuccessful, it will return false and store 0 in the out parameter
-                if (int.TryParse(txtDeptID.Text, out int deptID) && int.TryParse(lblDocID.Text, out int docID))
+                if (int.TryParse(txtDeptID.Text, out int deptID))
                 {
-                    if (isNewDoctor)
+                    if (int.TryParse(lblDocID.Text, out int docID))
+                        if (isNewDoctor)
+                        {
+                            Doctor newDoctor = new Doctor { DocId = docID, DocForename = txtFirstname.Text, DocSurname = txtSurname.Text, DocPhoto = photoByte,
+                                DocGender = gender, DocAddress = txtAddress.Text, DocPhoneNumber = txtPhone.Text, DocQualification = txtQualifications.Text, DeptId = deptID };
+                            //
+                            // pass the Learner object to the LearnerDAO class to insert into the database
+                            //
+                            bool success = dao.insertDoctor(newDoctor);      // newID will hold the new ID of the newly inserted learner
+                            if (success)
+                            {
+                                //lblDocID.Text = newID.ToString();                            // before adding the doctor object to the list, update the ID with that
+                                // automatically assigned by the SQL database.
+                                /*                      listOfLearners.Add(learner1);
+                                                      MessageBox.Show("New learner:" + newLine + newLine + learner1.ToString() + newLine + newLine + "successfully added to the list", "Learner added");
+                                                      // listOfLearners.ForEach(Console.WriteLine);
+                                                      //
+                                                      // update the TextBox with the record number
+                                                      txtRecordNumber.Text = $"{currentRecord + 1} of {listOfLearners.Count}";
+                                                      //
+                                                      currentRecord++;*/
+                            }
+                            else              // learner wss not added
+                            {
+                                MessageBox.Show("Insert failed", "Insert failed");
+                            }
+                            /*btnLast.PerformClick();
+                            txtAddress.Modified = false;
+                            txtName.Modified = false;
+                            txtAge.Modified = false;*/
+                        }
+                        else { }
+                    else
                     {
-                        Doctor newDoctor = new Doctor { DocId = docID,  DocForename = txtFirstname.Text, DocSurname = txtSurname.Text, DocPhoto = photoByte,  
-                        DocGender = gender, DocAddress = txtAddress.Text, DocPhoneNumber=txtPhone.Text, DocQualification=txtQualifications.Text, DeptId=deptID };
-                        //
-                        // pass the Learner object to the LearnerDAO class to insert into the database
-                        //
-                        bool success = dao.insertDoctor(newDoctor);      // newID will hold the new ID of the newly inserted learner
-                        if (success)
-                        {
-                           //lblDocID.Text = newID.ToString();                            // before adding the doctor object to the list, update the ID with that
-                                                                                        // automatically assigned by the SQL database.
-      /*                      listOfLearners.Add(learner1);
-                            MessageBox.Show("New learner:" + newLine + newLine + learner1.ToString() + newLine + newLine + "successfully added to the list", "Learner added");
-                            // listOfLearners.ForEach(Console.WriteLine);
-                            //
-                            // update the TextBox with the record number
-                            txtRecordNumber.Text = $"{currentRecord + 1} of {listOfLearners.Count}";
-                            //
-                            currentRecord++;*/
-                        }
-                        else              // learner wss not added
-                        {
-                            MessageBox.Show("Insert failed", "Insert failed");
-                        }
-                        /*btnLast.PerformClick();
-                        txtAddress.Modified = false;
-                        txtName.Modified = false;
-                        txtAge.Modified = false;*/
+                        MessageBox.Show("Doctor ID not in numeric format", "Invalid Doctor ID");
+                        lblDocID.Focus();
                     }
-                    else { }
                 }
-                else
+                        else
                 {
-                    MessageBox.Show("Age not in numeric format", "Invalid Age");
-                    /*txtAge.Focus();
-                    txtAge.SelectAll();*/
+                    MessageBox.Show("Department ID not in numeric format", "Invalid Department ID");
+                    txtDeptID.Focus();
+                    txtDeptID.SelectAll();
                 }
 
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            DoctorSearchForm searchForm = new DoctorSearchForm();
+            searchForm.Show();
         }
     }
 }
