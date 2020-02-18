@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.Cbx_DepartmentId = new System.Windows.Forms.ComboBox();
+            this.Cbx_WardId = new System.Windows.Forms.ComboBox();
             this.Btn_Save = new System.Windows.Forms.Button();
-            this.Cbx_WardID = new System.Windows.Forms.ComboBox();
+            this.Cbx_RoomId = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Cbx_RoomType = new System.Windows.Forms.ComboBox();
@@ -46,13 +46,13 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Room Type:";
             // 
-            // Cbx_DepartmentId
+            // Cbx_WardId
             // 
-            this.Cbx_DepartmentId.FormattingEnabled = true;
-            this.Cbx_DepartmentId.Location = new System.Drawing.Point(115, 36);
-            this.Cbx_DepartmentId.Name = "Cbx_DepartmentId";
-            this.Cbx_DepartmentId.Size = new System.Drawing.Size(216, 21);
-            this.Cbx_DepartmentId.TabIndex = 18;
+            this.Cbx_WardId.FormattingEnabled = true;
+            this.Cbx_WardId.Location = new System.Drawing.Point(115, 36);
+            this.Cbx_WardId.Name = "Cbx_WardId";
+            this.Cbx_WardId.Size = new System.Drawing.Size(216, 21);
+            this.Cbx_WardId.TabIndex = 18;
             // 
             // Btn_Save
             // 
@@ -62,14 +62,15 @@
             this.Btn_Save.TabIndex = 17;
             this.Btn_Save.Text = "Save";
             this.Btn_Save.UseVisualStyleBackColor = true;
+            this.Btn_Save.Click += new System.EventHandler(this.Btn_Save_Click);
             // 
-            // Cbx_WardID
+            // Cbx_RoomId
             // 
-            this.Cbx_WardID.FormattingEnabled = true;
-            this.Cbx_WardID.Location = new System.Drawing.Point(115, 9);
-            this.Cbx_WardID.Name = "Cbx_WardID";
-            this.Cbx_WardID.Size = new System.Drawing.Size(216, 21);
-            this.Cbx_WardID.TabIndex = 15;
+            this.Cbx_RoomId.FormattingEnabled = true;
+            this.Cbx_RoomId.Location = new System.Drawing.Point(115, 9);
+            this.Cbx_RoomId.Name = "Cbx_RoomId";
+            this.Cbx_RoomId.Size = new System.Drawing.Size(216, 21);
+            this.Cbx_RoomId.TabIndex = 15;
             // 
             // label3
             // 
@@ -104,9 +105,9 @@
             this.ClientSize = new System.Drawing.Size(344, 160);
             this.Controls.Add(this.Cbx_RoomType);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Cbx_DepartmentId);
+            this.Controls.Add(this.Cbx_WardId);
             this.Controls.Add(this.Btn_Save);
-            this.Controls.Add(this.Cbx_WardID);
+            this.Controls.Add(this.Cbx_RoomId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "ViewRoom";
@@ -119,9 +120,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox Cbx_DepartmentId;
+        private System.Windows.Forms.ComboBox Cbx_WardId;
         private System.Windows.Forms.Button Btn_Save;
-        private System.Windows.Forms.ComboBox Cbx_WardID;
+        private System.Windows.Forms.ComboBox Cbx_RoomId;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox Cbx_RoomType;

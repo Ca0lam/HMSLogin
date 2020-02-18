@@ -45,6 +45,7 @@
             this.Btn_Save.TabIndex = 10;
             this.Btn_Save.Text = "Save";
             this.Btn_Save.UseVisualStyleBackColor = true;
+            this.Btn_Save.Click += new System.EventHandler(this.Btn_Save_Click);
             // 
             // Txt_WardName
             // 
