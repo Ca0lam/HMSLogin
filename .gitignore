@@ -1,6 +1,6 @@
 .vs/
-HMSLogin/bin/
-HMSLogin/obj/
+HMSLogin/bin/*
+HMSLogin/obj/*
 
 *.cache
 *.ide-shm
