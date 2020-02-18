@@ -58,6 +58,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HMSBilling.dbml</DependentUpon>
+    <Compile Include="Entities\Bed.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\Room.cs" />
+    <Compile Include="HMS.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HMS.dbml</DependentUpon>
     </Compile>
     <Compile Include="HMSLoginForm.cs">
       <SubType>Form</SubType>
@@ -67,6 +74,12 @@
     </Compile>
     <Compile Include="HMSLoginDAO.cs" />
     <Compile Include="HMSLoginDetails.cs" />
+    <Compile Include="HospitalLayout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HospitalLayout.Designer.cs">
+      <DependentUpon>HospitalLayout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDAO.cs" />
@@ -80,8 +93,36 @@
     <EmbeddedResource Include="HMSBilling.resx">
       <DependentUpon>HMSBilling.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="Entities\Ward.cs" />
+    <Compile Include="ViewBed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewBed.Designer.cs">
+      <DependentUpon>ViewBed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDepartment.Designer.cs">
+      <DependentUpon>ViewDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewRoom.Designer.cs">
+      <DependentUpon>ViewRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewWard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewWard.Designer.cs">
+      <DependentUpon>ViewWard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="HMSLoginForm.resx">
       <DependentUpon>HMSLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HospitalLayout.resx">
+      <DependentUpon>HospitalLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,6 +143,25 @@
     </None>
     <None Include="HMSBilling.dbml.layout">
       <DependentUpon>HMSBilling.dbml</DependentUpon>
+    <EmbeddedResource Include="ViewBed.resx">
+      <DependentUpon>ViewBed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDepartment.resx">
+      <DependentUpon>ViewDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewRoom.resx">
+      <DependentUpon>ViewRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewWard.resx">
+      <DependentUpon>ViewWard.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="HMS.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>HMS.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HMS.dbml.layout">
+      <DependentUpon>HMS.dbml</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
