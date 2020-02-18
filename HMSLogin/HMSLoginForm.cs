@@ -23,7 +23,7 @@ namespace HMSLogin
 
         private void BtnHelp_Click(object sender, EventArgs e)
         {
-            Process.Start("https://timecube.2enp.com/");
+            Process.Start("file:///C:/Users/dsd18/Documents/GitHub/HMSLogin/HMSHelpwebsite/Root/Helpdefault.html");
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)

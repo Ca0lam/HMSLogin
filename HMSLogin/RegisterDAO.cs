@@ -13,8 +13,8 @@ namespace HMSLogin
         public bool RegisterLogin(RegisterDetails registerdetails)
         {
             string connectionString =
-                "Data Source=SD-;" +
-                "Initial Catalog=;" +
+                "Data Source=SD-15;" +
+                "Initial Catalog=HospitalMS;" +
                 "Integrated Security=True";
 
             try

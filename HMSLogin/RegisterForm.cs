@@ -57,8 +57,8 @@ namespace HMSLogin
                     Relationship = relationship
                 };
                 dao.RegisterLogin(registerdetails);
-
             }
+            Dispose();
         }
     }
 }
