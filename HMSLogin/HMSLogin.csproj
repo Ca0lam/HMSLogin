@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillingTestClass.cs" />
+    <Compile Include="Classes\NOK.cs" />
     <Compile Include="HMSBilling.cs">
       <SubType>Form</SubType>
     </Compile>

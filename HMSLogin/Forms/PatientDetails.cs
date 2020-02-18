@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HMSLogin.Classes;
 using HMSLogin.Database;
 using Newtonsoft.Json;
 
@@ -29,17 +30,12 @@ namespace HMSLogin
 		{
 
 		}
-		public class NOK
-		{
-			public string NOKName { get; set; }
-			public string NOKPhoneNum { get; set; }
-		}
 
 
 		private void formLoad()
 		{
 			int patientID = hospitalMS.tblPatientDetails.FirstOrDefault().PatientId;
-			//int patientID = 2;
+			//int patientID = 1006;
 
 			TxtPatientID.Text = patientID.ToString();
 			TxtForename.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientForename;
@@ -47,35 +43,33 @@ namespace HMSLogin
 			TxtDOBDay.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientDOB.Day.ToString("D2");
 			TxtDOBMonth.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientDOB.Month.ToString("D2");
 			TxtDOBYear.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientDOB.Year.ToString();
-			//TxtSurname.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientSurename;
-
+			
+			// Only One of these will end up checked
 			RdoMale.Checked = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
 			RdoFemale.Checked = !hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
 
-			//var gender = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
-			//(gender) ? CheckBox(RdoMale) : 
-
+			// Address stored as comma seperated values in database, remove the commas and print each line on a new line in the text box
 			string address = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientAddress;
 			TxtAddress.Text = address.Replace(", ", ",\r\n");
 
-			string nokDetails = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientNOK;
+			// NOK Details are stored in JSON format in the Database.
+			// They are retrieved here and stored in a string. 
+			string nokDetailsJSONString = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientNOK;
 
-			var nokDetailsConverted = JsonConvert.DeserializeObject<dynamic>(nokDetails);
-			//string nokName = nokDetailsConverted.NOK.NOKName;
-			//string nokPhoneNum = nokDetailsConverted.NOK.NOKPhoneNum;
+			// String is read as JSON here and stored in the nokDetailsConverted variable 
+			var nokDetailsConverted = JsonConvert.DeserializeObject<dynamic>(nokDetailsJSONString);
+			// New NOK Class is initialized 
 			NOK nok = new NOK();
+			// JSON values are assigned to NOK Class properties
 			nok.NOKName = nokDetailsConverted.NOKName;
 			nok.NOKPhoneNum = nokDetailsConverted.NOKPhoneNum;
+			// NOK Class properties are assigned to relevant text boxes. 
+			TxtNOKName.Text = nok.NOKName;
+			TxtNOKPhoneNum.Text = nok.NOKPhoneNum;
 
-			Console.WriteLine(nok.NOKName + nok.NOKPhoneNum);
-			//Console.WriteLine(nokName + " " + nokPhoneNum);
-
-
-			//var allIDs = hospitalMS.tblPatientDetails;
+			// Extra code to get all Patient IDs in the Database.
 			var allIDs = hospitalMS.tblPatientDetails.Select(x => x.PatientSurename).ToList();
-
-			
-
+			// Loop through all Patient IDs retrieved
 			foreach (var row in allIDs)
 			{
 				Console.WriteLine(row);
@@ -91,20 +85,32 @@ namespace HMSLogin
 
 		private void savePatientDetails()
 		{
-			//using (HospitalMSDataContext objHospitalMSDataContext = new HospitalMSDataContext())
-			//{
-			//}
+
 
 			tblPatientDetail patient = new tblPatientDetail();
 			patient.PatientForename = TxtForename.Text;
 			patient.PatientSurename = TxtSurname.Text;
-			patient.PatientDOB = DateTime.Now;
-			patient.PatientGender = true;
-			patient.PatientAddress = "Testing Address";
-			patient.PatientPhoneNum = TxtPhoneNum.Text;
-			//patient.PatientNOK = "Cally Shields, 0874536573";
-			//patient.PatientNOK = "{ "NOK":{ "NOKName":"Amanda Bone","NOKPhoneNum":"0871234567"} }";
 
+			// Format the three text fields for DOB as a string and convert to a DateTime Type
+			var patientDOB = Convert.ToDateTime(TxtDOBYear.Text + "-" + TxtDOBMonth.Text + "-" + TxtDOBDay.Text);
+			patient.PatientDOB = patientDOB;
+			Console.WriteLine(patientDOB);
+
+			if (RdoMale.Checked)
+			{
+				patient.PatientGender = true;
+			}
+			else if (RdoFemale.Checked)
+			{
+				patient.PatientGender = false;
+			}
+			else
+			{
+				Console.WriteLine("Gender Error");
+			}
+
+			patient.PatientAddress = TxtAddress.Text;
+			patient.PatientPhoneNum = TxtPhoneNum.Text;
 
 			NOK nok = new NOK();
 			nok.NOKName = TxtNOKName.Text;
