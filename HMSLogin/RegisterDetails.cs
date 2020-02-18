@@ -21,15 +21,6 @@ namespace HMSLogin
 
         public override string ToString()
         {
-            HMSDataContext hMSDataContext = new HMSDataContext();
-            var table = hMSDataContext.GetTable<tblBedDetail>();
-
-            table.Where(x => x.RoomId == 1);
-
-            var stuff = hMSDataContext.tblWardDetails.Where(x => x.WardId == 1).FirstOrDefault();
-
-            List<int> result = table.Select(x => new int()).ToList();
-
             string newline = Environment.NewLine;
             return $"Id: {Id} {newline}" +
                 $"FirstName: {FirstName} {newline}" +

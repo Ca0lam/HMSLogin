@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HMSLogin.Database;
 
 namespace HMSLogin
 {
     public partial class ViewDepartment : Form
     {
-        HMSDataContext hMS;
+        HospitalMSDataContext hMS;
         public ViewDepartment()
         {
             InitializeComponent();
             Cbx_DepartmentId.Enabled = false;
-            hMS = new HMSDataContext();
+            hMS = new HospitalMSDataContext();
             int result = hMS.tblDeptDetails.OrderByDescending(x => x.DeptId).Select(x=>x.DeptId).FirstOrDefault() + 1;
             Cbx_DepartmentId.Text = result.ToString();
         }

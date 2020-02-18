@@ -60,11 +60,6 @@
     <Compile Include="Entities\Bed.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\Room.cs" />
-    <Compile Include="HMS.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HMS.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Patient.cs" />
     <Compile Include="HMSLoginForm.cs">
       <SubType>Form</SubType>
@@ -136,6 +131,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HospitalLayout.resx">
       <DependentUpon>HospitalLayout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PatientDetails.resx">
       <DependentUpon>PatientDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,14 +159,6 @@
     <EmbeddedResource Include="ViewWard.resx">
       <DependentUpon>ViewWard.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="HMS.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>HMS.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="HMS.dbml.layout">
-      <DependentUpon>HMS.dbml</DependentUpon>
-    </None>
     <None Include="Database\HospitalMS.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>HospitalMS.designer.cs</LastGenOutput>
