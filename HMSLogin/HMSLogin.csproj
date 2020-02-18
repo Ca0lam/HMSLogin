@@ -62,11 +62,6 @@
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Classes\Patient.cs" />
     <Compile Include="Doctor.cs" />
-    <Compile Include="DataClasses1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
-    </Compile>
     <Compile Include="DoctorsDataSet.cs">
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
     </Compile>
@@ -201,14 +196,6 @@
       <DependentUpon>HospitalMS.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="DataClasses1.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataClasses1.dbml.layout">
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
-    </None>
     <None Include="DoctorsDataSet.xsc">
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
     </None>
