@@ -14,6 +14,7 @@ namespace HMSLogin
     public partial class DoctorSearchForm : Form
     {
         DoctorDAO dao = new DoctorDAO();
+        DataSet dataSet1;
         SqlConnection connection1;
         int docId;
         private int deptId;
@@ -37,181 +38,30 @@ namespace HMSLogin
             //  Call the method in the DAO class, which returns a dataset
             //  The dataset can contain a collection of Data tables (i.e. results from the database)
             // the searchLearner needs 3 values (from the comboBoxes and text box)
-            DataSet dataSet1 = dao.searchDoctor(txtDocIdSearch.Text, txtDocSurnameSearch.Text, txtDocDeptSearch.Text, out bool success);
+            dataSet1 = dao.searchDoctor(txtDocIdSearch.Text, txtDocSurnameSearch.Text, txtDocDeptSearch.Text, out bool success);
             //
             //  Two important properties of the DataGridView
             //  1. The DataSource connects up to the dataset
             //     which was returned to the searchLearner() method.
             //  2. The DataMember is the table name supplied
             //
+            Console.WriteLine("dataSet1 index 0 is " + dataSet1.Tables[0].Rows[0].ItemArray[0].ToString());
+            Console.WriteLine("dataSet1 index 1 is " + dataSet1.Tables[0].Rows[0].ItemArray[1].ToString());
+            Console.WriteLine("dataSet1 index 2 is " + dataSet1.Tables[0].Rows[0].ItemArray[2].ToString());
+            Console.WriteLine("dataSet1 index 3 is " + dataSet1.Tables[0].Rows[0].ItemArray[3].ToString());
+            Console.WriteLine("dataSet1 index 4 is " + dataSet1.Tables[0].Rows[0].ItemArray[4].ToString());
+            Console.WriteLine("dataSet1 index 5 is " + dataSet1.Tables[0].Rows[0].ItemArray[5].ToString());
+            Console.WriteLine("dataSet1 index 6 is " + dataSet1.Tables[0].Rows[0].ItemArray[6].ToString());
+            Console.WriteLine("dataSet1 index 7 is " + dataSet1.Tables[0].Rows[0].ItemArray[7].ToString());
+            Console.WriteLine("dataSet1 index 8 is " + dataSet1.Tables[0].Rows[0].ItemArray[8].ToString());
             if (success)        // if table retrieved okay
             {
                 dataGridView1.DataSource = dataSet1;
                 dataGridView1.DataMember = "DoctorTable";
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;      // select the entire row when clicking on a cell
+                btnEdit.Enabled = true;
             }
 
-
-        /*    using (connection1 = new SqlConnection(connectionString))
-        {
-            SqlCommand command1 = null;
-            connection1.Open();
-            if (connection1.State != ConnectionState.Open)
-                MessageBox.Show("Unable to connect to database", "Cannot sign in", MessageBoxButtons.OK);
-            else
-            {
-                string surname = txtDocSurnameSearch.Text;
-                // @Username creates a placeholder for the parameter @title,
-                // which must be declared and set up using an SqlParamater object underneath
-                // and added to the SqlCommand's parameter's collection.
-                string commandString;         // contains the SQL text to query the SQL Server database
-                if (txtDocIdSearch.Text != string.Empty)
-                {
-                    commandString = "SELECT DocId FROM Doctor WHERE DocId=@DocId";
-                    command1 = new SqlCommand(commandString, connection1);
-                    // Create and set up SqlParameter
-                    SqlParameter parameter = new SqlParameter
-                    {
-                        ParameterName = "@DocId",
-                        Value = docId, 
-                        SqlDbType = System.Data.SqlDbType.Int
-                    };
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                }
-                else if (txtDocSurnameSearch.Text != string.Empty)
-                {
-                    commandString = "SELECT * FROM Doctor WHERE DocSurname=@DocSurname";
-                    command1 = new SqlCommand(commandString, connection1);
-                    // Create and set up SqlParameter
-                    SqlParameter parameter = new SqlParameter
-                    {
-                        ParameterName = "@DocSurname",
-                        Value = surname, 
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = surname.Length
-                    };
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                }
-                else if (txtDocDeptSearch.Text != string.Empty)
-                {
-                    commandString = "SELECT DocId, DocDeptId FROM Doctor WHERE DocDeptId=@DeptId";
-                    command1 = new SqlCommand(commandString, connection1);
-                    // Create and set up SqlParameter
-                    SqlParameter parameter = new SqlParameter
-                    {
-                        ParameterName = "@DeptId",
-                        Value = deptId, 
-                        SqlDbType = System.Data.SqlDbType.Int
-                    };
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                }
-                else
-                {
-                    commandString = "SELECT * FROM Doctor";
-                    command1 = new SqlCommand(commandString, connection1);
-                        Console.WriteLine("\ncommandString is "+commandString+"\nconnectionString is "+connectionString);
-                }
-                Console.WriteLine("***************\nThe command string is:  \n"+commandString+"\n*******************");
-                Console.WriteLine("\n DocID is " + docId + ",      Doc surname is " + surname + ",              Dept Id is " + deptId);
-                DoctorsDataSet doctorDataSet = new DoctorsDataSet();
-                using (SqlDataAdapter da = new SqlDataAdapter(command1))
-                {
-                    doctorDataSet.Clear();
-                    da.Fill(doctorDataSet, "Doctor");
-                    DoctorsDataSetTableAdapters.DoctorTableAdapter doctorTableAdapter = new DoctorsDataSetTableAdapters.DoctorTableAdapter();
-                    doctorTableAdapter.Fill(doctorDataSet.Doctor);
-                    //this.doctorTableAdapter.Fill(doctorDataSet.Doctor);
-                    dataGridView1.DataSource = doctorDataSet.Doctor.DefaultView;
-                    Console.WriteLine("\n  **************     dataGridView.DataSource is " +dataGridView1.DataSource.ToString());
-                        dataGridView1.Refresh();
-                    dataGridView1.Update();
-                    dataGridView1.Refresh();
-                    //Console.WriteLine("dataSet is "+ dataSet.Tables["Login"].Rows[0]+", dataSet.ToString() is "+dataSet.ToString());
-                    /*try
-                    {
-                        string passwordMatch = dataSet.Tables["Login"].Rows[0]["Password"].ToString();
-                        if (Int32.TryParse(dataSet.Tables["Doctor"].Rows[0]["UserID"].ToString(), out int foundUserID))
-                        {
-                            if (!password.Equals(passwordMatch))
-                            {
-                                MessageBox.Show("Invalid password entered.\r\nPlease try again.", "Wrong password entered", MessageBoxButtons.OK);
-                                LblPassword.ForeColor = Color.Red;
-                                TxtPassword.Focus();
-                                TxtPassword.SelectAll();
-                            }
-                            else
-                            {
-                                string role = dataSet.Tables["Login"].Rows[0]["Role"].ToString();
-                                LogInID = foundUserID;
-                                commandString = "SELECT FirstName, LastName FROM Customer " +
-                                    "WHERE UserID=@UserID";
-                                SqlCommand command2 = new SqlCommand(commandString, connection1);
-                                // Create and set up SqlParameter
-                                parameter = new SqlParameter
-                                {
-                                    ParameterName = "@UserID",
-                                    Value = LogInID, // comes from the bug
-                                                     // object passed fromt the form into this
-                                                     // insertBook() method.
-                                    SqlDbType = System.Data.SqlDbType.Int
-                                };
-                                // Add that parameter into the collection of
-                                // Parameters on the Command object
-                                command2.Parameters.Add(parameter);
-                                dataSet = new DataSet();
-                                using (SqlDataAdapter da2 = new SqlDataAdapter(command2))
-                                {
-                                    da2.Fill(dataSet, "Customer");
-                                    //Console.WriteLine("dataSet is "+ dataSet.Tables["Login"].Rows[0]+", dataSet.ToString() is "+dataSet.ToString());
-                                    try
-                                    {
-                                        CustomerName = dataSet.Tables["Customer"].Rows[0]["FirstName"].ToString() + " " +
-                                            dataSet.Tables["Customer"].Rows[0]["LastName"].ToString();
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine("Error on retrieving user details from Cutomer:  " + ex.Message);
-                                        MessageBox.Show("User Details not found", "Error on logging in.", MessageBoxButtons.OK);
-                                        TxtUsername.Text = string.Empty;
-                                        TxtUsername.Focus();
-                                        TxtUsername.SelectAll();
-                                    }
-                                }
-                                if (role.ToUpper().Equals("PROGRAMMER"))
-                                {
-                                    FrmProgrammer openProgrammer = new FrmProgrammer();
-                                    this.Hide();
-                                    openProgrammer.Show();
-                                }
-                                else
-                                {
-                                    FrmBugReport openMainForm = new FrmBugReport();
-                                    this.Hide();
-                                    openMainForm.Show();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("User Details not found", "Error on logging in.", MessageBoxButtons.OK);
-                            TxtUsername.Text = string.Empty;
-                            TxtUsername.Focus();
-                            TxtUsername.SelectAll();
-                        }
-                    }
-                    catch (IndexOutOfRangeException ex1)
-                    {
-                        MessageBox.Show("Username Not found", "Invalid username", MessageBoxButtons.OK);
-                        LblUsername.ForeColor = Color.Red;
-                        TxtUsername.Focus();
-                        TxtUsername.SelectAll();
-                    }
-                }*/
         }
 
         private void DoctorSearchForm_Load(object sender, EventArgs e)
@@ -222,56 +72,17 @@ namespace HMSLogin
 
         private void TxtDocIdSearch_Leave(object sender, EventArgs e)
         {
-            /*if (txtDocIdSearch.Text != string.Empty)
-            {
-                if (!int.TryParse(txtDocIdSearch.Text, out docId))
-                {
-                    MessageBox.Show("Doctor ID must be a whole number (only contains number 0 to 9)");
-                }
-                else
-                {
-                    txtDocSurnameSearch.Enabled = false;
-                    txtDocDeptSearch.Enabled = false;
-                }
-            } else if (txtDocSurnameSearch.Text == string.Empty && txtDocDeptSearch.Text == string.Empty)
-            {           // re-enable other text boxes if they are empty
-                txtDocSurnameSearch.Enabled = true;
-                txtDocDeptSearch.Enabled = true;
-            }*/
+
         }
 
         private void TxtDocSurnameSearch_Leave(object sender, EventArgs e)
         {
-            /*if (txtDocSurnameSearch.Text != string.Empty)
-            {
-                txtDocIdSearch.Enabled = false;
-                txtDocDeptSearch.Enabled = false;
-            } else if (txtDocIdSearch.Text == string.Empty && txtDocDeptSearch.Text == string.Empty)
-            {           // re-enable other text boxes if they are empty
-                txtDocIdSearch.Enabled = true;
-                txtDocDeptSearch.Enabled = true;
-            }*/
+
         }
 
         private void TxtDocDeptSearch_Leave(object sender, EventArgs e)
         {
-            /*if (txtDocDeptSearch.Text != string.Empty)
-            {
-                if (!int.TryParse(txtDocDeptSearch.Text, out docId))
-                {
-                    MessageBox.Show("Department ID must be a whole number (only contains number 0 to 9)");
-                }
-                else
-                {
-                    txtDocIdSearch.Enabled = false;
-                    txtDocSurnameSearch.Enabled = false;
-                }
-            }
-            else if (txtDocIdSearch.Text == string.Empty && txtDocSurnameSearch.Text == string.Empty)
-            {           // re-enable other text boxes if they are empty
-                txtDocIdSearch.Enabled = true;
-                txtDocSurnameSearch.Enabled = true;
-            }*/
+
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -279,6 +90,75 @@ namespace HMSLogin
             this.Dispose();
             frmDoctor newDoctor = new frmDoctor(null);
             newDoctor.Show();
+        }
+
+        private void doctorBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            int doctorID;
+            int currentRow;
+            try
+            {
+
+                currentRow = this.dataGridView1.CurrentRow.Index;
+                Console.WriteLine("current row is "+currentRow);
+                doctorID = (int)this.dataGridView1.CurrentRow.Cells[0].Value;       // get the doctorID of the current selected row
+            } catch (Exception e1)
+            {
+                MessageBox.Show("Unable to edit.\n\nYou must first select a single row from the grid of doctors.", "No doctor selected");
+                return;
+            }
+            //  get the row of the dataset that is selected
+            DataRow dRow = dataSet1.Tables[0].Rows[currentRow];
+            Doctor editDoc = new Doctor();
+            editDoc.DocId = doctorID;
+            editDoc.DocSurname = dRow.ItemArray.GetValue(1).ToString();
+            editDoc.DocForename = dRow.ItemArray.GetValue(2).ToString();
+            Object objPhoto = dRow.ItemArray.GetValue(3);
+            Console.WriteLine("******* objPhoto is "+objPhoto.ToString());
+            if (objPhoto.Equals(System.DBNull.Value))           // cannot cast null to a byte array
+                editDoc.DocPhoto = null;
+            else
+                editDoc.DocPhoto = (byte[])objPhoto;
+            editDoc.DocGender = (bool)dRow.ItemArray.GetValue(4);
+            editDoc.DocAddress = dRow.ItemArray.GetValue(5).ToString();
+            editDoc.DocPhoneNumber = dRow.ItemArray.GetValue(6).ToString();
+            editDoc.DocQualification = dRow.ItemArray.GetValue(7).ToString();
+            editDoc.DeptId = (int)dRow.ItemArray.GetValue(8);
+            this.Dispose();
+            frmDoctor editDoctor = new frmDoctor(editDoc);
+            editDoctor.Show();
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 4 && e.Value != null)
+            {
+                Console.WriteLine("value at index 4 is "+e.Value);
+                bool gender;
+                gender = (bool)(e.Value);
+                if (gender)
+                    e.Value = "M";
+                else
+                    e.Value = "F";
+                e.FormattingApplied = true;
+            } else if (e.ColumnIndex == 6 && e.Value != null)
+            {
+                Console.WriteLine("phone number is " + e.Value.ToString());
+            }
+            else if (e.ColumnIndex == 7 && e.Value != null)
+            {
+                Console.WriteLine("department ID is " + e.Value);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

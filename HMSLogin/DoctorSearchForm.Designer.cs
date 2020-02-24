@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpSearchDoctor = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtDocDeptSearch = new System.Windows.Forms.TextBox();
@@ -40,20 +42,20 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.lblList = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.doctorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.doctorsDataSet = new HMSLogin.DoctorsDataSet();
+            this.btnAddNew = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.doctorTableAdapter = new HMSLogin.DoctorsDataSetTableAdapters.DoctorTableAdapter();
             this.docIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docForenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docSurnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docPhotoDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.docGenderDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.docGenderDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.docPhoneNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DocPhoneNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docQualificationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.docDeptIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.doctorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.doctorsDataSet = new HMSLogin.DoctorsDataSet();
-            this.doctorTableAdapter = new HMSLogin.DoctorsDataSetTableAdapters.DoctorTableAdapter();
-            this.btnAddNew = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.DocDeptId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpSearchDoctor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doctorBindingSource)).BeginInit();
@@ -167,18 +169,58 @@
             this.docPhotoDataGridViewImageColumn,
             this.docGenderDataGridViewCheckBoxColumn,
             this.docAddressDataGridViewTextBoxColumn,
-            this.docPhoneNumDataGridViewTextBoxColumn,
+            this.DocPhoneNum,
             this.docQualificationDataGridViewTextBoxColumn,
-            this.docDeptIdDataGridViewTextBoxColumn});
+            this.DocDeptId});
             this.dataGridView1.DataSource = this.doctorBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(87, 233);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(946, 399);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+            // 
+            // doctorBindingSource
+            // 
+            this.doctorBindingSource.DataMember = "Doctor";
+            this.doctorBindingSource.DataSource = this.doctorsDataSet;
+            this.doctorBindingSource.CurrentChanged += new System.EventHandler(this.doctorBindingSource_CurrentChanged);
+            // 
+            // doctorsDataSet
+            // 
+            this.doctorsDataSet.DataSetName = "DoctorsDataSet";
+            this.doctorsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // btnAddNew
+            // 
+            this.btnAddNew.Location = new System.Drawing.Point(1046, 104);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(75, 23);
+            this.btnAddNew.TabIndex = 4;
+            this.btnAddNew.Text = "Add Doctor";
+            this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(1065, 269);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 40);
+            this.btnEdit.TabIndex = 5;
+            this.btnEdit.Text = "View or Edit Doctor";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // doctorTableAdapter
+            // 
+            this.doctorTableAdapter.ClearBeforeFill = true;
             // 
             // docIdDataGridViewTextBoxColumn
             // 
             this.docIdDataGridViewTextBoxColumn.DataPropertyName = "DocId";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.docIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.docIdDataGridViewTextBoxColumn.HeaderText = "DocId";
             this.docIdDataGridViewTextBoxColumn.Name = "docIdDataGridViewTextBoxColumn";
             this.docIdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -197,15 +239,23 @@
             // 
             // docPhotoDataGridViewImageColumn
             // 
+            this.docPhotoDataGridViewImageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.docPhotoDataGridViewImageColumn.DataPropertyName = "DocPhoto";
             this.docPhotoDataGridViewImageColumn.HeaderText = "DocPhoto";
+            this.docPhotoDataGridViewImageColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.docPhotoDataGridViewImageColumn.Name = "docPhotoDataGridViewImageColumn";
+            this.docPhotoDataGridViewImageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.docPhotoDataGridViewImageColumn.Width = 61;
             // 
             // docGenderDataGridViewCheckBoxColumn
             // 
             this.docGenderDataGridViewCheckBoxColumn.DataPropertyName = "DocGender";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.docGenderDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.docGenderDataGridViewCheckBoxColumn.HeaderText = "DocGender";
             this.docGenderDataGridViewCheckBoxColumn.Name = "docGenderDataGridViewCheckBoxColumn";
+            this.docGenderDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.docGenderDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // docAddressDataGridViewTextBoxColumn
             // 
@@ -213,11 +263,11 @@
             this.docAddressDataGridViewTextBoxColumn.HeaderText = "DocAddress";
             this.docAddressDataGridViewTextBoxColumn.Name = "docAddressDataGridViewTextBoxColumn";
             // 
-            // docPhoneNumDataGridViewTextBoxColumn
+            // DocPhoneNum
             // 
-            this.docPhoneNumDataGridViewTextBoxColumn.DataPropertyName = "DocPhoneNum";
-            this.docPhoneNumDataGridViewTextBoxColumn.HeaderText = "DocPhoneNum";
-            this.docPhoneNumDataGridViewTextBoxColumn.Name = "docPhoneNumDataGridViewTextBoxColumn";
+            this.DocPhoneNum.DataPropertyName = "DocPhoneNumber";
+            this.DocPhoneNum.HeaderText = "DocPhoneNumber";
+            this.DocPhoneNum.Name = "DocPhoneNum";
             // 
             // docQualificationDataGridViewTextBoxColumn
             // 
@@ -225,44 +275,11 @@
             this.docQualificationDataGridViewTextBoxColumn.HeaderText = "DocQualification";
             this.docQualificationDataGridViewTextBoxColumn.Name = "docQualificationDataGridViewTextBoxColumn";
             // 
-            // docDeptIdDataGridViewTextBoxColumn
+            // DocDeptId
             // 
-            this.docDeptIdDataGridViewTextBoxColumn.DataPropertyName = "DocDeptId";
-            this.docDeptIdDataGridViewTextBoxColumn.HeaderText = "DocDeptId";
-            this.docDeptIdDataGridViewTextBoxColumn.Name = "docDeptIdDataGridViewTextBoxColumn";
-            // 
-            // doctorBindingSource
-            // 
-            this.doctorBindingSource.DataMember = "Doctor";
-            this.doctorBindingSource.DataSource = this.doctorsDataSet;
-            // 
-            // doctorsDataSet
-            // 
-            this.doctorsDataSet.DataSetName = "DoctorsDataSet";
-            this.doctorsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // doctorTableAdapter
-            // 
-            this.doctorTableAdapter.ClearBeforeFill = true;
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.Location = new System.Drawing.Point(1046, 104);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(75, 23);
-            this.btnAddNew.TabIndex = 4;
-            this.btnAddNew.Text = "Add Doctor";
-            this.btnAddNew.UseVisualStyleBackColor = true;
-            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(1065, 269);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 5;
-            this.btnEdit.Text = "Edit Doctor";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.DocDeptId.DataPropertyName = "DeptId";
+            this.DocDeptId.HeaderText = "DeptId";
+            this.DocDeptId.Name = "DocDeptId";
             // 
             // DoctorSearchForm
             // 
@@ -303,17 +320,19 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private DoctorsDataSet doctorsDataSet;
         private System.Windows.Forms.BindingSource doctorBindingSource;
+        private DoctorsDataSetTableAdapters.DoctorTableAdapter doctorTableAdapter;
+        private System.Windows.Forms.Button btnAddNew;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn docPhoneNumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn docDeptIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn docIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn docForenameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn docSurnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn docPhotoDataGridViewImageColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn docGenderDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn docGenderDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn docAddressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn docPhoneNumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocPhoneNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn docQualificationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn docDeptIdDataGridViewTextBoxColumn;
-        private DoctorsDataSetTableAdapters.DoctorTableAdapter doctorTableAdapter;
-        private System.Windows.Forms.Button btnAddNew;
-        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocDeptId;
     }
 }

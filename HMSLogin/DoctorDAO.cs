@@ -21,179 +21,217 @@ namespace HMSLogin
         {
             this.connection1 = new SqlConnection
             {
-                ConnectionString = "Data Source = SD-15;" +
-                "Initial Catalog=HospitalMS;" +
-                "Integrated Security = True;"
+                 ConnectionString = "Data Source = SD-15;" +
+                 "Initial Catalog=HospitalMS;" +
+                 "Integrated Security = True;"
             };
         }
-        public bool insertDoctor(Doctor doc)
+        public bool insertDoctor(Doctor doc, out int newID)
         {
+            bool success = false;
+            newID = 0;              // default for new ID
+            //doc.DocPhoto = new byte[] { };
+            
+            // 1. declare the SQL statement (for the command)
+            //    each parameter must be declared and added to the commands parameters collection
+            string sqlInsert = "INSERT INTO tblDoctorDetails " +
+                "(DocForename, DocSurname, DocPhoto, DocGender, DocAddress, DocPhoneNumber, DocQualification, DeptId) " +
+                "VALUES (@Forename,  @Surname, @Photo, @Gender, @Address, @Phone, @Qualification, @DeptId); " +
+                "SELECT SCOPE_IDENTITY();";
+            Console.WriteLine("sqlInsert is " + sqlInsert);
             try
             {
-                string connectionString = "Data Source=SD-15; " +
-                    "Initial Catalog=HospitalMS; " +
-                    "Integrated Security=true; ";
-                // A using statement will automatically close a resource for you,
-                // when the using block finishes.
-                using (SqlConnection connection1 = new SqlConnection(connectionString))
+                // 3. set up a command object
+                SqlCommand command1 = new SqlCommand(sqlInsert, connection1);
+                // 4. set up all parameters
+                command1.Parameters.Add(new SqlParameter
                 {
-                    connection1.Open();
-                    // @Title creates a placeholder for the parameter @title,
-                    // which must be declared and set up using an SqlParamater object underneath
-                    // and added to the SqlCommand's parameter's collection.
-                    string commandString = "INSERT INTO Doctor " +
-                    "(DocId, DocForename, DocSurname, DocPhoto, DocGender, DocAddres, DocPhoneNum, DocQualification, DeptId) " +
-                    "VALUES (@DocId, @Forename,  @Surname, @Photo, @Gender, @Address, @Phone, @Qualification, @DeptId); " +
-                    "SELECT SCOPE_IDENTITY();";
-                    SqlCommand command1 = new SqlCommand(commandString, connection1);
-                    // Create and set up SqlParameter
-                    SqlParameter parameter = new SqlParameter
-                    {
-                        ParameterName = "@DocId",
-                        Value = doc.DocId, // comes from the doctor
-                                           // object passed fromt the form into this
-                                           // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.Int
-                    };
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                    // set up the product parameter
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocForename",
-                        Value = doc.DocForename, // comes from the doctor
-                                                 // object passed fromt the form into this
-                                                 // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = doc.DocForename.Length  // The size set up in SQL server
-                    });
-
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                    // set up the product parameter
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocSurname",
-                        Value = doc.DocSurname, // comes from the doctor
-                                                // object passed fromt the form into this
-                                                // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = doc.DocSurname.Length  // The size set up in SQL server
-                    });
-
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                    // set up the product parameter
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocPhoto",
-                        Value = doc.DocPhoto, // comes from the doctor
-                                           // object passed fromt the form into this
-                                           // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = doc.DocPhoto.Length  // The size set up in SQL server
-                    });
-
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                    // set up the product parameter
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocGender",
-                        Value = doc.DocGender, // comes from the doctor
-                                            // object passed fromt the form into this
-                                            // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = 1  // The size set up in SQL server
-                    });
-
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                    // set up the product parameter
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocAddress",
-                        Value = doc.DocAddress, // comes from the doctor
-                                                // object passed fromt the form into this
-                                                // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = doc.DocAddress.Length  // The size set up in SQL server
-                    });
-
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                    // set up the product parameter
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocPhoneNum",
-                        Value = doc.DocPhoneNumber, // comes from the doctor
-                                                 // object passed fromt the form into this
-                                                 // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = doc.DocPhoneNumber.Length  // The size set up in SQL server
-                    });
-
-                    // Add that parameter into the collection of
-                    // Parameters on the Command object
-                    command1.Parameters.Add(parameter);
-                    // set up the product parameter
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocQualification",
-                        Value = doc.DocQualification, // comes from the doctor
-                                                      // object passed fromt the form into this
-                                                      // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = doc.DocQualification.Length  // The size set up in SQL server
-                    });
-
-                    command1.Parameters.Add(new SqlParameter
-                    {
-                        ParameterName = "@DocDeptId",
-                        Value = doc.DeptId, // comes from the doctor
-                                            // object passed fromt the form into this
-                                            // insertDoctor() method.
-                        SqlDbType = System.Data.SqlDbType.NVarChar,
-                        Size = 4  // The size set up in SQL server
-                    }); ;
-
-                    // Execute the command
-                    // convert the Integer object to a String, and then to a 
-                    int lastID = Int32.Parse(command1.ExecuteScalar().ToString());
-                    Console.WriteLine("returned ID is " + lastID.ToString());
-                    if (lastID != 0)
-                    {
-                        doc.DocId = lastID;
-                        return true;
-                    }
-                    else
-                        return false;
-                }
+                    ParameterName = "@Forename",
+                    Value = doc.DocForename,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Surname",
+                    Value = doc.DocSurname,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50          
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Photo",
+                    Value = doc.DocPhoto,
+                    SqlDbType = SqlDbType.Image
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Gender",
+                    Value = doc.DocGender,
+                    SqlDbType = SqlDbType.Bit
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Address",
+                    Value = doc.DocAddress,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = -1                       // -1 is for the Max allowed
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Phone",
+                    Value = doc.DocPhoneNumber,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50                    
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Qualification",
+                    Value = doc.DocQualification,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@DeptId",
+                    Value = doc.DeptId,
+                    SqlDbType = SqlDbType.Int
+                });
+                // 5. open the connection
+                connection1.Open();
+                Console.WriteLine("**********before ExectueScalar");
+                // 6. execute NonQuery
+                // int numOfRows = command1.ExecuteNonQuery();
+                //newID = int.Parse(command1.ExecuteScalar().ToString());           // ExecuteScalar returns an object of the first column of the updated/inserted row
+                newID = int.Parse(command1.ExecuteScalar().ToString());           // ExecuteScalar returns an object of the first column of the updated/inserted row
+                Console.WriteLine("********* numOfRows is " + newID.ToString());
+                // 7. check the insert worked
+                //    will be 1 if successful, 0 if failed
+                if (newID > 0)     // if ID was returned from the ExecuteNonQuery method, it worked
+                    success = true;
+                else
+                    success = false;
+                // 8. close the connection
             }
             catch (SqlException ex1)
             {
+                Console.WriteLine("  ***************    A database error occurred: \n" + ex1);
+                success = false;
+            }
+            catch (Exception ex2)
+            {
+                Console.WriteLine("  **************    A non-database exception occurred: \n" + ex2);
+                success = false;
+            }
+            finally
+            {
+                if (connection1.State != ConnectionState.Closed)
+                    connection1.Close();
+            }
 
-                System.Diagnostics.Debug.WriteLine("A database error occurred: " + ex1.Message);
-                return false;
-            }
-            catch (InvalidOperationException ex2)
-            {
-                Console.WriteLine("A database error occurred: " + ex2.Message);
-                return false;
-            }
-            catch (Exception ex3)
-            {
-                Console.WriteLine("An error occurred: " + ex3.Message);
-                return false;
-            }
+            return success;
         }
-
+        public bool updateDoctor(Doctor doc)
+        {
+            bool success = false;
+            try
+            {
+                String updateSQL = "UPDATE tblDoctorDetails " +
+                    "SET DocForename = @Forename, " +
+                    "DocSurname = @Surname, " +
+                    "DocPhoto = @Photo, " +
+                    "DocGender = @Gender, " +
+                    "DocAddress = @Address, " +
+                    "DocPhoneNumber = @Phone, " +
+                    "DocQualification = @Qualification, " +
+                    "DeptId = @DeptId " +
+                    "WHERE DocId = @ID;";
+                // 3. set up a command object
+                SqlCommand command1 = new SqlCommand(updateSQL, connection1);
+                // 4. set up all parameters
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Forename",
+                    Value = doc.DocForename,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Surname",
+                    Value = doc.DocSurname,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Photo",
+                    Value = doc.DocPhoto,
+                    SqlDbType = SqlDbType.Image
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Gender",
+                    Value = doc.DocGender,
+                    SqlDbType = SqlDbType.Bit
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Address",
+                    Value = doc.DocAddress,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = -1                       // -1 is for the Max allowed
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Phone",
+                    Value = doc.DocPhoneNumber,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@Qualification",
+                    Value = doc.DocQualification,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@DeptId",
+                    Value = doc.DeptId,
+                    SqlDbType = SqlDbType.Int
+                });
+                command1.Parameters.Add(new SqlParameter
+                {
+                    ParameterName = "@ID",
+                    Value = doc.DocId,
+                    SqlDbType = SqlDbType.Int
+                });
+                // open the connection 
+                connection1.Open();
+                Console.WriteLine("****** doctor object is " + doc.ToString());
+                Console.WriteLine("****** updateSQL is "+updateSQL);
+                int numOfRows = command1.ExecuteNonQuery();
+                Console.WriteLine("*********** numOfRows is "+numOfRows.ToString());
+                if (numOfRows == 1)
+                    success = true;
+            }
+            catch (SqlException ex1)
+            {
+                Console.WriteLine("*********** SQL exception ************\n" + ex1);
+            }
+            catch (Exception ex2)
+            {
+                Console.WriteLine("*********** non-SQL exception ************\n" + ex2);
+            }
+            finally
+            {
+                if (connection1.State != ConnectionState.Closed)
+                    connection1.Close();
+            }
+            return success;
+        }
         public DataSet searchDoctor(String searchID, String searchSurname, String searchDept, out bool success)
         {
             success = false;
@@ -219,7 +257,7 @@ namespace HMSLogin
                     sqlText += " AND ";
                 else
                     sqlText += " WHERE ";
-                sqlText += $"DocDeptID = '{searchDept}'";
+                sqlText += $"DeptID = '{searchDept}'";
             }
             sqlText += ";";
             Console.WriteLine("sqlText is "+sqlText);
@@ -242,6 +280,15 @@ namespace HMSLogin
                 //  The Fill method automatically opens and closes the connection (do not need to specify connection1.Open() or connection1.Close()
                 //
                 dataAdapter1.Fill(dataSet1, "DoctorTable");
+                Console.WriteLine("dataSet1 index 0 is "+dataSet1.Tables[0].Rows[0].ItemArray[0].ToString());
+                Console.WriteLine("dataSet1 index 1 is " + dataSet1.Tables[0].Rows[0].ItemArray[1].ToString());
+                Console.WriteLine("dataSet1 index 2 is " + dataSet1.Tables[0].Rows[0].ItemArray[2].ToString());
+                Console.WriteLine("dataSet1 index 3 is " + dataSet1.Tables[0].Rows[0].ItemArray[3].ToString());
+                Console.WriteLine("dataSet1 index 4 is " + dataSet1.Tables[0].Rows[0].ItemArray[4].ToString());
+                Console.WriteLine("dataSet1 index 5 is " + dataSet1.Tables[0].Rows[0].ItemArray[5].ToString());
+                Console.WriteLine("dataSet1 index 6 is " + dataSet1.Tables[0].Rows[0].ItemArray[6].ToString());
+                Console.WriteLine("dataSet1 index 7 is " + dataSet1.Tables[0].Rows[0].ItemArray[7].ToString());
+                Console.WriteLine("dataSet1 index 8 is " + dataSet1.Tables[0].Rows[0].ItemArray[8].ToString());
                 success = true;
             }
             catch (SqlException ex1)
