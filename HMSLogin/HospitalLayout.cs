@@ -19,7 +19,26 @@ namespace HMSLogin
 
         private void Btn_New_Department_Click(object sender, EventArgs e)
         {
+            ViewDepartment viewDepartment = new ViewDepartment();
+            viewDepartment.Show();
+        }
 
+        private void Btn_New_Ward_Click(object sender, EventArgs e)
+        {
+            ViewWard viewWard = new ViewWard();
+            viewWard.Show();
+        }
+
+        private void Btn_New_Room_Click(object sender, EventArgs e)
+        {
+            ViewRoom viewRoom = new ViewRoom();
+            viewRoom.Show();
+        }
+
+        private void Btn_New_Bed_Click(object sender, EventArgs e)
+        {
+            ViewBed viewBed = new ViewBed();
+            viewBed.Show();
         }
     }
 }

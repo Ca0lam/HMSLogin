@@ -20,14 +20,17 @@ namespace HMSLogin
             hMS = new HospitalMSDataContext();
             int result = hMS.tblRoomDetails.OrderByDescending(x => x.RoomId).Select(x => x.RoomId).FirstOrDefault() + 1;
             Cbx_RoomId.Text = result.ToString();
-            Cbx_WardId.Items.AddRange(hMS.tblRoomDetails.Select(x => (object)x.WardId).ToArray());
+            Cbx_WardId.Items.AddRange(hMS.tblWardDetails.Select(x => (object)x.WardId).ToArray());
+            Cbx_WardId.SelectedIndex = 0;
+            object[] roomTypes = { "Public", "SemiPrivate", "Private" };
+            Cbx_RoomType.Items.AddRange(roomTypes);
         }
 
         private void Btn_Save_Click(object sender, EventArgs e)
         {
             tblRoomDetail room = new tblRoomDetail();
             room.WardId = int.Parse(Cbx_WardId.SelectedItem.ToString());
-            room.RoomType = int.Parse(Cbx_RoomType.SelectedItem.ToString());
+            room.RoomType = Cbx_RoomType.SelectedItem.ToString();
             hMS.tblRoomDetails.InsertOnSubmit(room);
             hMS.SubmitChanges();
             this.Dispose();

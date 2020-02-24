@@ -64,6 +64,7 @@
             this.Btn_New_Bed.TabIndex = 3;
             this.Btn_New_Bed.Text = "Bed";
             this.Btn_New_Bed.UseVisualStyleBackColor = true;
+            this.Btn_New_Bed.Click += new System.EventHandler(this.Btn_New_Bed_Click);
             // 
             // Btn_New_Room
             // 
@@ -73,6 +74,7 @@
             this.Btn_New_Room.TabIndex = 2;
             this.Btn_New_Room.Text = "Room";
             this.Btn_New_Room.UseVisualStyleBackColor = true;
+            this.Btn_New_Room.Click += new System.EventHandler(this.Btn_New_Room_Click);
             // 
             // Btn_New_Ward
             // 
@@ -82,6 +84,7 @@
             this.Btn_New_Ward.TabIndex = 1;
             this.Btn_New_Ward.Text = "Ward";
             this.Btn_New_Ward.UseVisualStyleBackColor = true;
+            this.Btn_New_Ward.Click += new System.EventHandler(this.Btn_New_Ward_Click);
             // 
             // Btn_New_Department
             // 

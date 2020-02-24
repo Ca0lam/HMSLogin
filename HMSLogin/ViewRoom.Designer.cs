@@ -66,6 +66,7 @@
             // 
             // Cbx_RoomId
             // 
+            this.Cbx_RoomId.Enabled = false;
             this.Cbx_RoomId.FormattingEnabled = true;
             this.Cbx_RoomId.Location = new System.Drawing.Point(115, 9);
             this.Cbx_RoomId.Name = "Cbx_RoomId";

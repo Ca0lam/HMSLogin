@@ -20,7 +20,8 @@ namespace HMSLogin
             hMS = new HospitalMSDataContext();
             int result = hMS.tblWardDetails.OrderByDescending(x => x.WardId).Select(x => x.WardId).FirstOrDefault() + 1;
             Cbx_WardID.Text = result.ToString();
-            Cbx_DepartmentId.Items.AddRange(hMS.tblWardDetails.Select(x => (object)x.WardId).ToArray());
+            Cbx_DepartmentId.Items.AddRange(hMS.tblDeptDetails.Select(x => (object)x.DeptId).ToArray());
+            Cbx_DepartmentId.SelectedIndex = 0;
         }
 
         private void Btn_Save_Click(object sender, EventArgs e)

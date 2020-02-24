@@ -79,7 +79,7 @@
     <Type Name="tblRoomDetail">
       <Column Name="RoomId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="WardId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RoomType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomType" Type="System.String" DbType="NVarchar(50) NOT NULL" CanBeNull="false" />
       <Association Name="tblRoomDetail_tblBedDetail" Member="tblBedDetails" ThisKey="RoomId" OtherKey="RoomId" Type="tblBedDetail" />
       <Association Name="tblWardDetail_tblRoomDetail" Member="tblWardDetail" ThisKey="WardId" OtherKey="WardId" Type="tblWardDetail" IsForeignKey="true" />
     </Type>

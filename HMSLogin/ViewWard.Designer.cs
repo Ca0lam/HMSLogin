@@ -56,6 +56,7 @@
             // 
             // Cbx_WardID
             // 
+            this.Cbx_WardID.Enabled = false;
             this.Cbx_WardID.FormattingEnabled = true;
             this.Cbx_WardID.Location = new System.Drawing.Point(115, 9);
             this.Cbx_WardID.Name = "Cbx_WardID";
