@@ -42,5 +42,7 @@ namespace HMSLogin.Properties {
                 return ((string)(this["HospitalMSConnectionString"]));
             }
         }
+
+        public string DoctorsConnectionString { get; internal set; }
     }
 }

@@ -1,8 +1,6 @@
 ﻿namespace HMSLogin
 {
-
-
-    partial class DoctorsDataSet
-    {
-    }
+    //internal class DoctorsDataSet
+    //{
+    //}
 }
