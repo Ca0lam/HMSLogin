@@ -26,6 +26,20 @@ namespace HMSLogin
             Cbx_RoomType.Items.AddRange(roomTypes);
         }
 
+        public ViewRoom(string stuff)
+        {
+            InitializeComponent();
+            hMS = new HospitalMSDataContext();
+            Cbx_RoomId.Items.AddRange(hMS.tblRoomDetails.Select(x => (object)x.RoomId).ToArray());
+            Cbx_RoomId.SelectedIndex = 0;
+            Cbx_RoomId.Enabled = true;
+            Cbx_WardId.Items.AddRange(hMS.tblRoomDetails.Where(x=> x.RoomId == int.Parse(Cbx_RoomId.Text)).Select(x => (object)x.WardId).ToArray());
+            Cbx_WardId.SelectedIndex = 0;
+            object[] roomTypes = { "Public", "SemiPrivate", "Private" };
+            Cbx_RoomType.Items.AddRange(roomTypes);
+            Cbx_RoomType.Text = hMS.tblRoomDetails.Where(x => x.RoomId == int.Parse(Cbx_RoomId.Text)).Select(x => x.RoomType).FirstOrDefault();
+        }
+
         private void Btn_Save_Click(object sender, EventArgs e)
         {
             tblRoomDetail room = new tblRoomDetail();

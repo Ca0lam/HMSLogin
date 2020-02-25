@@ -40,5 +40,17 @@ namespace HMSLogin
             ViewBed viewBed = new ViewBed();
             viewBed.Show();
         }
+
+        private void Btn_View_Department_Click(object sender, EventArgs e)
+        {
+            ViewWard department = new ViewWard("LIES");
+            department.Show();
+        }
+
+        private void Btn_View_Beds_Click(object sender, EventArgs e)
+        {
+            ViewRoom room = new ViewRoom("Lies");
+            room.Show();
+        }
     }
 }

@@ -136,6 +136,7 @@
             this.Btn_View_Beds.TabIndex = 2;
             this.Btn_View_Beds.Text = "Ward";
             this.Btn_View_Beds.UseVisualStyleBackColor = true;
+            this.Btn_View_Beds.Click += new System.EventHandler(this.Btn_View_Beds_Click);
             // 
             // Btn_View_Department
             // 
@@ -145,6 +146,7 @@
             this.Btn_View_Department.TabIndex = 1;
             this.Btn_View_Department.Text = "Department";
             this.Btn_View_Department.UseVisualStyleBackColor = true;
+            this.Btn_View_Department.Click += new System.EventHandler(this.Btn_View_Department_Click);
             // 
             // Btn_View_Hospital
             // 
