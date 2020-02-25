@@ -56,7 +56,7 @@ namespace HMSLogin
                 {
 
                 }
-                Hide();
+                this.Hide();
             }
             if (TxtName.Text != hmslogindetails.Name || TxtPassword.Text != hmslogindetails.Password)
             {
@@ -76,7 +76,6 @@ namespace HMSLogin
             }
             TxtName.Text = string.Empty;
             TxtPassword.Text = string.Empty;
-
         }
 
         private void BtnShowMe_Click(object sender, EventArgs e)
@@ -135,8 +134,9 @@ namespace HMSLogin
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
-            RegisterForm registerfrm = new RegisterForm();
+            RegisterForm registerfrm = new RegisterForm(this);
             registerfrm.Show();
+            this.Hide();
         }
     }
 }

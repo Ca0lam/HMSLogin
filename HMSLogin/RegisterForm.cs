@@ -12,12 +12,14 @@ namespace HMSLogin
 {
     public partial class RegisterForm : Form
     {
+        Form1 hmsloginfrm;
         RegisterDAO dao = new RegisterDAO();
         DateTime dob;
-        public RegisterForm()
+        public RegisterForm(Form1 hmsloginfrm)
         {
             InitializeComponent();
             MthDOB.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MthDOB_DateSelected);
+            this.hmsloginfrm = hmsloginfrm;
         }
 
         private void MthDOB_DateSelected(object sender, DateRangeEventArgs e)
@@ -28,8 +30,8 @@ namespace HMSLogin
         private void BtnCreate_Click(object sender, EventArgs e)
         {
             if (TxtFirstname.Text == string.Empty || TxtSurname.Text == string.Empty || CmbGender.Text == string.Empty ||
-                TxtAddress.Text == string.Empty ||  TxtMobileNo.Text == string.Empty ||
-                TxtPersonsName.Text == string.Empty || TxtPhoneNo.Text == string.Empty || TxtRelationship.Text == string.Empty)
+                TxtAddress.Text == string.Empty ||  TxtMobileNo.Text == string.Empty || TxtPersonsName.Text == string.Empty || 
+                TxtPhoneNo.Text == string.Empty || TxtRelationship.Text == string.Empty)
             {
                 MessageBox.Show("Some fields are empty", "Empty fields, you must fill them, I demand it!!!");
             }
@@ -58,7 +60,12 @@ namespace HMSLogin
                 };
                 dao.RegisterLogin(registerdetails);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
             Dispose();
+            hmsloginfrm.Show();
         }
     }
 }
