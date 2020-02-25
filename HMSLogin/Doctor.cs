@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HMSLogin
 {
+    /*
+     * The Doctor class describes the Doctor object of a single doctor
+     */
     public class Doctor
     {
-        /* The compiler will generate a private variable for each "automatic" property
+/* The compiler will generate a private variable for each "automatic" property
 * The getter and setters are public though.C:\Users\DSD14\Desktop\PROJECT\Application\HMSLogin\HMSLogin\Doctor.cs
 * We will be able to get and set properties e.g.
 * Doctor d1 = new Doctor();
@@ -32,7 +31,7 @@ namespace HMSLogin
                 gender = "female";
             return $"Id: {DocId.ToString()}," +
                 $" Doctor Name: {DocForename} {DocSurname}," +
-                $" Gender: {DocGender}," +
+                $" Gender: {gender}," +
                 $" DocAddress: {DocAddress}," +
                 $" DocPhoneNum: {DocPhoneNumber}" +
                 $" Qualifications: {DocQualification}" +

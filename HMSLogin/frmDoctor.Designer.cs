@@ -47,6 +47,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cboGender = new System.Windows.Forms.ComboBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,10 +64,10 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(324, 618);
+            this.btnUpdate.Location = new System.Drawing.Point(298, 618);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(114, 28);
-            this.btnUpdate.TabIndex = 1;
+            this.btnUpdate.TabIndex = 7;
             this.btnUpdate.Text = "Update Details";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -76,9 +78,10 @@
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblID.Location = new System.Drawing.Point(363, 80);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(49, 20);
+            this.lblID.Size = new System.Drawing.Size(14, 20);
             this.lblID.TabIndex = 2;
-            this.lblID.Text = "0000";
+            this.lblID.Text = " ";
+            this.lblID.Click += new System.EventHandler(this.lblID_Click);
             // 
             // lblSurname
             // 
@@ -148,21 +151,21 @@
             this.txtSurname.Location = new System.Drawing.Point(232, 124);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(180, 20);
-            this.txtSurname.TabIndex = 10;
+            this.txtSurname.TabIndex = 0;
             // 
             // txtFirstname
             // 
             this.txtFirstname.Location = new System.Drawing.Point(232, 169);
             this.txtFirstname.Name = "txtFirstname";
             this.txtFirstname.Size = new System.Drawing.Size(180, 20);
-            this.txtFirstname.TabIndex = 11;
+            this.txtFirstname.TabIndex = 1;
             // 
             // txtDeptID
             // 
             this.txtDeptID.Location = new System.Drawing.Point(232, 292);
             this.txtDeptID.Name = "txtDeptID";
             this.txtDeptID.Size = new System.Drawing.Size(180, 20);
-            this.txtDeptID.TabIndex = 12;
+            this.txtDeptID.TabIndex = 3;
             // 
             // txtAddress
             // 
@@ -170,14 +173,14 @@
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(180, 86);
-            this.txtAddress.TabIndex = 13;
+            this.txtAddress.TabIndex = 4;
             // 
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(232, 454);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(180, 20);
-            this.txtPhone.TabIndex = 14;
+            this.txtPhone.TabIndex = 5;
             // 
             // txtQualifications
             // 
@@ -185,39 +188,59 @@
             this.txtQualifications.Multiline = true;
             this.txtQualifications.Name = "txtQualifications";
             this.txtQualifications.Size = new System.Drawing.Size(180, 71);
-            this.txtQualifications.TabIndex = 15;
+            this.txtQualifications.TabIndex = 6;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(324, 12);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(114, 28);
-            this.btnCancel.TabIndex = 16;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel Update";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(567, 80);
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pictureBox1.Location = new System.Drawing.Point(495, 80);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(135, 132);
+            this.pictureBox1.Size = new System.Drawing.Size(293, 279);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             // 
             // cboGender
             // 
+            this.cboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGender.FormattingEnabled = true;
             this.cboGender.Location = new System.Drawing.Point(232, 222);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(180, 21);
-            this.cboGender.TabIndex = 18;
+            this.cboGender.TabIndex = 2;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(34, 618);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(92, 28);
+            this.btnDelete.TabIndex = 18;
+            this.btnDelete.Text = "Delete doctor";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 658);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.cboGender);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
@@ -266,5 +289,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox cboGender;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
