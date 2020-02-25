@@ -46,7 +46,10 @@ namespace HMSLogin
                 }
                 if (hmslogindetails.Role == "Doctor")
                 {
-
+                    this.Hide();
+                    //this.Dispose();
+                    DoctorSearchForm doctorSearch = new DoctorSearchForm();
+                    doctorSearch.Show();
                 }
                 if (hmslogindetails.Role == "Admin")
                 {
@@ -137,6 +140,11 @@ namespace HMSLogin
             RegisterForm registerfrm = new RegisterForm(this);
             registerfrm.Show();
             this.Hide();
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

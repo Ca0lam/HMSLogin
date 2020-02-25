@@ -33,8 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +50,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BillingTestClass.cs" />
+    <Compile Include="DoctorsDataSet.cs">
+      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HMSBilling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HMSBilling.Designer.cs">
+      <DependentUpon>HMSBilling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Bed.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\Room.cs" />
+    <Compile Include="Classes\Patient.cs" />
+    <Compile Include="Doctor.cs" />
+    <Compile Include="frmDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoctor.Designer.cs">
+      <DependentUpon>frmDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorDAO.cs" />
+    <Compile Include="DoctorSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoctorSearchForm.Designer.cs">
+      <DependentUpon>DoctorSearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HMSLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +91,25 @@
     </Compile>
     <Compile Include="HMSLoginDAO.cs" />
     <Compile Include="HMSLoginDetails.cs" />
+    <Compile Include="HospitalLayout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HospitalLayout.Designer.cs">
+      <DependentUpon>HospitalLayout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PatientDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PatientDetails.Designer.cs">
+      <DependentUpon>PatientDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\VisitDetails.cs" />
+    <Compile Include="Database\HospitalMS.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalMS.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientNote.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDAO.cs" />
@@ -64,8 +120,48 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="HMSBilling.resx">
+      <DependentUpon>HMSBilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Entities\Ward.cs" />
+    <Compile Include="ViewBed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewBed.Designer.cs">
+      <DependentUpon>ViewBed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDepartment.Designer.cs">
+      <DependentUpon>ViewDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewRoom.Designer.cs">
+      <DependentUpon>ViewRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewWard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewWard.Designer.cs">
+      <DependentUpon>ViewWard.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DoctorSearchForm.resx">
+      <DependentUpon>DoctorSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDoctor.resx">
+      <DependentUpon>frmDoctor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HMSLoginForm.resx">
       <DependentUpon>HMSLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HospitalLayout.resx">
+      <DependentUpon>HospitalLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PatientDetails.resx">
+      <DependentUpon>PatientDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,6 +175,38 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewBed.resx">
+      <DependentUpon>ViewBed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDepartment.resx">
+      <DependentUpon>ViewDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewRoom.resx">
+      <DependentUpon>ViewRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewWard.resx">
+      <DependentUpon>ViewWard.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Database\HospitalMS.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>HospitalMS.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Database\HospitalMS.dbml.layout">
+      <DependentUpon>HospitalMS.dbml</DependentUpon>
+    </None>
+    <None Include="DoctorsDataSet.xsc">
+      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DoctorsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DoctorsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DoctorsDataSet.xss">
+      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -91,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
