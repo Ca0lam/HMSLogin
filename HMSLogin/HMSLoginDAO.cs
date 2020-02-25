@@ -14,8 +14,8 @@ namespace HMSLogin
         public bool InputLogin(HMSLoginDetails hmslogindetails)
         {
             string connectionString =
-            "Data Source=SD-14;" +
-            "Initial Catalog=Doctors;" +
+            "Data Source=SD-15;" +
+            "Initial Catalog=HospitalMS;" +
             "Integrated Security=True";
 
             try
@@ -73,8 +73,8 @@ namespace HMSLogin
         public bool Testlogin()
         {
             string connectionString =
-            "Data Source=;" +
-            "Initial Catalog=;" +
+            "Data Source=SD-15;" +
+            "Initial Catalog=HospitalMS;" +
             "Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

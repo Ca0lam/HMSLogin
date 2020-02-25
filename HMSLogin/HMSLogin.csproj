@@ -52,6 +52,14 @@
   <ItemGroup>
     <Compile Include="BillingTestClass.cs" />
     <Compile Include="Classes\NOK.cs" />
+    <Compile Include="DoctorsDataSet.cs">
+      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="HMSBilling.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,9 +71,6 @@
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Classes\Patient.cs" />
     <Compile Include="Doctor.cs" />
-    <Compile Include="DoctorsDataSet.cs">
-      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frmDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,11 +78,6 @@
       <DependentUpon>frmDoctor.cs</DependentUpon>
     </Compile>
     <Compile Include="DoctorDAO.cs" />
-    <Compile Include="DoctorsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DoctorSearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,18 +205,18 @@
     <None Include="Database\HospitalMS.dbml.layout">
       <DependentUpon>HospitalMS.dbml</DependentUpon>
     </None>
-    <None Include="packages.config" />
     <None Include="DoctorsDataSet.xsc">
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
     </None>
     <None Include="DoctorsDataSet.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DoctorsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="DoctorsDataSet.xss">
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
