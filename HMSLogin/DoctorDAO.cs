@@ -1,49 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HMSLogin
 {
     class DoctorDAO
     {
-        //
-        // A connection object that will be used by all objects in this class
-        //
+        /*
+        * A connection object that will be used by all objects in this class
+        */
         private readonly SqlConnection connection1;
-        //
-        // This is a constructor used for initialising any class member variables i.e. the connection reference above
-        //
+        /*
+        * This is a constructor used for initialising the connection reference above
+        */
         public DoctorDAO()
         {
             this.connection1 = new SqlConnection
             {
-                 ConnectionString = "Data Source = SD-15;" +
+                ConnectionString = "Data Source = SD-15;" +
                  "Initial Catalog=HospitalMS;" +
                  "Integrated Security = True;"
             };
         }
+        /*
+         * insertDoctor method for adding a new Doctor to the database
+         */
         public bool insertDoctor(Doctor doc, out int newID)
         {
-            bool success = false;
-            newID = 0;              // default for new ID
-            //doc.DocPhoto = new byte[] { };
-            
+            bool success = false;               // return parameter to indicate success/failur
+            bool photoSupplied = true;          // need to detect if a photo exists or not
+            string sqlInsert;                   // string for SQL insert command
+            newID = 0;                          // default for new ID
+            if (doc.DocPhoto == null)           // if no photo supplied 
+                photoSupplied = false;          // indicate this
             // 1. declare the SQL statement (for the command)
             //    each parameter must be declared and added to the commands parameters collection
-            string sqlInsert = "INSERT INTO tblDoctorDetails " +
-                "(DocForename, DocSurname, DocPhoto, DocGender, DocAddress, DocPhoneNumber, DocQualification, DeptId) " +
-                "VALUES (@Forename,  @Surname, @Photo, @Gender, @Address, @Phone, @Qualification, @DeptId); " +
-                "SELECT SCOPE_IDENTITY();";
-            Console.WriteLine("sqlInsert is " + sqlInsert);
+            if (photoSupplied)
+                sqlInsert = "INSERT INTO tblDoctorDetails " +
+                    "(DocForename, DocSurname, DocPhoto, DocGender, DocAddress, DocPhoneNumber, DocQualification, DeptId) " +
+                    "VALUES (@Forename,  @Surname, @Photo, @Gender, @Address, @Phone, @Qualification, @DeptId); " +
+                    "SELECT SCOPE_IDENTITY();";
+            else            // have a different INSERT statement that does not include parameter for photo if no photo is supplied
+                sqlInsert = "INSERT INTO tblDoctorDetails " +
+                    "(DocForename, DocSurname, DocGender, DocAddress, DocPhoneNumber, DocQualification, DeptId) " +
+                    "VALUES (@Forename,  @Surname, @Gender, @Address, @Phone, @Qualification, @DeptId); " +
+                     "SELECT SCOPE_IDENTITY();";
+            Console.WriteLine("sqlInsert is " + sqlInsert);     // write SQL insert to console
             try
             {
-                // 3. set up a command object
+                // 2. set up a command object
                 SqlCommand command1 = new SqlCommand(sqlInsert, connection1);
-                // 4. set up all parameters
+                // 3. set up all parameters
                 command1.Parameters.Add(new SqlParameter
                 {
                     ParameterName = "@Forename",
@@ -56,14 +63,15 @@ namespace HMSLogin
                     ParameterName = "@Surname",
                     Value = doc.DocSurname,
                     SqlDbType = SqlDbType.VarChar,
-                    Size = 50          
+                    Size = 50
                 });
-                command1.Parameters.Add(new SqlParameter
-                {
-                    ParameterName = "@Photo",
-                    Value = doc.DocPhoto,
-                    SqlDbType = SqlDbType.Image
-                });
+                if (photoSupplied)                      // only include @Photo parameter if a photo was supplied
+                    command1.Parameters.Add(new SqlParameter
+                    {
+                        ParameterName = "@Photo",
+                        Value = doc.DocPhoto,
+                        SqlDbType = SqlDbType.Image
+                    });
                 command1.Parameters.Add(new SqlParameter
                 {
                     ParameterName = "@Gender",
@@ -82,7 +90,7 @@ namespace HMSLogin
                     ParameterName = "@Phone",
                     Value = doc.DocPhoneNumber,
                     SqlDbType = SqlDbType.VarChar,
-                    Size = 50                    
+                    Size = 50
                 });
                 command1.Parameters.Add(new SqlParameter
                 {
@@ -97,21 +105,17 @@ namespace HMSLogin
                     Value = doc.DeptId,
                     SqlDbType = SqlDbType.Int
                 });
-                // 5. open the connection
+                // 4. open the connection
                 connection1.Open();
-                Console.WriteLine("**********before ExectueScalar");
-                // 6. execute NonQuery
-                // int numOfRows = command1.ExecuteNonQuery();
-                //newID = int.Parse(command1.ExecuteScalar().ToString());           // ExecuteScalar returns an object of the first column of the updated/inserted row
-                newID = int.Parse(command1.ExecuteScalar().ToString());           // ExecuteScalar returns an object of the first column of the updated/inserted row
-                Console.WriteLine("********* numOfRows is " + newID.ToString());
-                // 7. check the insert worked
+                // 5. ExecuteScalar
+                // ExecuteScalar returns an object of the first column of the updated/inserted row
+                newID = int.Parse(command1.ExecuteScalar().ToString());
+                // 6. check the insert worked
                 //    will be 1 if successful, 0 if failed
-                if (newID > 0)     // if ID was returned from the ExecuteNonQuery method, it worked
+                if (newID > 0)                          // if ID was returned from the ExecuteNonQuery method, it worked
                     success = true;
                 else
                     success = false;
-                // 8. close the connection
             }
             catch (SqlException ex1)
             {
@@ -125,30 +129,51 @@ namespace HMSLogin
             }
             finally
             {
+                // 7. close the connection
                 if (connection1.State != ConnectionState.Closed)
                     connection1.Close();
             }
-
             return success;
         }
+        /*
+         * updateDoctor method for updating details for a doctor 
+         * that already exists in the database
+         */
         public bool updateDoctor(Doctor doc)
         {
             bool success = false;
+            string updateSQL;                           // string for SQL update command
+            bool photoSupplied = true;                  // indicator for whether a photo was supplied or not
+            if (doc.DocPhoto == null)                   // if no photo supplied,
+                photoSupplied = false;                  //      indicate this
             try
             {
-                String updateSQL = "UPDATE tblDoctorDetails " +
-                    "SET DocForename = @Forename, " +
-                    "DocSurname = @Surname, " +
-                    "DocPhoto = @Photo, " +
-                    "DocGender = @Gender, " +
-                    "DocAddress = @Address, " +
-                    "DocPhoneNumber = @Phone, " +
-                    "DocQualification = @Qualification, " +
-                    "DeptId = @DeptId " +
-                    "WHERE DocId = @ID;";
-                // 3. set up a command object
+                // 1. declare the SQL statement (for the command)
+                //    each parameter must be declared and added to the commands parameters collection
+                if (photoSupplied)                      // do not include @Photo parameter if no photo was supplied
+                    updateSQL = "UPDATE tblDoctorDetails " +
+                        "SET DocForename = @Forename, " +
+                        "DocSurname = @Surname, " +
+                        "DocPhoto = @Photo, " +
+                        "DocGender = @Gender, " +
+                        "DocAddress = @Address, " +
+                        "DocPhoneNumber = @Phone, " +
+                        "DocQualification = @Qualification, " +
+                        "DeptId = @DeptId " +
+                        "WHERE DocId = @ID;";
+                else
+                    updateSQL = "UPDATE tblDoctorDetails " +
+                        "SET DocForename = @Forename, " +
+                        "DocSurname = @Surname, " +
+                        "DocGender = @Gender, " +
+                        "DocAddress = @Address, " +
+                        "DocPhoneNumber = @Phone, " +
+                        "DocQualification = @Qualification, " +
+                        "DeptId = @DeptId " +
+                        "WHERE DocId = @ID;";
+                // 2. set up a command object
                 SqlCommand command1 = new SqlCommand(updateSQL, connection1);
-                // 4. set up all parameters
+                // 3. set up all parameters
                 command1.Parameters.Add(new SqlParameter
                 {
                     ParameterName = "@Forename",
@@ -163,12 +188,13 @@ namespace HMSLogin
                     SqlDbType = SqlDbType.VarChar,
                     Size = 50
                 });
-                command1.Parameters.Add(new SqlParameter
-                {
-                    ParameterName = "@Photo",
-                    Value = doc.DocPhoto,
-                    SqlDbType = SqlDbType.Image
-                });
+                if (photoSupplied)                  // do not include the photo parameter, if no photo was supplied
+                    command1.Parameters.Add(new SqlParameter
+                    {
+                        ParameterName = "@Photo",
+                        Value = doc.DocPhoto,
+                        SqlDbType = SqlDbType.Image
+                    });
                 command1.Parameters.Add(new SqlParameter
                 {
                     ParameterName = "@Gender",
@@ -208,12 +234,11 @@ namespace HMSLogin
                     Value = doc.DocId,
                     SqlDbType = SqlDbType.Int
                 });
-                // open the connection 
+                // 4. open the connection 
                 connection1.Open();
-                Console.WriteLine("****** doctor object is " + doc.ToString());
-                Console.WriteLine("****** updateSQL is "+updateSQL);
+                Console.WriteLine("****** updateSQL is " + updateSQL);        // write the SQL to the console
+                // 5. executeNonQuery, which returns the number of rows updated
                 int numOfRows = command1.ExecuteNonQuery();
-                Console.WriteLine("*********** numOfRows is "+numOfRows.ToString());
                 if (numOfRows == 1)
                     success = true;
             }
@@ -227,68 +252,64 @@ namespace HMSLogin
             }
             finally
             {
+                //  6.  close the connection
                 if (connection1.State != ConnectionState.Closed)
                     connection1.Close();
             }
             return success;
         }
+        /*
+         * Search the doctor table in the database for a doctor or doctors depending
+         * upon the search criteria of the three textboxes on the search form.
+         */
         public DataSet searchDoctor(String searchID, String searchSurname, String searchDept, out bool success)
         {
             success = false;
-            bool whereIncluded = false;
-            String sqlText = "SELECT * FROM tblDoctorDetails";
-            if (searchID != string.Empty)
+            bool whereIncluded = false;             // indicate if a WHERE clause has already been added to the SQL statement or not
+            String sqlText = "SELECT * FROM tblDoctorDetails";          // select SQL
+            if (searchID != string.Empty)           // if search to be on doctor ID....
             {
-                sqlText += $" WHERE DocID = '{searchID}'";
-                whereIncluded = true;
-            } 
-            if (searchSurname != string.Empty)
+                sqlText += $" WHERE DocID = '{searchID}'";      // add WHERE clause on the doctor ID supplied
+                whereIncluded = true;              // indicate WHERE clause added to search SQL
+            }
+            if (searchSurname != string.Empty)     // if search to be on doctor surname
             {
-                if (whereIncluded)
+                if (whereIncluded)                  // if WHERE clause already added, include an 'AND' for extra where clause
                     sqlText += " AND ";
                 else
                     sqlText += " WHERE ";
                 sqlText += $"DocSurname = '{searchSurname}'";
-                whereIncluded = true;
-            } 
-            if (searchDept != string.Empty)
+                whereIncluded = true;               // indicate WHERE clause added to search SQL
+            }
+            if (searchDept != string.Empty)         // if search to be on department
             {
-                if (whereIncluded)
+                if (whereIncluded)                  // if WHERE clause already added, include an 'AND' for extra where clause
                     sqlText += " AND ";
                 else
                     sqlText += " WHERE ";
                 sqlText += $"DeptID = '{searchDept}'";
             }
-            sqlText += ";";
-            Console.WriteLine("sqlText is "+sqlText);
+            sqlText += ";";                         // end delimiter for search SQL
+            Console.WriteLine("sqlText is " + sqlText);           // write SQL statement to the console
             //  declare a DataSet before the try block, so that it can be returned after the try block
             //  if you declare a variable inside the try block it cannot be seen outside the try block
             DataSet dataSet1 = new DataSet();
             try
             {
                 SqlCommand command1 = new SqlCommand(sqlText, connection1);
-                //
-                // the data adapter object can execute commands against the database
-                // and populate a DataSet object with results
-                // The datagrid on the search form can be connected directly to a DataSet
-                // 
+                /*
+                *  The data adapter object can execute commands against the database
+                *  and populates the DataSet object with results
+                *  The datagrid on the search form can be connected directly to a DataSet
+                */
                 SqlDataAdapter dataAdapter1 = new SqlDataAdapter(command1);
-                //
-                //  To execute the SQL command, use the dataAdapter's fill method.
-                //  The fill method of the dataAdapter will put the results from the SELECT command into the dataset
-                //  and you can optionally specify the table name where the results will go.
-                //  The Fill method automatically opens and closes the connection (do not need to specify connection1.Open() or connection1.Close()
-                //
+                /*
+                *  To execute the SQL command, use the dataAdapter's fill method.
+                *  The fill method of the dataAdapter will put the results from the SELECT command into the dataset
+                *  and you can optionally specify the table name where the results will go.
+                *  The Fill method automatically opens and closes the connection (do not need to specify connection1.Open() or connection1.Close()
+                */
                 dataAdapter1.Fill(dataSet1, "DoctorTable");
-                Console.WriteLine("dataSet1 index 0 is "+dataSet1.Tables[0].Rows[0].ItemArray[0].ToString());
-                Console.WriteLine("dataSet1 index 1 is " + dataSet1.Tables[0].Rows[0].ItemArray[1].ToString());
-                Console.WriteLine("dataSet1 index 2 is " + dataSet1.Tables[0].Rows[0].ItemArray[2].ToString());
-                Console.WriteLine("dataSet1 index 3 is " + dataSet1.Tables[0].Rows[0].ItemArray[3].ToString());
-                Console.WriteLine("dataSet1 index 4 is " + dataSet1.Tables[0].Rows[0].ItemArray[4].ToString());
-                Console.WriteLine("dataSet1 index 5 is " + dataSet1.Tables[0].Rows[0].ItemArray[5].ToString());
-                Console.WriteLine("dataSet1 index 6 is " + dataSet1.Tables[0].Rows[0].ItemArray[6].ToString());
-                Console.WriteLine("dataSet1 index 7 is " + dataSet1.Tables[0].Rows[0].ItemArray[7].ToString());
-                Console.WriteLine("dataSet1 index 8 is " + dataSet1.Tables[0].Rows[0].ItemArray[8].ToString());
                 success = true;
             }
             catch (SqlException ex1)
@@ -299,81 +320,55 @@ namespace HMSLogin
             {
                 Console.WriteLine("*************** non-SQL exception  \n" + ex2);
             }
-            return dataSet1;
+            return dataSet1;            // return the dataset
         }
-
-    }
-
-    /*
-    public List<Doctor> getDoctorsFromDatabase(out bool success)
+        /*
+        * deleteDoctor method for deleting a doctor from the database 
+        */
+        public bool deleteDoctor(int docID)
         {
-
-            List<Doctor> listOfDoctors = new List<Doctor>();
-            //System.Data.Linq.Table<tblDoctorDetail> listOfDoctors = null;
+            bool success = false;
+            string deleteSQL;                           // string for SQL delete command
             try
             {
-                /*DataClasses1DataContext hMSDataContext = new DataClasses1DataContext();
-                listOfDoctors = hMSDataContext.GetTable<tblDoctorDetail>();
-
-                listOfDoctors.Where(x => x.DocId != 1000);
-
-                string connectionString = "Data Source=SD-15; " +
-                    "Initial Catalog=HospitalMS; " +
-                    "Integrated Security=true; ";
-                // A using statement will automatically close a resource for you,
-                // when the using block finishes.
-                using (SqlConnection connection1 = new SqlConnection(connectionString))
+                // 1. declare the SQL statement (for the command)
+                //    The @ID parameter must be declared and added to the commands parameters collection
+                deleteSQL = "DELETE FROM tblDoctorDetails " +
+                    "WHERE DocId = @ID;";
+                // 2. set up a command object
+                SqlCommand command1 = new SqlCommand(deleteSQL, connection1);
+                // 3. set up the @ID parameter
+                command1.Parameters.Add(new SqlParameter
                 {
-                    connection1.Open();
-                    success = false;
-                    string selectSQL = "SELECT * FROM Doctor;";              // This is the select statement we want to send to the database
-                    SqlCommand selectCommand = new SqlCommand(selectSQL, connection1);
-                    //  Declare a DataReader and execute the command
-                    SqlDataReader dataReader1 = selectCommand.ExecuteReader();
-                    Console.WriteLine("********************");
-                    //  Loop through rows using DataReader
-                    while (dataReader1.Read())
-                    {
-                        //  Turn each row into a Learner object
-                        Doctor doctor = new Doctor();
-                        //
-                        // The dataReader has an [indexer method] for accessing each column on the current row
-                        // The dataReader returns an object type which must be (cast) into the correct type each time.
-                        doctor.DocId = (int)dataReader1["DoctorID"];
-                        doctor.DocForename = (string)dataReader1["DocForename"];
-                        doctor.DocSurname = (string)dataReader1["DocSurname"];
-                        doctor.DocSurname = (string)dataReader1["DocSurname"];
-                        doctor.DocPhoto = (byte[])dataReader1["Photo"];
-                        doctor.DocAddress = (string)dataReader1["DocAddress"];
-                        doctor.DocPhoneNumber = (string)dataReader1["DocPhoneNum"];
-                        doctor.DocQualification = (string)dataReader1["DocQualification"];
-                        doctor.DeptId = (int)dataReader1["DeptId"];
-                        //
-                        //  Add each object to the List
-                        //
-                        Console.WriteLine("Doctor added to list: \r\n" + doctor.ToString());
-                        listOfDoctors.Add(doctor);
-                    }
+                    ParameterName = "@ID",
+                    Value = docID,
+                    SqlDbType = SqlDbType.Int
+                });
+                // 4. open the connection 
+                connection1.Open();
+                Console.WriteLine("****** deleteSQL is " + deleteSQL);        // write the SQL to the console
+                                                                              // 5. executeNonQuery, which returns the number of rows updated
+                int numOfRows = command1.ExecuteNonQuery();
+                if (numOfRows == 1)
                     success = true;
-                }
             }
             catch (SqlException ex1)
             {
-
-                System.Diagnostics.Debug.WriteLine("A database error occurred: " + ex1.Message);
-                success = false;
+                Console.WriteLine("*********** SQL exception ************\n" + ex1);
             }
-            catch (InvalidOperationException ex2)
+            catch (Exception ex2)
             {
-                Console.WriteLine("A database error occurred: " + ex2.Message);
-                success = false;
+                Console.WriteLine("*********** non-SQL exception ************\n" + ex2);
             }
-            catch (Exception ex3)
+            finally
             {
-                Console.WriteLine("An error occurred: " + ex3.Message);
-                success = false;
+                //  6.  close the connection
+                if (connection1.State != ConnectionState.Closed)
+                    connection1.Close();
             }
-            return listOfDoctors;
+            return success;
         }
-    }*/
+    }
 }
+
+ 

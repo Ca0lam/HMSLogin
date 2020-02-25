@@ -42,11 +42,6 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.lblList = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.doctorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.doctorsDataSet = new HMSLogin.DoctorsDataSet();
-            this.btnAddNew = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.doctorTableAdapter = new HMSLogin.DoctorsDataSetTableAdapters.DoctorTableAdapter();
             this.docIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docForenameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docSurnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +51,11 @@
             this.DocPhoneNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docQualificationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DocDeptId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doctorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.doctorsDataSet = new HMSLogin.DoctorsDataSet();
+            this.btnAddNew = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.doctorTableAdapter = new HMSLogin.DoctorsDataSetTableAdapters.DoctorTableAdapter();
             this.grpSearchDoctor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.doctorBindingSource)).BeginInit();
@@ -175,10 +175,85 @@
             this.dataGridView1.DataSource = this.doctorBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(87, 233);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(946, 399);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
+            // 
+            // docIdDataGridViewTextBoxColumn
+            // 
+            this.docIdDataGridViewTextBoxColumn.DataPropertyName = "DocId";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.docIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.docIdDataGridViewTextBoxColumn.HeaderText = "DocId";
+            this.docIdDataGridViewTextBoxColumn.Name = "docIdDataGridViewTextBoxColumn";
+            this.docIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // docForenameDataGridViewTextBoxColumn
+            // 
+            this.docForenameDataGridViewTextBoxColumn.DataPropertyName = "DocForename";
+            this.docForenameDataGridViewTextBoxColumn.HeaderText = "DocForename";
+            this.docForenameDataGridViewTextBoxColumn.Name = "docForenameDataGridViewTextBoxColumn";
+            this.docForenameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // docSurnameDataGridViewTextBoxColumn
+            // 
+            this.docSurnameDataGridViewTextBoxColumn.DataPropertyName = "DocSurname";
+            this.docSurnameDataGridViewTextBoxColumn.HeaderText = "DocSurname";
+            this.docSurnameDataGridViewTextBoxColumn.Name = "docSurnameDataGridViewTextBoxColumn";
+            this.docSurnameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // docPhotoDataGridViewImageColumn
+            // 
+            this.docPhotoDataGridViewImageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.docPhotoDataGridViewImageColumn.DataPropertyName = "DocPhoto";
+            this.docPhotoDataGridViewImageColumn.HeaderText = "DocPhoto";
+            this.docPhotoDataGridViewImageColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.docPhotoDataGridViewImageColumn.Name = "docPhotoDataGridViewImageColumn";
+            this.docPhotoDataGridViewImageColumn.ReadOnly = true;
+            this.docPhotoDataGridViewImageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.docPhotoDataGridViewImageColumn.Width = 61;
+            // 
+            // docGenderDataGridViewCheckBoxColumn
+            // 
+            this.docGenderDataGridViewCheckBoxColumn.DataPropertyName = "DocGender";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.docGenderDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.docGenderDataGridViewCheckBoxColumn.HeaderText = "DocGender";
+            this.docGenderDataGridViewCheckBoxColumn.Name = "docGenderDataGridViewCheckBoxColumn";
+            this.docGenderDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.docGenderDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.docGenderDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // docAddressDataGridViewTextBoxColumn
+            // 
+            this.docAddressDataGridViewTextBoxColumn.DataPropertyName = "DocAddress";
+            this.docAddressDataGridViewTextBoxColumn.HeaderText = "DocAddress";
+            this.docAddressDataGridViewTextBoxColumn.Name = "docAddressDataGridViewTextBoxColumn";
+            this.docAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // DocPhoneNum
+            // 
+            this.DocPhoneNum.DataPropertyName = "DocPhoneNumber";
+            this.DocPhoneNum.HeaderText = "DocPhoneNumber";
+            this.DocPhoneNum.Name = "DocPhoneNum";
+            this.DocPhoneNum.ReadOnly = true;
+            // 
+            // docQualificationDataGridViewTextBoxColumn
+            // 
+            this.docQualificationDataGridViewTextBoxColumn.DataPropertyName = "DocQualification";
+            this.docQualificationDataGridViewTextBoxColumn.HeaderText = "DocQualification";
+            this.docQualificationDataGridViewTextBoxColumn.Name = "docQualificationDataGridViewTextBoxColumn";
+            this.docQualificationDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // DocDeptId
+            // 
+            this.DocDeptId.DataPropertyName = "DeptId";
+            this.DocDeptId.HeaderText = "DeptId";
+            this.DocDeptId.Name = "DocDeptId";
+            this.DocDeptId.ReadOnly = true;
             // 
             // doctorBindingSource
             // 
@@ -215,71 +290,6 @@
             // doctorTableAdapter
             // 
             this.doctorTableAdapter.ClearBeforeFill = true;
-            // 
-            // docIdDataGridViewTextBoxColumn
-            // 
-            this.docIdDataGridViewTextBoxColumn.DataPropertyName = "DocId";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.docIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.docIdDataGridViewTextBoxColumn.HeaderText = "DocId";
-            this.docIdDataGridViewTextBoxColumn.Name = "docIdDataGridViewTextBoxColumn";
-            this.docIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // docForenameDataGridViewTextBoxColumn
-            // 
-            this.docForenameDataGridViewTextBoxColumn.DataPropertyName = "DocForename";
-            this.docForenameDataGridViewTextBoxColumn.HeaderText = "DocForename";
-            this.docForenameDataGridViewTextBoxColumn.Name = "docForenameDataGridViewTextBoxColumn";
-            // 
-            // docSurnameDataGridViewTextBoxColumn
-            // 
-            this.docSurnameDataGridViewTextBoxColumn.DataPropertyName = "DocSurname";
-            this.docSurnameDataGridViewTextBoxColumn.HeaderText = "DocSurname";
-            this.docSurnameDataGridViewTextBoxColumn.Name = "docSurnameDataGridViewTextBoxColumn";
-            // 
-            // docPhotoDataGridViewImageColumn
-            // 
-            this.docPhotoDataGridViewImageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.docPhotoDataGridViewImageColumn.DataPropertyName = "DocPhoto";
-            this.docPhotoDataGridViewImageColumn.HeaderText = "DocPhoto";
-            this.docPhotoDataGridViewImageColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.docPhotoDataGridViewImageColumn.Name = "docPhotoDataGridViewImageColumn";
-            this.docPhotoDataGridViewImageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.docPhotoDataGridViewImageColumn.Width = 61;
-            // 
-            // docGenderDataGridViewCheckBoxColumn
-            // 
-            this.docGenderDataGridViewCheckBoxColumn.DataPropertyName = "DocGender";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.docGenderDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.docGenderDataGridViewCheckBoxColumn.HeaderText = "DocGender";
-            this.docGenderDataGridViewCheckBoxColumn.Name = "docGenderDataGridViewCheckBoxColumn";
-            this.docGenderDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.docGenderDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // docAddressDataGridViewTextBoxColumn
-            // 
-            this.docAddressDataGridViewTextBoxColumn.DataPropertyName = "DocAddress";
-            this.docAddressDataGridViewTextBoxColumn.HeaderText = "DocAddress";
-            this.docAddressDataGridViewTextBoxColumn.Name = "docAddressDataGridViewTextBoxColumn";
-            // 
-            // DocPhoneNum
-            // 
-            this.DocPhoneNum.DataPropertyName = "DocPhoneNumber";
-            this.DocPhoneNum.HeaderText = "DocPhoneNumber";
-            this.DocPhoneNum.Name = "DocPhoneNum";
-            // 
-            // docQualificationDataGridViewTextBoxColumn
-            // 
-            this.docQualificationDataGridViewTextBoxColumn.DataPropertyName = "DocQualification";
-            this.docQualificationDataGridViewTextBoxColumn.HeaderText = "DocQualification";
-            this.docQualificationDataGridViewTextBoxColumn.Name = "docQualificationDataGridViewTextBoxColumn";
-            // 
-            // DocDeptId
-            // 
-            this.DocDeptId.DataPropertyName = "DeptId";
-            this.DocDeptId.HeaderText = "DeptId";
-            this.DocDeptId.Name = "DocDeptId";
             // 
             // DoctorSearchForm
             // 

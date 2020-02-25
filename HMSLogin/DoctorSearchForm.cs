@@ -1,125 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HMSLogin
 {
     public partial class DoctorSearchForm : Form
     {
-        DoctorDAO dao = new DoctorDAO();
-        DataSet dataSet1;
-        SqlConnection connection1;
-        int docId;
-        private int deptId;
-        private string connectionString = "Data Source=SD-15; " +
-            "Initial Catalog=HospitalMS; " +
-            "Integrated Security=true; ";
-        public DoctorSearchForm()
+        DoctorDAO dao = new DoctorDAO();                // data access object for communicating with the database
+        DataSet dataSet1;                               // dataset that the doctor table is read into 
+        public DoctorSearchForm()                       // constructor for new Search form
         {
             InitializeComponent();
         }
-        private void BtnLogOut_Click(object sender, EventArgs e)
+        private void BtnLogOut_Click(object sender, EventArgs e)        // button to leave the search form and return to the Log in screen
         {
-            this.Hide();
-            //this.Dispose();
+            this.Dispose();
             Form1 f1 = new Form1();
             f1.Show();
         }
 
-        private void BtnSearch_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)        // search the dataset returned from the database for doctors based on search text boxes
         {
-            //  Call the method in the DAO class, which returns a dataset
-            //  The dataset can contain a collection of Data tables (i.e. results from the database)
-            // the searchLearner needs 3 values (from the comboBoxes and text box)
+            //  Call the searchDoctor method in the DAO class, which returns a dataset
+            //  The dataset contains a single data table called DoctorTable
+            // the searchDoctor method needs 3 values (from the comboBoxes and text box)
             dataSet1 = dao.searchDoctor(txtDocIdSearch.Text, txtDocSurnameSearch.Text, txtDocDeptSearch.Text, out bool success);
             //
             //  Two important properties of the DataGridView
             //  1. The DataSource connects up to the dataset
-            //     which was returned to the searchLearner() method.
+            //     which was returned to the searchDoctor() method.
             //  2. The DataMember is the table name supplied
             //
-            Console.WriteLine("dataSet1 index 0 is " + dataSet1.Tables[0].Rows[0].ItemArray[0].ToString());
-            Console.WriteLine("dataSet1 index 1 is " + dataSet1.Tables[0].Rows[0].ItemArray[1].ToString());
-            Console.WriteLine("dataSet1 index 2 is " + dataSet1.Tables[0].Rows[0].ItemArray[2].ToString());
-            Console.WriteLine("dataSet1 index 3 is " + dataSet1.Tables[0].Rows[0].ItemArray[3].ToString());
-            Console.WriteLine("dataSet1 index 4 is " + dataSet1.Tables[0].Rows[0].ItemArray[4].ToString());
-            Console.WriteLine("dataSet1 index 5 is " + dataSet1.Tables[0].Rows[0].ItemArray[5].ToString());
-            Console.WriteLine("dataSet1 index 6 is " + dataSet1.Tables[0].Rows[0].ItemArray[6].ToString());
-            Console.WriteLine("dataSet1 index 7 is " + dataSet1.Tables[0].Rows[0].ItemArray[7].ToString());
-            Console.WriteLine("dataSet1 index 8 is " + dataSet1.Tables[0].Rows[0].ItemArray[8].ToString());
             if (success)        // if table retrieved okay
             {
                 dataGridView1.DataSource = dataSet1;
                 dataGridView1.DataMember = "DoctorTable";
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;      // select the entire row when clicking on a cell
-                btnEdit.Enabled = true;
+                btnEdit.Enabled = true;                                                     // allow view or edit of a single doctor
             }
-
         }
-
-        private void DoctorSearchForm_Load(object sender, EventArgs e)
+        /*
+         *   When the "Add Doctor" button is clicked, 
+         *   then dispose of the search form and create and show the form for an individual doctor (with fields blank)
+         */
+        private void btnAddNew_Click(object sender, EventArgs e)        
         {
-            // TODO: This line of code loads data into the 'doctorsDataSet.Doctor' table. You can move, or remove it, as needed.
-            //this.doctorTableAdapter.Fill(this.doctorDataSet.Doctor);
+            this.Dispose();                                 // get rid of search form
+            frmDoctor newDoctor = new frmDoctor(null);      // create an empty doctor form 
+            newDoctor.Show();                               // display the new (empty) doctor form
         }
-
-        private void TxtDocIdSearch_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtDocSurnameSearch_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtDocDeptSearch_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-            frmDoctor newDoctor = new frmDoctor(null);
-            newDoctor.Show();
-        }
-
-        private void doctorBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
+        /*
+         *  When the View/Edit button is clicked,
+         *  then dispose of the search form and display the form for an individual doctor of 
+         *  the row selected in the datagrid
+         */
+        private void btnEdit_Click(object sender, EventArgs e)          
         {
             int doctorID;
             int currentRow;
+            DataRow dRow;                                                           // row of a table in the dataset
             try
             {
-
-                currentRow = this.dataGridView1.CurrentRow.Index;
-                Console.WriteLine("current row is "+currentRow);
+                currentRow = this.dataGridView1.CurrentRow.Index;                   // detect the currently selected row
                 doctorID = (int)this.dataGridView1.CurrentRow.Cells[0].Value;       // get the doctorID of the current selected row
-            } catch (Exception e1)
-            {
+                dRow = dataSet1.Tables[0].Rows[currentRow];                         //  get the row of the table (in dataset) that is selected
+            } catch (Exception e1)                                                  // if any problem,
+            {                                                                       // display an error message and exit method
                 MessageBox.Show("Unable to edit.\n\nYou must first select a single row from the grid of doctors.", "No doctor selected");
                 return;
             }
-            //  get the row of the dataset that is selected
-            DataRow dRow = dataSet1.Tables[0].Rows[currentRow];
-            Doctor editDoc = new Doctor();
-            editDoc.DocId = doctorID;
-            editDoc.DocSurname = dRow.ItemArray.GetValue(1).ToString();
-            editDoc.DocForename = dRow.ItemArray.GetValue(2).ToString();
+            Doctor editDoc = new Doctor();                                          // new Doctor object for the selected doctor
+            editDoc.DocId = doctorID;                                               // populate the doctor ID
+            editDoc.DocSurname = dRow.ItemArray.GetValue(2).ToString();             // populate the other fields of Doctor object from the 
+            editDoc.DocForename = dRow.ItemArray.GetValue(1).ToString();            //    Row of the table in the dataset
             Object objPhoto = dRow.ItemArray.GetValue(3);
-            Console.WriteLine("******* objPhoto is "+objPhoto.ToString());
             if (objPhoto.Equals(System.DBNull.Value))           // cannot cast null to a byte array
                 editDoc.DocPhoto = null;
             else
@@ -129,36 +83,61 @@ namespace HMSLogin
             editDoc.DocPhoneNumber = dRow.ItemArray.GetValue(6).ToString();
             editDoc.DocQualification = dRow.ItemArray.GetValue(7).ToString();
             editDoc.DeptId = (int)dRow.ItemArray.GetValue(8);
-            this.Dispose();
-            frmDoctor editDoctor = new frmDoctor(editDoc);
-            editDoctor.Show();
+            this.Dispose();                                                         // dispose the search form
+            frmDoctor editDoctor = new frmDoctor(editDoc);                          // create doctor form from the editDoctor object
+            editDoctor.Show();                                                      // display the doctor object
         }
-
+        /*
+         * format the cells in the datagrid view
+         */
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 4 && e.Value != null)
+            //  for the column displaying gender, show 'M' or 'F' rather than 'true' or 'false'
+            //  but only if it contains a non-null value and there is data in the datagrid (Edit button is enabled)
+            if (e.ColumnIndex == 4 && e.Value != null && btnEdit.Enabled)
             {
-                Console.WriteLine("value at index 4 is "+e.Value);
-                bool gender;
-                gender = (bool)(e.Value);
-                if (gender)
-                    e.Value = "M";
-                else
-                    e.Value = "F";
-                e.FormattingApplied = true;
-            } else if (e.ColumnIndex == 6 && e.Value != null)
-            {
-                Console.WriteLine("phone number is " + e.Value.ToString());
+                try
+                {
+                    bool gender;
+                    gender = (bool)(e.Value);
+                    if (gender)
+                        e.Value = "M";
+                    else
+                        e.Value = "F";
+                    e.FormattingApplied = true;
+                } catch (Exception ex1)
+                {
+                }
             }
-            else if (e.ColumnIndex == 7 && e.Value != null)
-            {
-                Console.WriteLine("department ID is " + e.Value);
-            }
+        }
+        /*
+         * double clicking on a cell in the datagrid view will display the doctor form for the doctor at that row
+         */
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnEdit_Click(sender, e);                   // call method for Edit button which performs the same functionality
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
+        private void DoctorSearchForm_Load(object sender, EventArgs e)
+        {
+        }
 
+        private void TxtDocIdSearch_Leave(object sender, EventArgs e)
+        {
+        }
+
+        private void TxtDocSurnameSearch_Leave(object sender, EventArgs e)
+        {
+        }
+
+        private void TxtDocDeptSearch_Leave(object sender, EventArgs e)
+        {
+        }
+        private void doctorBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
         }
     }
 }
