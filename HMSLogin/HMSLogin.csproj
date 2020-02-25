@@ -120,6 +120,12 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDepartment.Designer.cs">
+      <DependentUpon>ViewDepartment.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="HMSBilling.resx">
       <DependentUpon>HMSBilling.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewWard.resx">
       <DependentUpon>NewWard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDepartment.resx">
+      <DependentUpon>ViewDepartment.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Database\HospitalMS.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

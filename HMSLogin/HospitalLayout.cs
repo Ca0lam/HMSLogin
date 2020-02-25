@@ -43,14 +43,13 @@ namespace HMSLogin
 
         private void Btn_View_Department_Click(object sender, EventArgs e)
         {
-            NewWard department = new NewWard("LIES");
+            ViewDepartment department = new ViewDepartment();
             department.Show();
         }
 
         private void Btn_View_Beds_Click(object sender, EventArgs e)
         {
-            NewRoom room = new NewRoom("Lies");
-            room.Show();
+
         }
     }
 }
