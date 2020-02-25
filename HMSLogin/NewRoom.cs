@@ -11,10 +11,10 @@ using HMSLogin.Database;
 
 namespace HMSLogin
 {
-    public partial class ViewRoom : Form
+    public partial class NewRoom : Form
     {
         HospitalMSDataContext hMS;
-        public ViewRoom()
+        public NewRoom()
         {
             InitializeComponent();
             hMS = new HospitalMSDataContext();
@@ -26,7 +26,7 @@ namespace HMSLogin
             Cbx_RoomType.Items.AddRange(roomTypes);
         }
 
-        public ViewRoom(string stuff)
+        public NewRoom(string stuff)
         {
             InitializeComponent();
             hMS = new HospitalMSDataContext();

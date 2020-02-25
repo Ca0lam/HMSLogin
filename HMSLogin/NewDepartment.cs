@@ -11,10 +11,10 @@ using HMSLogin.Database;
 
 namespace HMSLogin
 {
-    public partial class ViewDepartment : Form
+    public partial class NewDepartment : Form
     {
         HospitalMSDataContext hMS;
-        public ViewDepartment()
+        public NewDepartment()
         {
             InitializeComponent();
             Cbx_DepartmentId.Enabled = false;

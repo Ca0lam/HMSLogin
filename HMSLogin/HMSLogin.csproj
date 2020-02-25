@@ -124,29 +124,29 @@
       <DependentUpon>HMSBilling.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Entities\Ward.cs" />
-    <Compile Include="ViewBed.cs">
+    <Compile Include="NewBed.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewBed.Designer.cs">
-      <DependentUpon>ViewBed.cs</DependentUpon>
+    <Compile Include="NewBed.Designer.cs">
+      <DependentUpon>NewBed.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewDepartment.cs">
+    <Compile Include="NewDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewDepartment.Designer.cs">
-      <DependentUpon>ViewDepartment.cs</DependentUpon>
+    <Compile Include="NewDepartment.Designer.cs">
+      <DependentUpon>NewDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewRoom.cs">
+    <Compile Include="NewRoom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewRoom.Designer.cs">
-      <DependentUpon>ViewRoom.cs</DependentUpon>
+    <Compile Include="NewRoom.Designer.cs">
+      <DependentUpon>NewRoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewWard.cs">
+    <Compile Include="NewWard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewWard.Designer.cs">
-      <DependentUpon>ViewWard.cs</DependentUpon>
+    <Compile Include="NewWard.Designer.cs">
+      <DependentUpon>NewWard.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DoctorSearchForm.resx">
       <DependentUpon>DoctorSearchForm.cs</DependentUpon>
@@ -175,17 +175,17 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewBed.resx">
-      <DependentUpon>ViewBed.cs</DependentUpon>
+    <EmbeddedResource Include="NewBed.resx">
+      <DependentUpon>NewBed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewDepartment.resx">
-      <DependentUpon>ViewDepartment.cs</DependentUpon>
+    <EmbeddedResource Include="NewDepartment.resx">
+      <DependentUpon>NewDepartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewRoom.resx">
-      <DependentUpon>ViewRoom.cs</DependentUpon>
+    <EmbeddedResource Include="NewRoom.resx">
+      <DependentUpon>NewRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewWard.resx">
-      <DependentUpon>ViewWard.cs</DependentUpon>
+    <EmbeddedResource Include="NewWard.resx">
+      <DependentUpon>NewWard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Database\HospitalMS.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

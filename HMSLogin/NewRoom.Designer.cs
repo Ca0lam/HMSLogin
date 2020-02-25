@@ -1,6 +1,6 @@
 ﻿namespace HMSLogin
 {
-    partial class ViewRoom
+    partial class NewRoom
     {
         /// <summary>
         /// Required designer variable.

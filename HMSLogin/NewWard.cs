@@ -11,10 +11,10 @@ using HMSLogin.Database;
 
 namespace HMSLogin
 {
-    public partial class ViewWard : Form
+    public partial class NewWard : Form
     {
         HospitalMSDataContext hMS;
-        public ViewWard()
+        public NewWard()
         {
             InitializeComponent();
             hMS = new HospitalMSDataContext();
@@ -24,7 +24,7 @@ namespace HMSLogin
             Cbx_DepartmentId.SelectedIndex = 0;
         }
 
-        public ViewWard(string title)
+        public NewWard(string title)
         {
             InitializeComponent();
             //Btn_Save.Hide();

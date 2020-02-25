@@ -11,10 +11,10 @@ using HMSLogin.Database;
 
 namespace HMSLogin
 {
-    public partial class ViewBed : Form
+    public partial class NewBed : Form
     {
         HospitalMSDataContext hMS;
-        public ViewBed()
+        public NewBed()
         {
             InitializeComponent();
             hMS = new HospitalMSDataContext();

@@ -1,6 +1,6 @@
 ﻿namespace HMSLogin
 {
-    partial class ViewWard
+    partial class NewWard
     {
         /// <summary>
         /// Required designer variable.

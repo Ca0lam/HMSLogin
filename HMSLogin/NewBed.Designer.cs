@@ -1,6 +1,6 @@
 ﻿namespace HMSLogin
 {
-    partial class ViewBed
+    partial class NewBed
     {
         /// <summary>
         /// Required designer variable.
