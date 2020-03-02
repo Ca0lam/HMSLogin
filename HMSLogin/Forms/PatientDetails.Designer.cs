@@ -374,6 +374,7 @@
 			this.CbxPatientNotes.Name = "CbxPatientNotes";
 			this.CbxPatientNotes.Size = new System.Drawing.Size(192, 21);
 			this.CbxPatientNotes.TabIndex = 42;
+			this.CbxPatientNotes.Click += new System.EventHandler(this.CbxPatientNotes_Click);
 			// 
 			// BtnViewNote
 			// 

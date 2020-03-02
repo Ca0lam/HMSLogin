@@ -1,6 +1,6 @@
 ﻿namespace HMSLogin
 {
-	partial class PatientNotes
+	partial class NewPatientNote
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -50,6 +50,7 @@
 			this.BtnSave.TabIndex = 1;
 			this.BtnSave.Text = "Save";
 			this.BtnSave.UseVisualStyleBackColor = true;
+			this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
 			// 
 			// LblDate
 			// 

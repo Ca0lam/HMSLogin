@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HMSLogin.Classes;
 using HMSLogin.Database;
+using HMSLogin.Forms;
 using Newtonsoft.Json;
 
 namespace HMSLogin
@@ -39,6 +40,7 @@ namespace HMSLogin
 			//int patientID = 1006;
 			PopulateForm(patientID);
 			PopulateComboBox(patientID);
+			PopulatePatientNoteList(patientID);
 		}
 
 
@@ -52,6 +54,9 @@ namespace HMSLogin
 			TxtDOBYear.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientDOB.Year.ToString();
 
 			// Only One of these will end up checked
+			////bool gender = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
+			////(gender) ? RdoMale.Checked = gender : RdoFemale.Checked;
+
 			RdoMale.Checked = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
 			RdoFemale.Checked = !hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
 
@@ -81,6 +86,11 @@ namespace HMSLogin
 			{
 				Console.WriteLine(row);
 			}
+		}
+
+		private void PopulatePatientNoteList(int patientID)
+		{
+
 		}
 
 		private void GetPatientByID()
@@ -196,8 +206,6 @@ namespace HMSLogin
 				// "id" is the id in your table (parameter passed)
 				//Patient patient = hospitalMS.tblPatientDetails.Find(patientID).First();   // Find may be only for Entity Framework. If you can't use it, use the line below
 				
-				
-				
 				var patient = hospitalMS.tblPatientDetails.Where(x => x.PatientId == patientID).First();
 
 				patient.PatientForename = TxtForename.Text;
@@ -274,13 +282,14 @@ namespace HMSLogin
 
 		private void PopulateComboBox(int patientId)
 		{
-
+			ClearComboBox();
 			var listofnotes = hospitalMS.tblPatientNotes.Where(x => x.PatientId.Equals(patientId)).ToList();
 			foreach (var item in listofnotes)
 			{
-				CbxPatientNotes.Items.Add(item.NoteDate.ToString());
+				CbxPatientNotes.Items.Add("NoteID#: " + item.PatientNoteId + " -- Date: " + item.NoteDate.Date.ToShortDateString());
+				////CbxPatientNotes.Items.Add(item.NoteDate.ToString());
 			}
-		
+
 
 			////CbxPatientNotes.Items.Add("One");
 			////CbxPatientNotes.Items.Add("Two");
@@ -294,6 +303,7 @@ namespace HMSLogin
 
 		private void ClearComboBox()
 		{
+			CbxPatientNotes.Text = null;
 			CbxPatientNotes.Items.Clear();
 		}
 
@@ -310,12 +320,49 @@ namespace HMSLogin
 
 		private void btnNewPatientNote_Click(object sender, EventArgs e)
 		{
-			new PatientNotes(5).ShowDialog();
+			int patientID = Int32.Parse(TxtPatientID.Text);
+			new NewPatientNote(patientID).ShowDialog();
 		}
 
 		private void BtnViewNote_Click(object sender, EventArgs e)
 		{
+			if(CbxPatientNotes.SelectedItem != null)
+			{
+				////string noteDateString = CbxPatientNotes.SelectedItem.ToString();
+				////Console.WriteLine(noteDateString); 
+				////var noteDate = Convert.ToDateTime(noteDateString.ToString());
 
+				////var newNote = hospitalMS.tblPatientNotes.Select(x => x.NoteDate.ToString());
+
+				////var newNote = hospitalMS.tblPatientNotes.Single(x => x.NoteDate.Date.Equals(noteDate.Date) && x.NoteDate.TimeOfDay.TotalMinutes.Equals(noteDate.TimeOfDay.TotalMinutes)).PatientNotes;
+				////var newNote = hospitalMS.tblPatientNotes.Single(x => DateTime.Compare(x.NoteDate, noteDate) == 0 ? true : false).PatientNotes;
+				////var newNote = hospitalMS.tblPatientNotes.Single(x => x.PatientId == 1).PatientNotes;
+				////newNote.FirstOrDefault;
+				////Console.WriteLine(newNote);
+
+
+				var selectedValue = CbxPatientNotes.SelectedItem.ToString();
+				Console.WriteLine(selectedValue);
+				string[] splitValue = selectedValue.Split(' ');
+				Console.WriteLine(splitValue[1].ToString());
+				////new[] mystring = selectedValue.Split(' ');
+				////String[] Split(selectedValue, " ")
+				int selectedNoteID = Int32.Parse(splitValue[1]);
+				var newNote = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).PatientNotes;
+				Console.WriteLine(newNote);
+
+				new ViewPatientNote(newNote).ShowDialog();
+
+
+			}
+
+		}
+
+		private void CbxPatientNotes_Click(object sender, EventArgs e)
+		{
+			ClearComboBox();
+			int patientID = Int32.Parse(TxtPatientID.Text);
+			PopulateComboBox(patientID);
 		}
 	}
 }
