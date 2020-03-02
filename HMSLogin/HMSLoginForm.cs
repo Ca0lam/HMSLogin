@@ -71,7 +71,7 @@ namespace HMSLogin
             }
             if (TxtName.Text.Length < 6)
             {
-                MessageBox.Show("Username needs to be more than 6 characters");
+                MessageBox.Show("Username needs to be 6 characters or more");
             }
             else if (TxtName.Text.Length > 14)
             {

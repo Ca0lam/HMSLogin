@@ -25,14 +25,14 @@ namespace HMSLogin
                     connection.Open();
 
                     string selectCommand =
-                        "SELECT Password FROM HMSLogin WHERE Name = @Name";
+                        "SELECT Password FROM tblLogin WHERE UserName = @UserName";
 
                     SqlCommand command = new SqlCommand();
                     command.CommandText = selectCommand;
                     command.Connection = connection;
                     SqlParameter parameter = new SqlParameter
                     {
-                        ParameterName = "@Name",
+                        ParameterName = "@UserName",
                         Value = hmslogindetails.Name,
                         SqlDbType = SqlDbType.VarChar,
                         Size = 50
@@ -44,7 +44,7 @@ namespace HMSLogin
                     {
                         Console.WriteLine("match on password!!!");
                         selectCommand =
-                        "SELECT Role FROM HMSLogin WHERE Name = @Name";
+                        "SELECT Role FROM tblLogin WHERE UserName = @UserName";
                         command.CommandText = selectCommand;
                         string role = command.ExecuteScalar().ToString();
                         Console.WriteLine(role);
