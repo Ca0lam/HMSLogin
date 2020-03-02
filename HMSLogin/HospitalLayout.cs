@@ -49,7 +49,20 @@ namespace HMSLogin
 
         private void Btn_View_Beds_Click(object sender, EventArgs e)
         {
+            ViewWard ward = new ViewWard();
+            ward.Show();
+        }
 
+        private void Btn_View_Room_Click(object sender, EventArgs e)
+        {
+            ViewRoom room = new ViewRoom();
+            room.Show();
+        }
+
+        private void Btn_View_Bed_Click(object sender, EventArgs e)
+        {
+            ViewBeds bed = new ViewBeds();
+            bed.Show();
         }
     }
 }
