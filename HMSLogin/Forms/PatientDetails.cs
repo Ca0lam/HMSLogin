@@ -41,11 +41,14 @@ namespace HMSLogin
 			PopulateForm(patientID);
 			PopulateComboBox(patientID);
 			PopulatePatientNoteList(patientID);
+
 		}
 
 
 		private void PopulateForm(int patientID)
 		{
+			BtnSave.Enabled = false;
+			BtnUpdate.Enabled = true;
 			TxtPatientID.Text = patientID.ToString();
 			TxtForename.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientForename;
 			TxtSurname.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientSurename;
@@ -59,6 +62,8 @@ namespace HMSLogin
 
 			RdoMale.Checked = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
 			RdoFemale.Checked = !hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientGender;
+
+			TxtPhoneNum.Text = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientPhoneNum.ToString();
 
 			// Address stored as comma seperated values in database, remove the commas and print each line on a new line in the text box
 			string address = hospitalMS.tblPatientDetails.Single(x => x.PatientId == patientID).PatientAddress;
@@ -178,7 +183,7 @@ namespace HMSLogin
 					Console.WriteLine(item.PatientForename);
 					Console.WriteLine(item.PatientSurename);
 					Console.WriteLine(item.PatientDOB);
-					LstSearch.Items.Add(item.PatientId + " " + item.PatientForename + " " + item.PatientSurename + "\n\r");
+					LstSearch.Items.Add("Id: " + item.PatientId + " " + "\t" + item.PatientForename + " " + item.PatientSurename + "\n\r");
 				}
 			}
 
@@ -189,10 +194,10 @@ namespace HMSLogin
 			var selectedValue = LstSearch.SelectedItem.ToString();
 			Console.WriteLine(selectedValue);
 			string[] splitValue = selectedValue.Split(' ');
-			Console.WriteLine(splitValue[0].ToString());
+			Console.WriteLine(splitValue[1].ToString());
 			////new[] mystring = selectedValue.Split(' ');
 			////String[] Split(selectedValue, " ")
-			int selectedPatientID = Int32.Parse(splitValue[0]);
+			int selectedPatientID = Int32.Parse(splitValue[1]);
 			PopulateForm(selectedPatientID);
 			PopulateComboBox(selectedPatientID);
 		}
@@ -226,8 +231,8 @@ namespace HMSLogin
 					Console.WriteLine("Gender Error");
 				}
 
-				patient.PatientAddress = TxtAddress.Text;
 				patient.PatientPhoneNum = TxtPhoneNum.Text;
+				patient.PatientAddress = TxtAddress.Text;
 
 				NOK nok = new NOK();
 				nok.NOKName = TxtNOKName.Text;
@@ -236,6 +241,7 @@ namespace HMSLogin
 				patient.PatientNOK = JSONresult;
 
 				hospitalMS.SubmitChanges();
+				FormLoad();
 			};
 		}
 
@@ -286,7 +292,7 @@ namespace HMSLogin
 			var listofnotes = hospitalMS.tblPatientNotes.Where(x => x.PatientId.Equals(patientId)).ToList();
 			foreach (var item in listofnotes)
 			{
-				CbxPatientNotes.Items.Add("NoteID#: " + item.PatientNoteId + " -- Date: " + item.NoteDate.Date.ToShortDateString());
+				CbxPatientNotes.Items.Add("NoteID#: " + item.PatientNoteId + " Date: " + item.NoteDate.Date.ToShortDateString());
 				////CbxPatientNotes.Items.Add(item.NoteDate.ToString());
 			}
 
@@ -305,6 +311,12 @@ namespace HMSLogin
 		{
 			CbxPatientNotes.Text = null;
 			CbxPatientNotes.Items.Clear();
+		}
+
+		private void ClearVisitDetailsComboBox()
+		{
+			CbxVisitDetails.Text = null;
+			CbxVisitDetails.Items.Clear();
 		}
 
 
@@ -340,7 +352,7 @@ namespace HMSLogin
 				////newNote.FirstOrDefault;
 				////Console.WriteLine(newNote);
 
-
+				var patientId = Int32.Parse(TxtPatientID.Text);
 				var selectedValue = CbxPatientNotes.SelectedItem.ToString();
 				Console.WriteLine(selectedValue);
 				string[] splitValue = selectedValue.Split(' ');
@@ -348,10 +360,12 @@ namespace HMSLogin
 				////new[] mystring = selectedValue.Split(' ');
 				////String[] Split(selectedValue, " ")
 				int selectedNoteID = Int32.Parse(splitValue[1]);
-				var newNote = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).PatientNotes;
-				Console.WriteLine(newNote);
+				var viewNote = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).PatientNotes;
+				Console.WriteLine(viewNote);
 
-				new ViewPatientNote(newNote).ShowDialog();
+				DateTime noteDate = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).NoteDate;
+
+				new ViewPatientNote(noteDate, patientId, viewNote).ShowDialog();
 
 
 			}
@@ -363,6 +377,44 @@ namespace HMSLogin
 			ClearComboBox();
 			int patientID = Int32.Parse(TxtPatientID.Text);
 			PopulateComboBox(patientID);
+		}
+
+		private void BtnNew_Click(object sender, EventArgs e)
+		{
+			CleanForm();
+		}
+
+
+		private void CleanForm()
+		{
+			TxtPatientID.Text = 0000.ToString();
+			TxtForename.Text = null;
+			TxtSurname.Text = null;
+			TxtDOBDay.Text = null;
+			TxtDOBMonth.Text = null;
+			TxtDOBYear.Text = null;
+
+			RdoMale.Checked = false;
+			RdoFemale.Checked = false;
+
+			TxtPhoneNum.Text = null;
+			TxtAddress.Text = null;
+
+			TxtNOKName.Text = null;
+			TxtNOKPhoneNum.Text = null;
+
+			TxtSearch.Text = null;
+			LstSearch.Text = null;
+			CbxPatientNotes.Text = null;
+
+			BtnUpdate.Enabled = false;
+			BtnSave.Enabled = true;
+
+		}
+
+		private void BtnCancel_Click(object sender, EventArgs e)
+		{
+			FormLoad();
 		}
 	}
 }
