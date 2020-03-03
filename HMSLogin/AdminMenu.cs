@@ -26,7 +26,8 @@ namespace HMSLogin
 
         private void btnPatientDetails_Click(object sender, EventArgs e)
         {
-
+            FrmPatientDetails patientDetails = new FrmPatientDetails();
+            patientDetails.Show();
         }
 
         private void btnDoctorDetails_Click(object sender, EventArgs e)
