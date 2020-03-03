@@ -40,20 +40,17 @@ namespace HMSLogin
             Console.WriteLine("Login detail " + hmslogindetails);
             if (dao.InputLogin(hmslogindetails))
             {
-                if (hmslogindetails.Role == "Patient")
-                {
-                    
-                }
                 if (hmslogindetails.Role == "Doctor")
                 {
+                    DoctorMenu doctormenu = new DoctorMenu(this);
+                    doctormenu.Show();
                     this.Hide();
-                    //this.Dispose();
-                    DoctorSearchForm doctorSearch = new DoctorSearchForm();
-                    doctorSearch.Show();
                 }
                 if (hmslogindetails.Role == "Admin")
                 {
-
+                    AdminMenu adminmenu = new AdminMenu(this);
+                    adminmenu.Show();
+                    this.Hide();
                 }
                 if (hmslogindetails.Role == "Super-User")
                 {
