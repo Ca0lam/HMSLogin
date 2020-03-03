@@ -76,7 +76,7 @@ namespace HMSLogin
             var bedIds = hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId)));
             Cbx_Bed.Items.AddRange(bedIds.ToArray());
             Lbl_NumBeds.Text = "Total Number of Beds In Dept: " + Cbx_Bed.Items.Count;
-            var occupiedBeds = hMS.tblVisitDetails.Where(x => bedIds.ToList().Contains(x.BedId)).Count();
+            var occupiedBeds = hMS.tblVisitDetails.Where(x => bedIds.ToList().Contains(x.BedId)).Select(y=>y.BedId).Distinct().Count();
             Lbl_EmptyBeds.Text = "Total Empty Beds: " + (Cbx_Bed.Items.Count - occupiedBeds);
             if (Cbx_Bed.Items.Count!=0)
                 Cbx_Bed.SelectedIndex = 0;

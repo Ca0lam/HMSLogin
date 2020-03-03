@@ -17,6 +17,7 @@ namespace HMSLogin
             InitializeComponent();
         }
 
+        
         private void Btn_New_Department_Click(object sender, EventArgs e)
         {
             NewDepartment viewDepartment = new NewDepartment();
@@ -69,6 +70,12 @@ namespace HMSLogin
         {
             VacantBeds vacant = new VacantBeds();
             vacant.Show();
+        }
+
+        private void Btn_Occupied_Click(object sender, EventArgs e)
+        {
+            OccupiedBeds occupied = new OccupiedBeds();
+            occupied.Show();
         }
     }
 }

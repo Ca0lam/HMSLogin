@@ -55,6 +55,8 @@
             // 
             // Cbx_DepartmentId
             // 
+            this.Cbx_DepartmentId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cbx_DepartmentId.Enabled = false;
             this.Cbx_DepartmentId.FormattingEnabled = true;
             this.Cbx_DepartmentId.Location = new System.Drawing.Point(115, 9);
             this.Cbx_DepartmentId.Name = "Cbx_DepartmentId";

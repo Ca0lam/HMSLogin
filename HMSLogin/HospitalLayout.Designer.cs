@@ -34,12 +34,12 @@
             this.Btn_New_Ward = new System.Windows.Forms.Button();
             this.Btn_New_Department = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Btn_Occupied = new System.Windows.Forms.Button();
+            this.Btn_Vacant = new System.Windows.Forms.Button();
             this.Btn_View_Bed = new System.Windows.Forms.Button();
             this.Btn_View_Room = new System.Windows.Forms.Button();
             this.Btn_View_Ward = new System.Windows.Forms.Button();
             this.Btn_View_Department = new System.Windows.Forms.Button();
-            this.Btn_Vacant = new System.Windows.Forms.Button();
-            this.Btn_Occupied = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -112,6 +112,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "View:";
             // 
+            // Btn_Occupied
+            // 
+            this.Btn_Occupied.Location = new System.Drawing.Point(7, 109);
+            this.Btn_Occupied.Name = "Btn_Occupied";
+            this.Btn_Occupied.Size = new System.Drawing.Size(157, 23);
+            this.Btn_Occupied.TabIndex = 6;
+            this.Btn_Occupied.Text = "Occupied Beds";
+            this.Btn_Occupied.UseVisualStyleBackColor = true;
+            this.Btn_Occupied.Click += new System.EventHandler(this.Btn_Occupied_Click);
+            // 
+            // Btn_Vacant
+            // 
+            this.Btn_Vacant.Location = new System.Drawing.Point(7, 79);
+            this.Btn_Vacant.Name = "Btn_Vacant";
+            this.Btn_Vacant.Size = new System.Drawing.Size(157, 23);
+            this.Btn_Vacant.TabIndex = 5;
+            this.Btn_Vacant.Text = "Vacant Beds";
+            this.Btn_Vacant.UseVisualStyleBackColor = true;
+            this.Btn_Vacant.Click += new System.EventHandler(this.Btn_Vacant_Click);
+            // 
             // Btn_View_Bed
             // 
             this.Btn_View_Bed.Location = new System.Drawing.Point(89, 48);
@@ -151,25 +171,6 @@
             this.Btn_View_Department.Text = "Department";
             this.Btn_View_Department.UseVisualStyleBackColor = true;
             this.Btn_View_Department.Click += new System.EventHandler(this.Btn_View_Department_Click);
-            // 
-            // Btn_Vacant
-            // 
-            this.Btn_Vacant.Location = new System.Drawing.Point(7, 79);
-            this.Btn_Vacant.Name = "Btn_Vacant";
-            this.Btn_Vacant.Size = new System.Drawing.Size(157, 23);
-            this.Btn_Vacant.TabIndex = 5;
-            this.Btn_Vacant.Text = "Vacant Beds";
-            this.Btn_Vacant.UseVisualStyleBackColor = true;
-            this.Btn_Vacant.Click += new System.EventHandler(this.Btn_Vacant_Click);
-            // 
-            // Btn_Occupied
-            // 
-            this.Btn_Occupied.Location = new System.Drawing.Point(7, 109);
-            this.Btn_Occupied.Name = "Btn_Occupied";
-            this.Btn_Occupied.Size = new System.Drawing.Size(157, 23);
-            this.Btn_Occupied.TabIndex = 6;
-            this.Btn_Occupied.Text = "Occupied Beds";
-            this.Btn_Occupied.UseVisualStyleBackColor = true;
             // 
             // HospitalLayout
             // 

@@ -11,19 +11,14 @@ using HMSLogin.Database;
 
 namespace HMSLogin
 {
-    public partial class VacantBeds : Form
+    public partial class OccupiedBeds : Form
     {
         HospitalMSDataContext hMS;
-
-        public VacantBeds()
+        public OccupiedBeds()
         {
             InitializeComponent();
             hMS = new HospitalMSDataContext();
-
             updateDept();
-            //updatePrivateBeds();
-            //updateSemiPrivateBeds();
-            //updatePublicBeds();
         }
 
         private void updateDept()
@@ -38,11 +33,9 @@ namespace HMSLogin
         {
             Cbx_Private.Items.Clear();
             Cbx_Private.SelectedIndex = -1;
-            var bedIds = hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.Where(a=>a.RoomType == "Private").SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId)));
-            var occupiedBeds = hMS.tblVisitDetails.Where(x => !bedIds.ToList().Contains(x.BedId) && x.tblBedDetail.tblRoomDetail.RoomType == "Private").Select(y=>(object)y.BedId).Distinct();
-            var vacantBeds = bedIds.Where(x => !occupiedBeds.Contains(x));
-            Cbx_Private.Items.AddRange(vacantBeds.ToArray());
-            Lbl_TotalPrivate.Text = "Total: " + Cbx_Private.Items.Count;
+            var bedIds = hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.Where(a => a.RoomType == "Private").SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId)));
+            var occupiedBeds = hMS.tblVisitDetails.Where(x => !bedIds.ToList().Contains(x.BedId) && x.tblBedDetail.tblRoomDetail.RoomType == "Private").Select(y => (object)y.BedId).Distinct();
+            Cbx_Private.Items.AddRange(occupiedBeds.ToArray());
             if (Cbx_Private.Items.Count != 0)
                 Cbx_Private.SelectedIndex = 0;
         }
@@ -53,9 +46,9 @@ namespace HMSLogin
             Cbx_Semiprivate.SelectedIndex = -1;
             var bedIds = hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.Where(a => a.RoomType == "SemiPrivate").SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId)));
             var occupiedBeds = hMS.tblVisitDetails.Where(x => bedIds.ToList().Contains(x.BedId) && x.tblBedDetail.tblRoomDetail.RoomType == "SemiPrivate").Select(y => (object)y.BedId).Distinct();
-            var vacantBeds = bedIds.Where(x => !occupiedBeds.Contains(x));
-            Cbx_Semiprivate.Items.AddRange(vacantBeds.ToArray());
-            Lbl_TotalSemiPrivate.Text = "Total: " + Cbx_Semiprivate.Items.Count;
+            //var vacantBeds = bedIds.Where(x => occupiedBeds.Contains(x));
+            Cbx_Semiprivate.Items.AddRange(occupiedBeds.ToArray());
+            Lbl_TotalPublic.Text = "Total: " + Cbx_Public.Items.Count;
             if (Cbx_Semiprivate.Items.Count != 0)
                 Cbx_Semiprivate.SelectedIndex = 0;
         }
@@ -66,8 +59,7 @@ namespace HMSLogin
             Cbx_Public.SelectedIndex = -1;
             var bedIds = hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.Where(a => a.RoomType == "Public").SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId)));
             var occupiedBeds = hMS.tblVisitDetails.Where(x => bedIds.ToList().Contains(x.BedId) && x.tblBedDetail.tblRoomDetail.RoomType == "Public").Select(y => (object)y.BedId).Distinct();
-            var vacantBeds = bedIds.Where(x => !occupiedBeds.Contains(x));
-            Cbx_Public.Items.AddRange(vacantBeds.ToArray());
+            Cbx_Public.Items.AddRange(occupiedBeds.ToArray());
             Lbl_TotalPublic.Text = "Total: " + Cbx_Public.Items.Count;
             if (Cbx_Public.Items.Count != 0)
                 Cbx_Public.SelectedIndex = 0;
@@ -78,6 +70,30 @@ namespace HMSLogin
             updatePrivateBeds();
             updatePublicBeds();
             updateSemiPrivateBeds();
+        }
+
+        private void Cbx_Public_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cbx_PublicPatient.Items.Clear();
+            Cbx_PublicPatient.Items.AddRange(hMS.tblVisitDetails.Where(x => x.BedId == int.Parse(Cbx_Public.Text)).Select(y=>(object)(y.tblPatientDetail.PatientForename + " " + y.tblPatientDetail.PatientSurename)).ToArray());
+            if (Cbx_PublicPatient.Items.Count != 0)
+                Cbx_PublicPatient.SelectedIndex = 0;
+        }
+
+        private void Cbx_Semiprivate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cbx_PublicPatient.Items.Clear();
+            Cbx_PublicPatient.Items.AddRange(hMS.tblVisitDetails.Where(x => x.BedId == int.Parse(Cbx_Semiprivate.Text)).Select(y => (object)(y.tblPatientDetail.PatientForename + " " + y.tblPatientDetail.PatientSurename)).ToArray());
+            if (Cbx_PublicPatient.Items.Count != 0)
+                Cbx_PublicPatient.SelectedIndex = 0;
+        }
+
+        private void Cbx_Private_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cbx_PublicPatient.Items.Clear();
+            Cbx_PublicPatient.Items.AddRange(hMS.tblVisitDetails.Where(x => x.BedId == int.Parse(Cbx_Private.Text)).Select(y => (object)(y.tblPatientDetail.PatientForename + " " + y.tblPatientDetail.PatientSurename)).ToArray());
+            if (Cbx_PublicPatient.Items.Count != 0)
+                Cbx_PublicPatient.SelectedIndex = 0;
         }
     }
 }
