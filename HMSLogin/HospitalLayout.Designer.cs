@@ -36,7 +36,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Btn_View_Bed = new System.Windows.Forms.Button();
             this.Btn_View_Room = new System.Windows.Forms.Button();
-            this.Btn_View_Beds = new System.Windows.Forms.Button();
+            this.Btn_View_Ward = new System.Windows.Forms.Button();
             this.Btn_View_Department = new System.Windows.Forms.Button();
             this.Btn_View_Hospital = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -64,6 +64,7 @@
             this.Btn_New_Bed.TabIndex = 3;
             this.Btn_New_Bed.Text = "Bed";
             this.Btn_New_Bed.UseVisualStyleBackColor = true;
+            this.Btn_New_Bed.Click += new System.EventHandler(this.Btn_New_Bed_Click);
             // 
             // Btn_New_Room
             // 
@@ -73,6 +74,7 @@
             this.Btn_New_Room.TabIndex = 2;
             this.Btn_New_Room.Text = "Room";
             this.Btn_New_Room.UseVisualStyleBackColor = true;
+            this.Btn_New_Room.Click += new System.EventHandler(this.Btn_New_Room_Click);
             // 
             // Btn_New_Ward
             // 
@@ -82,6 +84,7 @@
             this.Btn_New_Ward.TabIndex = 1;
             this.Btn_New_Ward.Text = "Ward";
             this.Btn_New_Ward.UseVisualStyleBackColor = true;
+            this.Btn_New_Ward.Click += new System.EventHandler(this.Btn_New_Ward_Click);
             // 
             // Btn_New_Department
             // 
@@ -97,7 +100,7 @@
             // 
             this.groupBox2.Controls.Add(this.Btn_View_Bed);
             this.groupBox2.Controls.Add(this.Btn_View_Room);
-            this.groupBox2.Controls.Add(this.Btn_View_Beds);
+            this.groupBox2.Controls.Add(this.Btn_View_Ward);
             this.groupBox2.Controls.Add(this.Btn_View_Department);
             this.groupBox2.Controls.Add(this.Btn_View_Hospital);
             this.groupBox2.Location = new System.Drawing.Point(81, 144);
@@ -115,6 +118,7 @@
             this.Btn_View_Bed.TabIndex = 4;
             this.Btn_View_Bed.Text = "Bed";
             this.Btn_View_Bed.UseVisualStyleBackColor = true;
+            this.Btn_View_Bed.Click += new System.EventHandler(this.Btn_View_Bed_Click);
             // 
             // Btn_View_Room
             // 
@@ -124,15 +128,17 @@
             this.Btn_View_Room.TabIndex = 3;
             this.Btn_View_Room.Text = "Room";
             this.Btn_View_Room.UseVisualStyleBackColor = true;
+            this.Btn_View_Room.Click += new System.EventHandler(this.Btn_View_Room_Click);
             // 
-            // Btn_View_Beds
+            // Btn_View_Ward
             // 
-            this.Btn_View_Beds.Location = new System.Drawing.Point(89, 50);
-            this.Btn_View_Beds.Name = "Btn_View_Beds";
-            this.Btn_View_Beds.Size = new System.Drawing.Size(75, 23);
-            this.Btn_View_Beds.TabIndex = 2;
-            this.Btn_View_Beds.Text = "Ward";
-            this.Btn_View_Beds.UseVisualStyleBackColor = true;
+            this.Btn_View_Ward.Location = new System.Drawing.Point(89, 50);
+            this.Btn_View_Ward.Name = "Btn_View_Ward";
+            this.Btn_View_Ward.Size = new System.Drawing.Size(75, 23);
+            this.Btn_View_Ward.TabIndex = 2;
+            this.Btn_View_Ward.Text = "Ward";
+            this.Btn_View_Ward.UseVisualStyleBackColor = true;
+            this.Btn_View_Ward.Click += new System.EventHandler(this.Btn_View_Beds_Click);
             // 
             // Btn_View_Department
             // 
@@ -142,6 +148,7 @@
             this.Btn_View_Department.TabIndex = 1;
             this.Btn_View_Department.Text = "Department";
             this.Btn_View_Department.UseVisualStyleBackColor = true;
+            this.Btn_View_Department.Click += new System.EventHandler(this.Btn_View_Department_Click);
             // 
             // Btn_View_Hospital
             // 
@@ -177,7 +184,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button Btn_View_Bed;
         private System.Windows.Forms.Button Btn_View_Room;
-        private System.Windows.Forms.Button Btn_View_Beds;
+        private System.Windows.Forms.Button Btn_View_Ward;
         private System.Windows.Forms.Button Btn_View_Department;
         private System.Windows.Forms.Button Btn_View_Hospital;
     }

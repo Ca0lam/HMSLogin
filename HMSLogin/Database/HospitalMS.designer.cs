@@ -1669,7 +1669,7 @@ namespace HMSLogin.Database
 		
 		private int _WardId;
 		
-		private int _RoomType;
+		private string _RoomType;
 		
 		private EntitySet<tblBedDetail> _tblBedDetails;
 		
@@ -1683,7 +1683,7 @@ namespace HMSLogin.Database
     partial void OnRoomIdChanged();
     partial void OnWardIdChanging(int value);
     partial void OnWardIdChanged();
-    partial void OnRoomTypeChanging(int value);
+    partial void OnRoomTypeChanging(string value);
     partial void OnRoomTypeChanged();
     #endregion
 		
@@ -1738,8 +1738,8 @@ namespace HMSLogin.Database
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomType", DbType="Int NOT NULL")]
-		public int RoomType
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomType", DbType="NVarchar(50) NOT NULL", CanBeNull=false)]
+		public string RoomType
 		{
 			get
 			{

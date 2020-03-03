@@ -1,6 +1,6 @@
 ﻿namespace HMSLogin
 {
-    partial class ViewBed
+    partial class NewBed
     {
         /// <summary>
         /// Required designer variable.
@@ -43,9 +43,11 @@
             this.Btn_Save.TabIndex = 10;
             this.Btn_Save.Text = "Save";
             this.Btn_Save.UseVisualStyleBackColor = true;
+            this.Btn_Save.Click += new System.EventHandler(this.Btn_Save_Click);
             // 
             // Cbx_BedId
             // 
+            this.Cbx_BedId.Enabled = false;
             this.Cbx_BedId.FormattingEnabled = true;
             this.Cbx_BedId.Location = new System.Drawing.Point(115, 9);
             this.Cbx_BedId.Name = "Cbx_BedId";

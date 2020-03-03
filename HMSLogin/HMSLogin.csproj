@@ -36,7 +36,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -50,7 +52,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminMenu.Designer.cs">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="BillingTestClass.cs" />
+    <Compile Include="DoctorMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoctorMenu.Designer.cs">
+      <DependentUpon>DoctorMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\NOK.cs" />
     <Compile Include="DoctorsDataSet.cs">
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
     </Compile>
@@ -109,7 +124,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalMS.dbml</DependentUpon>
     </Compile>
-    <Compile Include="PatientNote.cs" />
+    <Compile Include="Classes\PatientNote.cs" />
+    <Compile Include="Forms\PatientNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PatientNotes.Designer.cs">
+      <DependentUpon>PatientNotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDAO.cs" />
@@ -120,15 +141,21 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminMenu.resx">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorMenu.resx">
+      <DependentUpon>DoctorMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HMSBilling.resx">
       <DependentUpon>HMSBilling.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Entities\Ward.cs" />
-    <Compile Include="ViewBed.cs">
+    <Compile Include="ViewBeds.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewBed.Designer.cs">
-      <DependentUpon>ViewBed.cs</DependentUpon>
+    <Compile Include="ViewBeds.Designer.cs">
+      <DependentUpon>ViewBeds.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewDepartment.cs">
       <SubType>Form</SubType>
@@ -147,6 +174,33 @@
     </Compile>
     <Compile Include="ViewWard.Designer.cs">
       <DependentUpon>ViewWard.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\PatientNotes.resx">
+      <DependentUpon>PatientNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="NewBed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewBed.Designer.cs">
+      <DependentUpon>NewBed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDepartment.Designer.cs">
+      <DependentUpon>NewDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewRoom.Designer.cs">
+      <DependentUpon>NewRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewWard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewWard.Designer.cs">
+      <DependentUpon>NewWard.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DoctorSearchForm.resx">
       <DependentUpon>DoctorSearchForm.cs</DependentUpon>
@@ -175,8 +229,20 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewBed.resx">
-      <DependentUpon>ViewBed.cs</DependentUpon>
+    <EmbeddedResource Include="NewBed.resx">
+      <DependentUpon>NewBed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDepartment.resx">
+      <DependentUpon>NewDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewRoom.resx">
+      <DependentUpon>NewRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewWard.resx">
+      <DependentUpon>NewWard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewBeds.resx">
+      <DependentUpon>ViewBeds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewDepartment.resx">
       <DependentUpon>ViewDepartment.cs</DependentUpon>
