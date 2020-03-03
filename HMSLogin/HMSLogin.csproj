@@ -36,7 +36,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -50,7 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminMenu.Designer.cs">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="BillingTestClass.cs" />
+    <Compile Include="DoctorMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoctorMenu.Designer.cs">
+      <DependentUpon>DoctorMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\NOK.cs" />
     <Compile Include="DoctorsDataSet.cs">
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
@@ -127,19 +141,43 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminMenu.resx">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorMenu.resx">
+      <DependentUpon>DoctorMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HMSBilling.resx">
+      <DependentUpon>HMSBilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Entities\Ward.cs" />
+    <Compile Include="ViewBeds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewBeds.Designer.cs">
+      <DependentUpon>ViewBeds.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ViewDepartment.Designer.cs">
       <DependentUpon>ViewDepartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewRoom.Designer.cs">
+      <DependentUpon>ViewRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewWard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewWard.Designer.cs">
+      <DependentUpon>ViewWard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\PatientNotes.resx">
       <DependentUpon>PatientNotes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HMSBilling.resx">
-      <DependentUpon>HMSBilling.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="Entities\Ward.cs" />
     <Compile Include="NewBed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,8 +241,17 @@
     <EmbeddedResource Include="NewWard.resx">
       <DependentUpon>NewWard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewBeds.resx">
+      <DependentUpon>ViewBeds.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewDepartment.resx">
       <DependentUpon>ViewDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewRoom.resx">
+      <DependentUpon>ViewRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewWard.resx">
+      <DependentUpon>ViewWard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Database\HospitalMS.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
