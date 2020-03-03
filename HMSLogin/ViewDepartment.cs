@@ -13,23 +13,71 @@ namespace HMSLogin
 {
     public partial class ViewDepartment : Form
     {
-        HospitalMSDataContext hMS;
+        HospitalMSDataContext hMS = new HospitalMSDataContext();
         public ViewDepartment()
         {
             InitializeComponent();
-            Cbx_DepartmentId.Enabled = false;
             hMS = new HospitalMSDataContext();
-            int result = hMS.tblDeptDetails.OrderByDescending(x => x.DeptId).Select(x=>x.DeptId).FirstOrDefault() + 1;
-            Cbx_DepartmentId.Text = result.ToString();
+
+            //var join = hMS.tblWardDetails.Join(hMS.tblDeptDetails, w => w.WardId, d => d.DeptId, (w,d)=> new { tblWardDetail = w, tblDeptDetail = d });
+            //var joinedTable = from w in hMS.tblWardDetails join d in hMS.tblDeptDetails on w.DeptId equals d.DeptId select new { tblWardDetail = w, tblDeptDetail = d };
+            updateBoxes();
         }
 
-        private void Btn_Save_Click(object sender, EventArgs e)
+        private void updateBoxes()
         {
-            tblDeptDetail department = new tblDeptDetail();
-            department.DeptName = Txt_DepartmentName.Text;
-            hMS.tblDeptDetails.InsertOnSubmit(department);
-            hMS.SubmitChanges();
-            this.Dispose();
+            updateDept();
+            updateWard();
+            updateRoom();
+            updateBed();
+        }
+
+        private void updateDept()
+        {
+            Cbx_Department.SelectedIndex = -1;
+            Cbx_Department.Items.AddRange(hMS.tblDeptDetails.Select(x => (object)x.DeptName).ToArray());
+            if (Cbx_Department.Items.Count != 0)
+                Cbx_Department.SelectedIndex = 0;
+        }
+
+        private void updateWard()
+        {
+            Cbx_Ward.Items.Clear();
+            Cbx_Ward.SelectedIndex = -1;
+            Cbx_Ward.Items.AddRange(hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.Select(x => (object)x.WardName).ToArray());
+            if (Cbx_Ward.Items.Count != 0)
+                Cbx_Ward.SelectedIndex = 0;
+        }
+
+        private void updateRoom()
+        {
+            Cbx_Room.Items.Clear();
+            Cbx_Room.SelectedIndex = -1;
+            Cbx_Room.Items.AddRange(hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.Select(z => (object)z.RoomId)).ToArray());
+            if (Cbx_Room.Items.Count != 0)
+                Cbx_Room.SelectedIndex = 0;
+        }
+
+        private void updateBed()
+        {
+            Cbx_Bed.Items.Clear();
+            Cbx_Bed.SelectedIndex = -1;
+            Cbx_Bed.Items.AddRange(hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId))).ToArray());
+            if(Cbx_Bed.Items.Count!=0)
+                Cbx_Bed.SelectedIndex = 0;
+        }
+
+        private void Cbx_Department_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateWard();
+            updateRoom();
+            updateBed();
+        }
+
+        private void Cbx_Ward_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateRoom();
+            updateBed();
         }
     }
 }

@@ -54,13 +54,16 @@
 			this.LblDivider2 = new System.Windows.Forms.Label();
 			this.RdoMale = new System.Windows.Forms.RadioButton();
 			this.RdoFemale = new System.Windows.Forms.RadioButton();
-			this.listBox1 = new System.Windows.Forms.ListBox();
-			this.BtnEditCancel = new System.Windows.Forms.Button();
+			this.LstSearch = new System.Windows.Forms.ListBox();
+			this.BtnUpdate = new System.Windows.Forms.Button();
 			this.BtnSave = new System.Windows.Forms.Button();
 			this.BtnNew = new System.Windows.Forms.Button();
 			this.BtnCancel = new System.Windows.Forms.Button();
 			this.TxtAddress = new System.Windows.Forms.TextBox();
 			this.LblAddress = new System.Windows.Forms.Label();
+			this.btnNewPatientNote = new System.Windows.Forms.Button();
+			this.CbxPatientNotes = new System.Windows.Forms.ComboBox();
+			this.BtnViewNote = new System.Windows.Forms.Button();
 			this.GbxNOK.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -139,6 +142,7 @@
 			// 
 			// TxtPatientID
 			// 
+			this.TxtPatientID.Enabled = false;
 			this.TxtPatientID.Location = new System.Drawing.Point(110, 68);
 			this.TxtPatientID.Name = "TxtPatientID";
 			this.TxtPatientID.Size = new System.Drawing.Size(165, 20);
@@ -215,6 +219,7 @@
 			this.TxtSearch.Name = "TxtSearch";
 			this.TxtSearch.Size = new System.Drawing.Size(165, 20);
 			this.TxtSearch.TabIndex = 27;
+			this.TxtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
 			// 
 			// LblSearch
 			// 
@@ -233,6 +238,7 @@
 			this.BtnSearch.TabIndex = 28;
 			this.BtnSearch.Text = "--(_)";
 			this.BtnSearch.UseVisualStyleBackColor = true;
+			this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
 			// 
 			// GbxNOK
 			// 
@@ -287,22 +293,24 @@
 			this.RdoFemale.Text = "Female";
 			this.RdoFemale.UseVisualStyleBackColor = true;
 			// 
-			// listBox1
+			// LstSearch
 			// 
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(110, 330);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(120, 95);
-			this.listBox1.TabIndex = 34;
+			this.LstSearch.FormattingEnabled = true;
+			this.LstSearch.Location = new System.Drawing.Point(591, 36);
+			this.LstSearch.Name = "LstSearch";
+			this.LstSearch.Size = new System.Drawing.Size(154, 95);
+			this.LstSearch.TabIndex = 34;
+			this.LstSearch.SelectedValueChanged += new System.EventHandler(this.LstSearch_SelectedValueChanged);
 			// 
-			// BtnEditCancel
+			// BtnUpdate
 			// 
-			this.BtnEditCancel.Location = new System.Drawing.Point(397, 214);
-			this.BtnEditCancel.Name = "BtnEditCancel";
-			this.BtnEditCancel.Size = new System.Drawing.Size(57, 23);
-			this.BtnEditCancel.TabIndex = 35;
-			this.BtnEditCancel.Text = "Edit";
-			this.BtnEditCancel.UseVisualStyleBackColor = true;
+			this.BtnUpdate.Location = new System.Drawing.Point(397, 214);
+			this.BtnUpdate.Name = "BtnUpdate";
+			this.BtnUpdate.Size = new System.Drawing.Size(57, 23);
+			this.BtnUpdate.TabIndex = 35;
+			this.BtnUpdate.Text = "Update";
+			this.BtnUpdate.UseVisualStyleBackColor = true;
+			this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
 			// 
 			// BtnSave
 			// 
@@ -349,18 +357,49 @@
 			this.LblAddress.TabIndex = 39;
 			this.LblAddress.Text = "Address:";
 			// 
+			// btnNewPatientNote
+			// 
+			this.btnNewPatientNote.Location = new System.Drawing.Point(442, 337);
+			this.btnNewPatientNote.Name = "btnNewPatientNote";
+			this.btnNewPatientNote.Size = new System.Drawing.Size(75, 23);
+			this.btnNewPatientNote.TabIndex = 41;
+			this.btnNewPatientNote.Text = "Add Note";
+			this.btnNewPatientNote.UseVisualStyleBackColor = true;
+			this.btnNewPatientNote.Click += new System.EventHandler(this.btnNewPatientNote_Click);
+			// 
+			// CbxPatientNotes
+			// 
+			this.CbxPatientNotes.FormattingEnabled = true;
+			this.CbxPatientNotes.Location = new System.Drawing.Point(325, 310);
+			this.CbxPatientNotes.Name = "CbxPatientNotes";
+			this.CbxPatientNotes.Size = new System.Drawing.Size(192, 21);
+			this.CbxPatientNotes.TabIndex = 42;
+			// 
+			// BtnViewNote
+			// 
+			this.BtnViewNote.Location = new System.Drawing.Point(325, 337);
+			this.BtnViewNote.Name = "BtnViewNote";
+			this.BtnViewNote.Size = new System.Drawing.Size(75, 23);
+			this.BtnViewNote.TabIndex = 43;
+			this.BtnViewNote.Text = "View Note";
+			this.BtnViewNote.UseVisualStyleBackColor = true;
+			this.BtnViewNote.Click += new System.EventHandler(this.BtnViewNote_Click);
+			// 
 			// FrmPatientDetails
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.BtnViewNote);
+			this.Controls.Add(this.CbxPatientNotes);
+			this.Controls.Add(this.btnNewPatientNote);
 			this.Controls.Add(this.TxtAddress);
 			this.Controls.Add(this.LblAddress);
 			this.Controls.Add(this.BtnCancel);
 			this.Controls.Add(this.BtnNew);
 			this.Controls.Add(this.BtnSave);
-			this.Controls.Add(this.BtnEditCancel);
-			this.Controls.Add(this.listBox1);
+			this.Controls.Add(this.BtnUpdate);
+			this.Controls.Add(this.LstSearch);
 			this.Controls.Add(this.RdoFemale);
 			this.Controls.Add(this.RdoMale);
 			this.Controls.Add(this.LblDivider2);
@@ -420,12 +459,15 @@
 		private System.Windows.Forms.Label LblDivider2;
 		private System.Windows.Forms.RadioButton RdoMale;
 		private System.Windows.Forms.RadioButton RdoFemale;
-		private System.Windows.Forms.ListBox listBox1;
-		private System.Windows.Forms.Button BtnEditCancel;
+		private System.Windows.Forms.ListBox LstSearch;
+		private System.Windows.Forms.Button BtnUpdate;
 		private System.Windows.Forms.Button BtnSave;
 		private System.Windows.Forms.Button BtnNew;
 		private System.Windows.Forms.Button BtnCancel;
 		private System.Windows.Forms.TextBox TxtAddress;
 		private System.Windows.Forms.Label LblAddress;
+		private System.Windows.Forms.Button btnNewPatientNote;
+		private System.Windows.Forms.ComboBox CbxPatientNotes;
+		private System.Windows.Forms.Button BtnViewNote;
 	}
 }
