@@ -19,9 +19,12 @@ namespace HMSLogin
             InitializeComponent();
             hMS = new HospitalMSDataContext();
             int result = hMS.tblRoomDetails.OrderByDescending(x => x.RoomId).Select(x => x.RoomId).FirstOrDefault() + 1;
-            Cbx_BedId.Text = result.ToString();
+            Cbx_BedId.Items.Add((object)result.ToString());
+            if (Cbx_BedId.Items.Count != 0)
+                Cbx_BedId.SelectedIndex = 0;
             Cbx_RoomId.Items.AddRange(hMS.tblRoomDetails.Select(x => (object)x.RoomId).ToArray());
-            Cbx_RoomId.SelectedIndex = 0;
+            if(Cbx_RoomId.Items.Count != 0)
+                Cbx_RoomId.SelectedIndex = 0;
             
         }
 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btn_ViewDepartment = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.Cbx_Department = new System.Windows.Forms.ComboBox();
             this.Btn_ViewRoom = new System.Windows.Forms.Button();
@@ -41,14 +41,15 @@
             this.Cbx_Ward = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // button1
+            // Btn_ViewDepartment
             // 
-            this.button1.Location = new System.Drawing.Point(206, 87);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 23);
-            this.button1.TabIndex = 47;
-            this.button1.Text = "View Department";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Btn_ViewDepartment.Location = new System.Drawing.Point(206, 87);
+            this.Btn_ViewDepartment.Name = "Btn_ViewDepartment";
+            this.Btn_ViewDepartment.Size = new System.Drawing.Size(109, 23);
+            this.Btn_ViewDepartment.TabIndex = 47;
+            this.Btn_ViewDepartment.Text = "View Department";
+            this.Btn_ViewDepartment.UseVisualStyleBackColor = true;
+            this.Btn_ViewDepartment.Click += new System.EventHandler(this.Btn_ViewDepartment_Click);
             // 
             // label4
             // 
@@ -76,6 +77,7 @@
             this.Btn_ViewRoom.TabIndex = 43;
             this.Btn_ViewRoom.Text = "View Room";
             this.Btn_ViewRoom.UseVisualStyleBackColor = true;
+            this.Btn_ViewRoom.Click += new System.EventHandler(this.Btn_ViewRoom_Click);
             // 
             // Btn_View_Ward
             // 
@@ -85,6 +87,7 @@
             this.Btn_View_Ward.TabIndex = 42;
             this.Btn_View_Ward.Text = "View Ward";
             this.Btn_View_Ward.UseVisualStyleBackColor = true;
+            this.Btn_View_Ward.Click += new System.EventHandler(this.Btn_View_Ward_Click);
             // 
             // Cbx_Bed
             // 
@@ -145,7 +148,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 127);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_ViewDepartment);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Cbx_Department);
             this.Controls.Add(this.Btn_ViewRoom);
@@ -165,7 +168,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_ViewDepartment;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox Cbx_Department;
         private System.Windows.Forms.Button Btn_ViewRoom;

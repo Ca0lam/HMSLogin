@@ -55,6 +55,8 @@
             // 
             // Cbx_DepartmentId
             // 
+            this.Cbx_DepartmentId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cbx_DepartmentId.Enabled = false;
             this.Cbx_DepartmentId.FormattingEnabled = true;
             this.Cbx_DepartmentId.Location = new System.Drawing.Point(115, 9);
             this.Cbx_DepartmentId.Name = "Cbx_DepartmentId";
@@ -78,7 +80,7 @@
             this.Btn_Save.UseVisualStyleBackColor = true;
             this.Btn_Save.Click += new System.EventHandler(this.Btn_Save_Click);
             // 
-            // ViewDepartment
+            // NewDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,8 +90,8 @@
             this.Controls.Add(this.Cbx_DepartmentId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Name = "ViewDepartment";
-            this.Text = "ViewDepartment";
+            this.Name = "NewDepartment";
+            this.Text = "New Department";
             this.ResumeLayout(false);
             this.PerformLayout();
 
