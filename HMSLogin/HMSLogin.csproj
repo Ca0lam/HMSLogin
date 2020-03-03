@@ -36,7 +36,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -50,7 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminMenu.Designer.cs">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="BillingTestClass.cs" />
+    <Compile Include="DoctorMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoctorMenu.Designer.cs">
+      <DependentUpon>DoctorMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\NOK.cs" />
     <Compile Include="DoctorsDataSet.cs">
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
@@ -59,6 +73,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewPatientNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewPatientNote.Designer.cs">
+      <DependentUpon>ViewPatientNote.cs</DependentUpon>
     </Compile>
     <Compile Include="HMSBilling.cs">
       <SubType>Form</SubType>
@@ -111,11 +131,11 @@
       <DependentUpon>HospitalMS.dbml</DependentUpon>
     </Compile>
     <Compile Include="Classes\PatientNote.cs" />
-    <Compile Include="Forms\PatientNotes.cs">
+    <Compile Include="Forms\NewPatientNote.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PatientNotes.Designer.cs">
-      <DependentUpon>PatientNotes.cs</DependentUpon>
+    <Compile Include="Forms\NewPatientNote.Designer.cs">
+      <DependentUpon>NewPatientNote.cs</DependentUpon>
     </Compile>
     <Compile Include="OccupiedBeds.cs">
       <SubType>Form</SubType>
@@ -139,6 +159,16 @@
     <Compile Include="VacantBeds.Designer.cs">
       <DependentUpon>VacantBeds.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminMenu.resx">
+      <DependentUpon>AdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoctorMenu.resx">
+      <DependentUpon>DoctorMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HMSBilling.resx">
+      <DependentUpon>HMSBilling.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Entities\Ward.cs" />
     <Compile Include="ViewBeds.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +181,12 @@
     <Compile Include="ViewDepartment.Designer.cs">
       <DependentUpon>ViewDepartment.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\NewPatientNote.resx">
+      <DependentUpon>NewPatientNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewPatientNote.resx">
+      <DependentUpon>ViewPatientNote.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="ViewRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,13 +199,6 @@
     <Compile Include="ViewWard.Designer.cs">
       <DependentUpon>ViewWard.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\PatientNotes.resx">
-      <DependentUpon>PatientNotes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HMSBilling.resx">
-      <DependentUpon>HMSBilling.cs</DependentUpon>
-    </EmbeddedResource>
-    <Compile Include="Entities\Ward.cs" />
     <Compile Include="NewBed.cs">
       <SubType>Form</SubType>
     </Compile>
