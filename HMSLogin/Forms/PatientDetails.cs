@@ -42,7 +42,6 @@ namespace HMSLogin
 			PopulateForm(patientID);
 			PopulatePatientNoteComboBox(patientID);
 			PopulatePatientNoteList(patientID);
-
 		}
 
 
@@ -99,15 +98,9 @@ namespace HMSLogin
 
 		}
 
-		private void GetPatientByID()
-		{
-
-		}
-
 
 		private void SavePatientDetails()
 		{
-
 			tblPatientDetail patient = new tblPatientDetail();
 			patient.PatientForename = TxtForename.Text;
 			patient.PatientSurename = TxtSurname.Text;
@@ -147,27 +140,49 @@ namespace HMSLogin
 
 		}
 
-		private void BtnSave_Click(object sender, EventArgs e)
+		private void UpdatePatientDetails()
 		{
-			SavePatientDetails();
+			int patientID = Int32.Parse(TxtPatientID.Text);
+			using (HospitalMSDataContext hospitalMS = new HospitalMSDataContext())
+			{
+				// "id" is the id in your table (parameter passed)
+				//Patient patient = hospitalMS.tblPatientDetails.Find(patientID).First();   // Find may be only for Entity Framework. If you can't use it, use the line below
+
+				var patient = hospitalMS.tblPatientDetails.Where(x => x.PatientId == patientID).First();
+
+				patient.PatientForename = TxtForename.Text;
+				patient.PatientSurename = TxtSurname.Text;
+				var patientDOB = Convert.ToDateTime(TxtDOBYear.Text + "-" + TxtDOBMonth.Text + "-" + TxtDOBDay.Text);
+				patient.PatientDOB = patientDOB;
+
+				if (RdoMale.Checked)
+				{
+					patient.PatientGender = true;
+				}
+				else if (RdoFemale.Checked)
+				{
+					patient.PatientGender = false;
+				}
+				else
+				{
+					Console.WriteLine("Gender Error");
+				}
+
+				patient.PatientPhoneNum = TxtPhoneNum.Text;
+				patient.PatientAddress = TxtAddress.Text;
+
+				NOK nok = new NOK();
+				nok.NOKName = TxtNOKName.Text;
+				nok.NOKPhoneNum = TxtNOKPhoneNum.Text;
+				string JSONresult = JsonConvert.SerializeObject(nok);
+				patient.PatientNOK = JSONresult;
+
+				hospitalMS.SubmitChanges();
+				FormLoad();
+			};
 		}
 
-		private void BtnSearch_Click(object sender, EventArgs e)
-		{
-			Search();
-		}
 
-		private void TxtSearch_TextChanged(object sender, EventArgs e)
-		{
-			Search();
-		}
-
-
-
-		private void LstSearch_SelectedValueChanged(object sender, EventArgs e)
-		{
-			RefreshFormFromSearch();
-		}
 
 		private void Search()
 		{
@@ -204,89 +219,6 @@ namespace HMSLogin
 		}
 
 
-		private void UpdatePatientDetails()
-		{
-			int patientID = Int32.Parse(TxtPatientID.Text);
-			using (HospitalMSDataContext hospitalMS = new HospitalMSDataContext())
-			{
-				// "id" is the id in your table (parameter passed)
-				//Patient patient = hospitalMS.tblPatientDetails.Find(patientID).First();   // Find may be only for Entity Framework. If you can't use it, use the line below
-				
-				var patient = hospitalMS.tblPatientDetails.Where(x => x.PatientId == patientID).First();
-
-				patient.PatientForename = TxtForename.Text;
-				patient.PatientSurename = TxtSurname.Text;
-				var patientDOB = Convert.ToDateTime(TxtDOBYear.Text + "-" + TxtDOBMonth.Text + "-" + TxtDOBDay.Text);
-				patient.PatientDOB = patientDOB;
-				
-				if (RdoMale.Checked)
-				{
-					patient.PatientGender = true;
-				}
-				else if (RdoFemale.Checked)
-				{
-					patient.PatientGender = false;
-				}
-				else
-				{
-					Console.WriteLine("Gender Error");
-				}
-
-				patient.PatientPhoneNum = TxtPhoneNum.Text;
-				patient.PatientAddress = TxtAddress.Text;
-
-				NOK nok = new NOK();
-				nok.NOKName = TxtNOKName.Text;
-				nok.NOKPhoneNum = TxtNOKPhoneNum.Text;
-				string JSONresult = JsonConvert.SerializeObject(nok);
-				patient.PatientNOK = JSONresult;
-
-				hospitalMS.SubmitChanges();
-				FormLoad();
-			};
-		}
-
-
-		////private void CreatePatientObject2(int patientID, out Patient patient)
-		////{
-			////Patient patient = new Patient();
-			////patient.PatientForename = TxtForename.Text;
-			////patient.PatientSurename = TxtSurname.Text;
-
-			////// Format the three text fields for DOB as a string and convert to a DateTime Type
-			////var patientDOB = Convert.ToDateTime(TxtDOBYear.Text + "-" + TxtDOBMonth.Text + "-" + TxtDOBDay.Text);
-			////patient.PatientDOB = patientDOB;
-			////Console.WriteLine(patientDOB);
-
-			////if (RdoMale.Checked)
-			////{
-			////	patient.PatientGender = true;
-			////}
-			////else if (RdoFemale.Checked)
-			////{
-			////	patient.PatientGender = false;
-			////}
-			////else
-			////{
-			////	Console.WriteLine("Gender Error");
-			////}
-
-			////patient.PatientAddress = TxtAddress.Text;
-			////patient.PatientPhoneNum = TxtPhoneNum.Text;
-
-			////NOK nok = new NOK();
-			////nok.NOKName = TxtNOKName.Text;
-			////nok.NOKPhoneNum = TxtNOKPhoneNum.Text;
-			////string JSONresult = JsonConvert.SerializeObject(nok);
-			////patient.PatientNOK = JSONresult;
-		////}
-
-		private void BtnUpdate_Click(object sender, EventArgs e)
-		{
-			UpdatePatientDetails();
-		}
-
-
 		private void PopulatePatientNoteComboBox(int patientId)
 		{
 			ClearPatientNotesComboBox();
@@ -301,9 +233,12 @@ namespace HMSLogin
 		{
 			ClearPatientVisitsComboBox();
 			var listofvisits = hospitalMS.tblVisitDetails.Where(x => x.PatientId.Equals(patientId)).ToList();
+			
 			foreach (var item in listofvisits)
 			{
-				CbxPatientNotes.Items.Add("VisitID#: " + item.VisitId + " Date: " + item.PatientId.ToString());
+				Console.WriteLine(item);
+				Console.WriteLine(item.VisitId);
+				CbxVisitDetails.Items.Add("Visit#: " + item.VisitId);
 			}
 		}
 
@@ -321,78 +256,11 @@ namespace HMSLogin
 		}
 
 
-		private void OpenNote()
-		{
-
-		}
-
-		private void NewNote()
-		{
-
-		}
-
-		private void btnNewPatientNote_Click(object sender, EventArgs e)
-		{
-			int patientID = Int32.Parse(TxtPatientID.Text);
-			new NewPatientNote(patientID).ShowDialog();
-		}
-
-		private void BtnViewNote_Click(object sender, EventArgs e)
-		{
-			if(CbxPatientNotes.SelectedItem != null)
-			{
-				////string noteDateString = CbxPatientNotes.SelectedItem.ToString();
-				////Console.WriteLine(noteDateString); 
-				////var noteDate = Convert.ToDateTime(noteDateString.ToString());
-
-				////var newNote = hospitalMS.tblPatientNotes.Select(x => x.NoteDate.ToString());
-
-				////var newNote = hospitalMS.tblPatientNotes.Single(x => x.NoteDate.Date.Equals(noteDate.Date) && x.NoteDate.TimeOfDay.TotalMinutes.Equals(noteDate.TimeOfDay.TotalMinutes)).PatientNotes;
-				////var newNote = hospitalMS.tblPatientNotes.Single(x => DateTime.Compare(x.NoteDate, noteDate) == 0 ? true : false).PatientNotes;
-				////var newNote = hospitalMS.tblPatientNotes.Single(x => x.PatientId == 1).PatientNotes;
-				////newNote.FirstOrDefault;
-				////Console.WriteLine(newNote);
-
-				var patientId = Int32.Parse(TxtPatientID.Text);
-				var selectedValue = CbxPatientNotes.SelectedItem.ToString();
-				Console.WriteLine(selectedValue);
-				string[] splitValue = selectedValue.Split(' ');
-				Console.WriteLine(splitValue[1].ToString());
-				////new[] mystring = selectedValue.Split(' ');
-				////String[] Split(selectedValue, " ")
-				int selectedNoteID = Int32.Parse(splitValue[1]);
-				var viewNote = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).PatientNotes;
-				Console.WriteLine(viewNote);
-
-				DateTime noteDate = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).NoteDate;
-
-				new ViewPatientNote(noteDate, patientId, viewNote).ShowDialog();
-
-
-			}
-
-		}
-
-		private void CbxPatientNotes_Click(object sender, EventArgs e)
-		{
-			ClearPatientNotesComboBox();
-			int patientID = Int32.Parse(TxtPatientID.Text);
-			PopulatePatientNoteComboBox(patientID);
-		}
-
-		private void CbxVisitDetails_Click(object sender, EventArgs e)
-		{
-			ClearPatientVisitsComboBox();
-			int patientID = Int32.Parse(TxtPatientID.Text);
-			PopulatePatientVisitComboBox(patientID);
-		}
 
 
 
-		private void BtnNew_Click(object sender, EventArgs e)
-		{
-			CleanForm();
-		}
+
+
 
 
 		private void CleanForm()
@@ -422,11 +290,97 @@ namespace HMSLogin
 
 		}
 
+
+		private void LstSearch_SelectedValueChanged(object sender, EventArgs e)
+		{
+			RefreshFormFromSearch();
+		}
+
+		private void CbxPatientNotes_Click(object sender, EventArgs e)
+		{
+			ClearPatientNotesComboBox();
+			int patientID = Int32.Parse(TxtPatientID.Text);
+			PopulatePatientNoteComboBox(patientID);
+		}
+
+		private void CbxVisitDetails_Click(object sender, EventArgs e)
+		{
+			ClearPatientVisitsComboBox();
+			int patientID = Int32.Parse(TxtPatientID.Text);
+			PopulatePatientVisitComboBox(patientID);
+		}
+
+		private void BtnUpdate_Click(object sender, EventArgs e)
+		{
+			UpdatePatientDetails();
+		}
+
+		private void BtnNew_Click(object sender, EventArgs e)
+		{
+			CleanForm();
+		}
+
 		private void BtnCancel_Click(object sender, EventArgs e)
 		{
 			FormLoad();
 		}
 
+		private void BtnSave_Click(object sender, EventArgs e)
+		{
+			SavePatientDetails();
+		}
+
+		private void BtnSearch_Click(object sender, EventArgs e)
+		{
+			Search();
+		}
+
+		private void TxtSearch_TextChanged(object sender, EventArgs e)
+		{
+			Search();
+		}
+
+
+
+		private void btnNewPatientNote_Click(object sender, EventArgs e)
+		{
+			int patientID = Int32.Parse(TxtPatientID.Text);
+			new NewPatientNote(patientID).ShowDialog();
+		}
+
+		private void BtnViewNote_Click(object sender, EventArgs e)
+		{
+			if (CbxPatientNotes.SelectedItem != null)
+			{
+
+				var patientId = Int32.Parse(TxtPatientID.Text);
+				var selectedValue = CbxPatientNotes.SelectedItem.ToString();
+				Console.WriteLine(selectedValue);
+				string[] splitValue = selectedValue.Split(' ');
+				Console.WriteLine(splitValue[1].ToString());
+				int selectedNoteID = Int32.Parse(splitValue[1]);
+				var viewNote = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).PatientNotes;
+				Console.WriteLine(viewNote);
+
+				DateTime noteDate = hospitalMS.tblPatientNotes.Single(x => x.PatientNoteId == selectedNoteID).NoteDate;
+
+				new ViewPatientNote(noteDate, patientId, viewNote).ShowDialog();
+
+
+			}
+
+		}
+
+		private void BtnNewVisit_Click(object sender, EventArgs e)
+		{
+			//int patientID = Int32.Parse(TxtPatientID.Text);
+			new NewPatientVisit().ShowDialog();
+		}
+
+		private void BtnViewVisit_Click(object sender, EventArgs e)
+		{
+			new ViewPatientVisit().ShowDialog();
+		}
 
 	}
 }

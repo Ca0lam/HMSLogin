@@ -408,6 +408,7 @@
 			this.BtnViewVisit.TabIndex = 47;
 			this.BtnViewVisit.Text = "View Visit";
 			this.BtnViewVisit.UseVisualStyleBackColor = true;
+			this.BtnViewVisit.Click += new System.EventHandler(this.BtnViewVisit_Click);
 			// 
 			// CbxVisitDetails
 			// 
@@ -426,6 +427,7 @@
 			this.BtnNewVisit.TabIndex = 45;
 			this.BtnNewVisit.Text = "New Visit";
 			this.BtnNewVisit.UseVisualStyleBackColor = true;
+			this.BtnNewVisit.Click += new System.EventHandler(this.BtnNewVisit_Click);
 			// 
 			// FrmPatientDetails
 			// 
