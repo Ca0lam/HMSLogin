@@ -140,17 +140,44 @@ namespace HMSLogin
         private void DoctorSearchForm_Load(object sender, EventArgs e)
         {
         }
-
+        /*
+         * Disable Doctor surname and department textboxes if any data is in the doctor ID textbox
+         * Doctor ID is unique to each doctor, so it does not make sense to include extra criteria when entering doctor ID
+         */
         private void TxtDocIdSearch_Leave(object sender, EventArgs e)
         {
+            if (txtDocIdSearch.Text != string.Empty)
+            {
+                txtDocDeptSearch.Enabled = false;
+                txtDocSurnameSearch.Enabled = false;
+            } else
+            {
+                txtDocDeptSearch.Enabled = true;
+                txtDocSurnameSearch.Enabled = true;
+            }
         }
-
+        /*
+        * Disable Doctor ID textbox if the doctor surname textbox contains anything.
+        * Doctor ID is unique to each doctor, so it does not make sense to include extra criteria when entering doctor ID
+        */
         private void TxtDocSurnameSearch_Leave(object sender, EventArgs e)
         {
+            if (txtDocSurnameSearch.Text != string.Empty)
+                txtDocIdSearch.Enabled = false;
+            else if (txtDocDeptSearch.Text == string.Empty)
+                txtDocIdSearch.Enabled = true;
         }
+        /*
+         * * Disable Doctor ID textbox if the doctor department textbox contains anything.
+         * * Doctor ID is unique to each doctor, so it does not make sense to include extra criteria when entering doctor ID
+         */
 
         private void TxtDocDeptSearch_Leave(object sender, EventArgs e)
         {
+            if (txtDocDeptSearch.Text != string.Empty)
+                txtDocIdSearch.Enabled = false;
+            else if (txtDocSurnameSearch.Text == string.Empty)
+                txtDocIdSearch.Enabled = true;
         }
         private void doctorBindingSource_CurrentChanged(object sender, EventArgs e)
         {

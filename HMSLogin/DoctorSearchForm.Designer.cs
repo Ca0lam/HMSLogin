@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpSearchDoctor = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtDocDeptSearch = new System.Windows.Forms.TextBox();
@@ -94,6 +94,7 @@
             this.txtDocDeptSearch.Name = "txtDocDeptSearch";
             this.txtDocDeptSearch.Size = new System.Drawing.Size(167, 20);
             this.txtDocDeptSearch.TabIndex = 5;
+            this.txtDocDeptSearch.TextChanged += new System.EventHandler(this.TxtDocDeptSearch_Leave);
             this.txtDocDeptSearch.Leave += new System.EventHandler(this.TxtDocDeptSearch_Leave);
             // 
             // txtDocSurnameSearch
@@ -102,6 +103,7 @@
             this.txtDocSurnameSearch.Name = "txtDocSurnameSearch";
             this.txtDocSurnameSearch.Size = new System.Drawing.Size(167, 20);
             this.txtDocSurnameSearch.TabIndex = 4;
+            this.txtDocSurnameSearch.TextChanged += new System.EventHandler(this.TxtDocSurnameSearch_Leave);
             this.txtDocSurnameSearch.Leave += new System.EventHandler(this.TxtDocSurnameSearch_Leave);
             // 
             // txtDocIdSearch
@@ -110,6 +112,7 @@
             this.txtDocIdSearch.Name = "txtDocIdSearch";
             this.txtDocIdSearch.Size = new System.Drawing.Size(167, 20);
             this.txtDocIdSearch.TabIndex = 3;
+            this.txtDocIdSearch.TextChanged += new System.EventHandler(this.TxtDocIdSearch_Leave);
             this.txtDocIdSearch.Leave += new System.EventHandler(this.TxtDocIdSearch_Leave);
             // 
             // lblDocDeptSearch
@@ -185,8 +188,8 @@
             // docIdDataGridViewTextBoxColumn
             // 
             this.docIdDataGridViewTextBoxColumn.DataPropertyName = "DocId";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.docIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.docIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.docIdDataGridViewTextBoxColumn.HeaderText = "DocId";
             this.docIdDataGridViewTextBoxColumn.Name = "docIdDataGridViewTextBoxColumn";
             this.docIdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -219,8 +222,8 @@
             // docGenderDataGridViewCheckBoxColumn
             // 
             this.docGenderDataGridViewCheckBoxColumn.DataPropertyName = "DocGender";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.docGenderDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.docGenderDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.docGenderDataGridViewCheckBoxColumn.HeaderText = "DocGender";
             this.docGenderDataGridViewCheckBoxColumn.Name = "docGenderDataGridViewCheckBoxColumn";
             this.docGenderDataGridViewCheckBoxColumn.ReadOnly = true;
