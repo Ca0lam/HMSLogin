@@ -21,13 +21,12 @@ namespace HMSLogin
 
         private void btnGenerateReports_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnPatientDetails_Click(object sender, EventArgs e)
         {
-            FrmPatientDetails patientDetails = new FrmPatientDetails();
-            patientDetails.Show();
+
         }
 
         private void btnDoctorDetails_Click(object sender, EventArgs e)
@@ -39,8 +38,7 @@ namespace HMSLogin
 
         private void btnGenerateBills_Click(object sender, EventArgs e)
         {
-            HMSBilling hMSBilling = new HMSBilling();
-            hMSBilling.Show();
+
         }
 
         private void btnHospitalLayout_Click(object sender, EventArgs e)

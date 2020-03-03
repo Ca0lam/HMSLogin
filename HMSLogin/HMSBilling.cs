@@ -166,9 +166,9 @@ namespace HMSLogin
             line += lineIncr;
             e.Graphics.DrawString(TxtPatientId.Text, fntBody, Brushes.Black, col2, line);
             line += lineIncr;
-            e.Graphics.DrawString(TxtRoomCharge.Text, fntBody, Brushes.Black, col2, line);
+            e.Graphics.DrawString("€"+TxtRoomCharge.Text, fntBody, Brushes.Black, col2, line);
             line += lineIncr;
-            e.Graphics.DrawString(TxtDoctorsFee.Text, fntBody, Brushes.Black, col2, line);
+            e.Graphics.DrawString("€" + TxtDoctorsFee.Text, fntBody, Brushes.Black, col2, line);
             line += lineIncr;
 
             string noteText = TxtNote.Text;
@@ -217,9 +217,9 @@ namespace HMSLogin
             }
 
             line = 182;
-            e.Graphics.DrawString(TxtMiscFee.Text, fntBody, Brushes.Black, col2, line);
+            e.Graphics.DrawString("€" + TxtMiscFee.Text, fntBody, Brushes.Black, col2, line);
             line += lineIncr*2;
-            e.Graphics.DrawString(TxtTotalFee.Text, fntPrice, Brushes.Black, col2, line);
+            e.Graphics.DrawString("€" + TxtTotalFee.Text, fntPrice, Brushes.Black, col2, line);
 
 
 

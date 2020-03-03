@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,8 +31,7 @@ namespace HMSLogin
 
 		}
 
-		private System.Drawing.Printing.PrintDocument docToPrint =
-	new System.Drawing.Printing.PrintDocument();
+
 		private void FormLoad()
 		{
 			ClearComboBox();
@@ -41,8 +39,6 @@ namespace HMSLogin
 			//int patientID = 1006;
 			PopulateForm(patientID);
 			PopulateComboBox(patientID);
-			printPreviewDialog1.Document = printDocument1;
-			printPreviewDialog1.ShowDialog();
 		}
 
 
@@ -320,90 +316,6 @@ namespace HMSLogin
 		private void BtnViewNote_Click(object sender, EventArgs e)
 		{
 
-		}
-
-		private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-		{
-			Font fntHeading = new Font(FontFamily.GenericMonospace, 18, FontStyle.Bold ^ FontStyle.Italic);
-			Font fntSmallHeading = new Font(FontFamily.GenericMonospace, 12, FontStyle.Italic);
-			Font fntBody = new Font(FontFamily.GenericMonospace, 8);
-			Font fntPrice = new Font(FontFamily.GenericMonospace, 8, FontStyle.Bold);
-
-			DateTime date = DateTime.Parse(TxtDOBDay.Text + "/" + TxtDOBMonth.Text + "/" + TxtDOBYear.Text);
-			string address = hospitalMS.tblPatientDetails.Single(x => x.PatientId == hospitalMS.tblPatientDetails.FirstOrDefault().PatientId).PatientAddress;
-			string gender = string.Empty;
-			if (RdoMale.Checked)
-				gender = "Male";
-			else if (RdoFemale.Checked)
-				gender = "Female";
-			else
-				gender = "Other";
-
-
-			//Title
-			e.Graphics.DrawString("Patient Id: " + TxtPatientID.Text, fntHeading, Brushes.Black, 10, 10);
-			e.Graphics.DrawString(DateTime.Now.ToShortDateString(), fntSmallHeading, Brushes.Black, 40, 41);
-
-			int line = 62;
-			int lineIncr = 12;
-			int col1 = 10;
-			int col2 = 100;
-
-			//Column 1
-			e.Graphics.DrawString("Patient Id: ", fntBody, Brushes.Black, col1, line);
-			line += lineIncr;
-			e.Graphics.DrawString("Name: ", fntBody, Brushes.Black, col1, line);
-			line += lineIncr;
-			e.Graphics.DrawString("Date of Birth: ", fntBody, Brushes.Black, col1, line);
-			line += lineIncr;
-			e.Graphics.DrawString("Gender: ", fntBody, Brushes.Black, col1, line);
-			line += lineIncr;
-			e.Graphics.DrawString("Phone Number: ", fntBody, Brushes.Black, col1, line);
-			line += lineIncr;
-			e.Graphics.DrawString("Address: ", fntBody, Brushes.Black, col1, line);
-			line += lineIncr;
-			e.Graphics.DrawString("Visit Note: ", fntBody, Brushes.Black, col1, line);
-			line += lineIncr;
-
-
-
-			//Column 2
-			line = 62;
-			e.Graphics.DrawString(TxtPatientID.Text, fntBody, Brushes.Black, col2, line);
-			line += lineIncr;
-			e.Graphics.DrawString(TxtForename.Text + " " + TxtSurname.Text, fntBody, Brushes.Black, col2, line);
-			line += lineIncr;
-			e.Graphics.DrawString(date.ToString("yy-MM-dd"), fntBody, Brushes.Black, col2, line);
-			line += lineIncr;
-			e.Graphics.DrawString(gender, fntBody, Brushes.Black, col2, line);
-			line += lineIncr;
-			e.Graphics.DrawString(TxtPhoneNum.Text, fntBody, Brushes.Black, col2, line);
-			line += lineIncr;
-			e.Graphics.DrawString(address, fntBody, Brushes.Black, col2, line);
-			line += lineIncr;
-			e.Graphics.DrawString("FIX NOTE CODE", fntBody, Brushes.Black, col2, line);
-			line += lineIncr;
-
-
-
-			//Lines
-			Pen blackPen = new Pen(Color.Black, 1);
-
-			Point line1 = new Point(0, 41);
-			Point line2 = new Point(210, 41);
-			e.Graphics.DrawLine(blackPen, line1, line2);
-
-			line1 = new Point(0, 60);
-			line2 = new Point(210, 60);
-			e.Graphics.DrawLine(blackPen, line1, line2);
-
-			line1 = new Point(0, 200);
-			line2 = new Point(210, 200);
-			e.Graphics.DrawLine(blackPen, line1, line2);
-
-			line1 = new Point(90, 60);
-			line2 = new Point(90, 240);
-			e.Graphics.DrawLine(blackPen, line1, line2);
 		}
 	}
 }
