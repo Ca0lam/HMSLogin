@@ -16,8 +16,9 @@ namespace HMSLogin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
             //Application.Run(new ViewDepartment());
+            Application.Run(new AdminMenu(new Form1()));
             //Application.Run(new FrmPatientDetails());
         }
     }
