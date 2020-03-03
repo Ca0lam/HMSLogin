@@ -12,6 +12,12 @@ namespace HMSLogin
         {
             InitializeComponent();
         }
+        private void BtnLogOut_Click(object sender, EventArgs e)        // button to leave the search form and return to the Log in screen
+        {
+            this.Dispose();
+            Form1 f1 = new Form1();
+            f1.Show();
+        }
 
         private void BtnSearch_Click(object sender, EventArgs e)        // search the dataset returned from the database for doctors based on search text boxes
         {
@@ -132,11 +138,6 @@ namespace HMSLogin
         }
         private void doctorBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-        }
-
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
         }
     }
 }

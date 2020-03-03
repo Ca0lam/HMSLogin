@@ -13,7 +13,7 @@ namespace HMSLogin
 {
     public partial class ViewDepartment : Form
     {
-        HospitalMSDataContext hMS;
+        HospitalMSDataContext hMS = new HospitalMSDataContext();
         public ViewDepartment()
         {
             InitializeComponent();
@@ -22,17 +22,6 @@ namespace HMSLogin
             //var join = hMS.tblWardDetails.Join(hMS.tblDeptDetails, w => w.WardId, d => d.DeptId, (w,d)=> new { tblWardDetail = w, tblDeptDetail = d });
             //var joinedTable = from w in hMS.tblWardDetails join d in hMS.tblDeptDetails on w.DeptId equals d.DeptId select new { tblWardDetail = w, tblDeptDetail = d };
             updateBoxes();
-        }
-
-        public ViewDepartment(string deptName)
-        {
-            InitializeComponent();
-            hMS = new HospitalMSDataContext();
-            Cbx_Department.Items.Add(deptName);
-            Cbx_Department.SelectedIndex = 0;
-            updateWard();
-            updateRoom();
-            updateBed();
         }
 
         private void updateBoxes()
@@ -73,12 +62,8 @@ namespace HMSLogin
         {
             Cbx_Bed.Items.Clear();
             Cbx_Bed.SelectedIndex = -1;
-            var bedIds = hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId)));
-            Cbx_Bed.Items.AddRange(bedIds.ToArray());
-            Lbl_NumBeds.Text = "Total Number of Beds In Dept: " + Cbx_Bed.Items.Count;
-            var occupiedBeds = hMS.tblVisitDetails.Where(x => bedIds.ToList().Contains(x.BedId)).Select(y=>y.BedId).Distinct().Count();
-            Lbl_EmptyBeds.Text = "Total Empty Beds: " + (Cbx_Bed.Items.Count - occupiedBeds);
-            if (Cbx_Bed.Items.Count!=0)
+            Cbx_Bed.Items.AddRange(hMS.tblDeptDetails.SingleOrDefault(x => x.DeptName == Cbx_Department.Text).tblWardDetails.SelectMany(y => y.tblRoomDetails.SelectMany(z => z.tblBedDetails.Select(b => (object)b.BedId))).ToArray());
+            if(Cbx_Bed.Items.Count!=0)
                 Cbx_Bed.SelectedIndex = 0;
         }
 
@@ -91,26 +76,8 @@ namespace HMSLogin
 
         private void Cbx_Ward_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //updateRoom();
-            //updateBed();
-        }
-
-        private void Btn_View_Ward_Click(object sender, EventArgs e)
-        {
-            ViewWard ward = new ViewWard(Cbx_Ward.Text);
-            ward.Show();
-        }
-
-        private void Btn_ViewRoom_Click(object sender, EventArgs e)
-        {
-            ViewRoom room = new ViewRoom(int.Parse(Cbx_Room.Text));
-            room.Show();
-        }
-
-        private void Btn_View_Bed_Click(object sender, EventArgs e)
-        {
-            ViewBeds beds = new ViewBeds(int.Parse(Cbx_Bed.Text));
-            beds.Show();
+            updateRoom();
+            updateBed();
         }
     }
 }

@@ -74,24 +74,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NewPatientVisit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\NewPatientVisit.Designer.cs">
-      <DependentUpon>NewPatientVisit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ViewPatientNote.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ViewPatientNote.Designer.cs">
-      <DependentUpon>ViewPatientNote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ViewPatientVisit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ViewPatientVisit.Designer.cs">
-      <DependentUpon>ViewPatientVisit.cs</DependentUpon>
-    </Compile>
     <Compile Include="HMSBilling.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,17 +125,11 @@
       <DependentUpon>HospitalMS.dbml</DependentUpon>
     </Compile>
     <Compile Include="Classes\PatientNote.cs" />
-    <Compile Include="Forms\NewPatientNote.cs">
+    <Compile Include="Forms\PatientNotes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NewPatientNote.Designer.cs">
-      <DependentUpon>NewPatientNote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OccupiedBeds.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OccupiedBeds.Designer.cs">
-      <DependentUpon>OccupiedBeds.cs</DependentUpon>
+    <Compile Include="Forms\PatientNotes.Designer.cs">
+      <DependentUpon>PatientNotes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,23 +141,11 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VacantBeds.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VacantBeds.Designer.cs">
-      <DependentUpon>VacantBeds.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AdminMenu.resx">
       <DependentUpon>AdminMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DoctorMenu.resx">
       <DependentUpon>DoctorMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NewPatientVisit.resx">
-      <DependentUpon>NewPatientVisit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ViewPatientVisit.resx">
-      <DependentUpon>ViewPatientVisit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HMSBilling.resx">
       <DependentUpon>HMSBilling.cs</DependentUpon>
@@ -199,12 +163,6 @@
     <Compile Include="ViewDepartment.Designer.cs">
       <DependentUpon>ViewDepartment.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\NewPatientNote.resx">
-      <DependentUpon>NewPatientNote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ViewPatientNote.resx">
-      <DependentUpon>ViewPatientNote.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="ViewRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +175,9 @@
     <Compile Include="ViewWard.Designer.cs">
       <DependentUpon>ViewWard.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\PatientNotes.resx">
+      <DependentUpon>PatientNotes.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="NewBed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,9 +217,6 @@
     <EmbeddedResource Include="Forms\PatientDetails.resx">
       <DependentUpon>PatientDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OccupiedBeds.resx">
-      <DependentUpon>OccupiedBeds.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -282,9 +240,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewWard.resx">
       <DependentUpon>NewWard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VacantBeds.resx">
-      <DependentUpon>VacantBeds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewBeds.resx">
       <DependentUpon>ViewBeds.cs</DependentUpon>

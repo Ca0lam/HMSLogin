@@ -21,18 +21,6 @@ namespace HMSLogin
             updateBoxes();
         }
 
-        public ViewBeds(int bedId)
-        {
-            InitializeComponent();
-            hMS = new HospitalMSDataContext();
-            Cbx_Bed.Items.Add((object)bedId);
-            Cbx_Bed.SelectedIndex = 0;
-            updateRoom();
-            updateWard();
-            updateDept();
-            Cbx_Bed.Enabled = false;
-        }
-
         private void updateBoxes()
         {
             updateBed();
@@ -75,23 +63,5 @@ namespace HMSLogin
                 Cbx_Department.SelectedIndex = 0;
         }
 
-        private void Btn_View_Ward_Click(object sender, EventArgs e)
-        {
-            ViewWard ward = new ViewWard(Cbx_Ward.Text);
-            ward.Show();
-        }
-
-
-        private void Btn_ViewRoom_Click(object sender, EventArgs e)
-        {
-            ViewRoom room = new ViewRoom(int.Parse(Cbx_Room.Text));
-            room.Show();
-        }
-
-        private void Btn_ViewDepartment_Click(object sender, EventArgs e)
-        {
-            ViewDepartment dept = new ViewDepartment(Cbx_Department.Text);
-            dept.Show();
-        }
     }
 }

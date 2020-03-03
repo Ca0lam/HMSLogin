@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Cbx_DepartmentId = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Btn_ViewWard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Btn_Save
@@ -56,7 +57,6 @@
             // 
             // Cbx_WardID
             // 
-            this.Cbx_WardID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbx_WardID.Enabled = false;
             this.Cbx_WardID.FormattingEnabled = true;
             this.Cbx_WardID.Location = new System.Drawing.Point(115, 9);
@@ -84,7 +84,6 @@
             // 
             // Cbx_DepartmentId
             // 
-            this.Cbx_DepartmentId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbx_DepartmentId.FormattingEnabled = true;
             this.Cbx_DepartmentId.Location = new System.Drawing.Point(115, 36);
             this.Cbx_DepartmentId.Name = "Cbx_DepartmentId";
@@ -100,11 +99,22 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Ward Name:";
             // 
-            // NewWard
+            // Btn_ViewWard
+            // 
+            this.Btn_ViewWard.Location = new System.Drawing.Point(338, 9);
+            this.Btn_ViewWard.Name = "Btn_ViewWard";
+            this.Btn_ViewWard.Size = new System.Drawing.Size(44, 23);
+            this.Btn_ViewWard.TabIndex = 13;
+            this.Btn_ViewWard.Text = "View";
+            this.Btn_ViewWard.UseVisualStyleBackColor = true;
+            this.Btn_ViewWard.Visible = false;
+            // 
+            // ViewWard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 168);
+            this.Controls.Add(this.Btn_ViewWard);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Cbx_DepartmentId);
             this.Controls.Add(this.Btn_Save);
@@ -112,7 +122,7 @@
             this.Controls.Add(this.Cbx_WardID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Name = "NewWard";
+            this.Name = "ViewWard";
             this.Text = "New Ward";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -128,5 +138,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox Cbx_DepartmentId;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Btn_ViewWard;
     }
 }

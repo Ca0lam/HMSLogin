@@ -48,7 +48,6 @@
             // 
             // Cbx_WardId
             // 
-            this.Cbx_WardId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbx_WardId.FormattingEnabled = true;
             this.Cbx_WardId.Location = new System.Drawing.Point(115, 36);
             this.Cbx_WardId.Name = "Cbx_WardId";
@@ -67,7 +66,6 @@
             // 
             // Cbx_RoomId
             // 
-            this.Cbx_RoomId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbx_RoomId.Enabled = false;
             this.Cbx_RoomId.FormattingEnabled = true;
             this.Cbx_RoomId.Location = new System.Drawing.Point(115, 9);
@@ -95,14 +93,13 @@
             // 
             // Cbx_RoomType
             // 
-            this.Cbx_RoomType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbx_RoomType.FormattingEnabled = true;
             this.Cbx_RoomType.Location = new System.Drawing.Point(115, 63);
             this.Cbx_RoomType.Name = "Cbx_RoomType";
             this.Cbx_RoomType.Size = new System.Drawing.Size(216, 21);
             this.Cbx_RoomType.TabIndex = 20;
             // 
-            // NewRoom
+            // ViewRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,8 +111,8 @@
             this.Controls.Add(this.Cbx_RoomId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Name = "NewRoom";
-            this.Text = "New Room";
+            this.Name = "ViewRoom";
+            this.Text = "ViewRoom";
             this.ResumeLayout(false);
             this.PerformLayout();
 

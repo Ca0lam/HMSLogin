@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpSearchDoctor = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtDocDeptSearch = new System.Windows.Forms.TextBox();
@@ -39,7 +39,7 @@
             this.lblDocDeptSearch = new System.Windows.Forms.Label();
             this.lblDocSurnameSearch = new System.Windows.Forms.Label();
             this.lblDocIdSearch = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.lblList = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.docIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -139,15 +139,15 @@
             this.lblDocIdSearch.TabIndex = 0;
             this.lblDocIdSearch.Text = "Doctor ID";
             // 
-            // btnClose
+            // btnLogOut
             // 
-            this.btnClose.Location = new System.Drawing.Point(1046, 41);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            this.btnLogOut.Location = new System.Drawing.Point(1046, 41);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
+            this.btnLogOut.TabIndex = 1;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.BtnLogOut_Click);
             // 
             // lblList
             // 
@@ -185,8 +185,8 @@
             // docIdDataGridViewTextBoxColumn
             // 
             this.docIdDataGridViewTextBoxColumn.DataPropertyName = "DocId";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.docIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.docIdDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.docIdDataGridViewTextBoxColumn.HeaderText = "DocId";
             this.docIdDataGridViewTextBoxColumn.Name = "docIdDataGridViewTextBoxColumn";
             this.docIdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -219,8 +219,8 @@
             // docGenderDataGridViewCheckBoxColumn
             // 
             this.docGenderDataGridViewCheckBoxColumn.DataPropertyName = "DocGender";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.docGenderDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.docGenderDataGridViewCheckBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.docGenderDataGridViewCheckBoxColumn.HeaderText = "DocGender";
             this.docGenderDataGridViewCheckBoxColumn.Name = "docGenderDataGridViewCheckBoxColumn";
             this.docGenderDataGridViewCheckBoxColumn.ReadOnly = true;
@@ -300,7 +300,7 @@
             this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblList);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.grpSearchDoctor);
             this.Name = "DoctorSearchForm";
             this.Text = "Doctor Search";
@@ -325,7 +325,7 @@
         private System.Windows.Forms.Label lblDocDeptSearch;
         private System.Windows.Forms.Label lblDocSurnameSearch;
         private System.Windows.Forms.Label lblDocIdSearch;
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Label lblList;
         private System.Windows.Forms.DataGridView dataGridView1;
         private DoctorsDataSet doctorsDataSet;

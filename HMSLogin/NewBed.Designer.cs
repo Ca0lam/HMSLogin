@@ -47,7 +47,6 @@
             // 
             // Cbx_BedId
             // 
-            this.Cbx_BedId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbx_BedId.Enabled = false;
             this.Cbx_BedId.FormattingEnabled = true;
             this.Cbx_BedId.Location = new System.Drawing.Point(115, 9);
@@ -75,14 +74,13 @@
             // 
             // Cbx_RoomId
             // 
-            this.Cbx_RoomId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbx_RoomId.FormattingEnabled = true;
             this.Cbx_RoomId.Location = new System.Drawing.Point(115, 40);
             this.Cbx_RoomId.Name = "Cbx_RoomId";
             this.Cbx_RoomId.Size = new System.Drawing.Size(216, 21);
             this.Cbx_RoomId.TabIndex = 11;
             // 
-            // NewBed
+            // ViewBed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -92,7 +90,7 @@
             this.Controls.Add(this.Cbx_BedId);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Name = "NewBed";
+            this.Name = "ViewBed";
             this.Text = "ViewBed";
             this.ResumeLayout(false);
             this.PerformLayout();
