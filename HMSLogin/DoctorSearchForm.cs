@@ -12,19 +12,17 @@ namespace HMSLogin
         {
             InitializeComponent();
         }
-        private void BtnLogOut_Click(object sender, EventArgs e)        // button to leave the search form and return to the Log in screen
+        private void BtnLogOut_Click(object sender, EventArgs e)        // button to leave the search form and return to the Administration screen
         {
             this.Dispose();
-            Form1 f1 = new Form1();
-            f1.Show();
         }
 
-        private void BtnSearch_Click(object sender, EventArgs e)        // search the dataset returned from the database for doctors based on search text boxes
+        private void searchDoctors()
         {
             int result;
             if (txtDocIdSearch.Text != "" && !int.TryParse(txtDocIdSearch.Text, out result))
             {
-                MessageBox.Show("Doctor ID must be in numeric format only","Invalid value for Doctor ID",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Doctor ID must be in numeric format only", "Invalid value for Doctor ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDocIdSearch.Focus();
                 txtDocIdSearch.SelectAll();
             }
@@ -50,10 +48,15 @@ namespace HMSLogin
                 dataGridView1.DataMember = "DoctorTable";
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;      // select the entire row when clicking on a cell
                 btnEdit.Enabled = true;                                                     // allow view or edit of a single doctor
-            } else
-            {
-                MessageBox.Show("No matching doctors found","No match",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
+            else
+            {
+                MessageBox.Show("No matching doctors found", "No match", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void BtnSearch_Click(object sender, EventArgs e)        // search the dataset returned from the database for doctors based on search text boxes
+        {
+            searchDoctors();
         }
         /*
          *   When the "Add Doctor" button is clicked, 
@@ -62,7 +65,7 @@ namespace HMSLogin
         private void btnAddNew_Click(object sender, EventArgs e)        
         {
             this.Dispose();                                 // get rid of search form
-            frmDoctor newDoctor = new frmDoctor(null);      // create an empty doctor form 
+            frmDoctor newDoctor = new frmDoctor(null, null);      // create an empty doctor form 
             newDoctor.Show();                               // display the new (empty) doctor form
         }
         /*
@@ -99,8 +102,8 @@ namespace HMSLogin
             editDoc.DocPhoneNumber = dRow.ItemArray.GetValue(6).ToString();
             editDoc.DocQualification = dRow.ItemArray.GetValue(7).ToString();
             editDoc.DeptId = (int)dRow.ItemArray.GetValue(8);
-            this.Dispose();                                                         // dispose the search form
-            frmDoctor editDoctor = new frmDoctor(editDoc);                          // create doctor form from the editDoctor object
+            this.Hide();                                                         // dispose the search form
+            frmDoctor editDoctor = new frmDoctor(editDoc, this);                          // create doctor form from the editDoctor object
             editDoctor.Show();                                                      // display the doctor object
         }
         /*

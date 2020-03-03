@@ -15,13 +15,15 @@ namespace HMSLogin
         Doctor formDoctor;                          // doctor object for this form
         byte[] photo = null;                        // create a byte array to store the photo
         bool pictureChanged = false;                // indicator for whether the photo was updated or not
+        DoctorSearchForm saveSearchForm = null;     // search form which we used to get here
         /*
          * form constructor which populates the gender combo box and buttons with text.
          * It also populates the text boxes and picturebox if an existing doctor is being viewed
          */
-        public frmDoctor(Doctor doc)
+        public frmDoctor(Doctor doc, DoctorSearchForm dsForm)
         {
             InitializeComponent();
+            saveSearchForm = dsForm;
             cboGender.Items.Add("male");
             cboGender.Items.Add("female");
             if (doc == null)                        // if adding a new doctor
@@ -153,6 +155,7 @@ namespace HMSLogin
                             {                                                       //     in the database
                                 MessageBox.Show("Details for doctor: " + lblID.Text + "\nsuccessfully updated", "Doctor details updated",MessageBoxButtons.OK,MessageBoxIcon.Information);
                                 btnCancel.Text = "Return to Search";
+                                formDoctor = currentDoctor;                         // update the details of the doctor shown by this form
                             }
                             else                            // return error message if an error in updating the database
                                 MessageBox.Show("Error on updating the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -182,8 +185,9 @@ namespace HMSLogin
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Dispose();                 // dispose of this Doctor form
-            DoctorSearchForm searchForm = new DoctorSearchForm();
-            searchForm.Show();              // display the search form
+            if (saveSearchForm == null)
+                saveSearchForm = new DoctorSearchForm();
+            saveSearchForm.Show();              // display the search form
         }
         /*
          *  If the delete button is clicked, then delete the currently displayed doctor
