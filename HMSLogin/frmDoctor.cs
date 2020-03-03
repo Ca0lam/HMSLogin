@@ -76,33 +76,43 @@ namespace HMSLogin
                      */
                     if (isNewDoctor)                            // if adding a new doctor
                     {
-                        formDoctor = new Doctor
+                        bool success = dao.searchDepartment(deptID);
+                        if (!success)
                         {
-                            DocForename = txtFirstname.Text,
-                            DocSurname = txtSurname.Text,
-                            DocPhoto = photo,
-                            DocGender = gender,
-                            DocAddress = txtAddress.Text,
-                            DocPhoneNumber = txtPhone.Text,
-                            DocQualification = txtQualifications.Text,
-                            DeptId = deptID
-                        };
-                        //
-                        // pass the Doctor object to the DoctorDAO class to insert into the database
-                        //
-                        bool success = dao.insertDoctor(formDoctor, out int newID);      // newID will hold the new ID of the newly inserted doctor
-                        if (success)
-                        {
-                            lblID.Text = newID.ToString();              // populate the doctor ID label with the new ID
-                            MessageBox.Show("ID assigned to the new doctor is " + newID.ToString(), "New Doctor added successfully");
-                            isNewDoctor = false;                        // no longer adding a new doctor
-                            btnUpdate.Text = "Update details";          // update text on update button 
-                            btnCancel.Text = "Return to Search Form";   // update text on cancel button
-                            btnDelete.Visible = true;                   // show the "Delete doctor" button
+                            MessageBox.Show($"Error: Entered department ID ({deptID}) not in Department table\n\ncannot add new doctor", "Error on Department ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtDeptID.Focus();
+                            txtDeptID.SelectAll();
                         }
-                        else                    // doctor was not added successfully
+                        else
                         {
-                            MessageBox.Show("Insert of new Doctor failed", "Insert failed");
+                            formDoctor = new Doctor
+                            {
+                                DocForename = txtFirstname.Text,
+                                DocSurname = txtSurname.Text,
+                                DocPhoto = photo,
+                                DocGender = gender,
+                                DocAddress = txtAddress.Text,
+                                DocPhoneNumber = txtPhone.Text,
+                                DocQualification = txtQualifications.Text,
+                                DeptId = deptID
+                            };
+                            //
+                            // pass the Doctor object to the DoctorDAO class to insert into the database
+                            //
+                            success = dao.insertDoctor(formDoctor, out int newID);      // newID will hold the new ID of the newly inserted doctor
+                            if (success)
+                            {
+                                lblID.Text = newID.ToString();              // populate the doctor ID label with the new ID
+                                MessageBox.Show("ID assigned to the new doctor is " + newID.ToString(), "New Doctor added successfully",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                isNewDoctor = false;                        // no longer adding a new doctor
+                                btnUpdate.Text = "Update details";          // update text on update button 
+                                btnCancel.Text = "Return to Search Form";   // update text on cancel button
+                                btnDelete.Visible = true;                   // show the "Delete doctor" button
+                            }
+                            else                    // doctor was not added successfully
+                            {
+                                MessageBox.Show("Insert of new Doctor failed", "Insert failed",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                            }
                         }
                     }
                     /*
@@ -141,7 +151,7 @@ namespace HMSLogin
                                 currentDoctor.DocGender = false;
                             if (dao.updateDoctor(currentDoctor))                    // use updateDoctor method in the DAO to update the doctor
                             {                                                       //     in the database
-                                MessageBox.Show("Details for doctor: " + lblID.Text + "\nsuccessfully updated", "Doctor details updated");
+                                MessageBox.Show("Details for doctor: " + lblID.Text + "\nsuccessfully updated", "Doctor details updated",MessageBoxButtons.OK,MessageBoxIcon.Information);
                                 btnCancel.Text = "Return to Search";
                             }
                             else                            // return error message if an error in updating the database
@@ -149,18 +159,18 @@ namespace HMSLogin
                         }
                         else                    // if no change was made, then return an error message
                         {
-                            MessageBox.Show("Could not update, no change was made to the doctor details.", "Must update fields");
+                            MessageBox.Show("Could not update, no change was made to the doctor details.", "Must update fields",MessageBoxButtons.OK,MessageBoxIcon.Error);
                         }
                     }
                     else                            // problem with doctor ID, return an error message
                     {
-                        MessageBox.Show("Doctor ID not in numeric format", "Invalid Doctor ID");
+                        MessageBox.Show("Doctor ID not in numeric format", "Invalid Doctor ID",MessageBoxButtons.OK,MessageBoxIcon.Error);
                         lblDocID.Focus();
                     }
                 }
                 else                                // the department ID textbox was not an integer, return an error message
                 {
-                    MessageBox.Show("Department ID not in numeric format", "Invalid Department ID");
+                    MessageBox.Show("Department ID not in numeric format", "Invalid Department ID",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     txtDeptID.Focus();
                     txtDeptID.SelectAll();
                 }
@@ -188,22 +198,22 @@ namespace HMSLogin
                     bool success = dao.deleteDoctor(docID);     // newID will hold the new ID of the newly inserted doctor
                     if (success)
                     {
-                        MessageBox.Show($"Doctor ID {docID} deleted from the database", "Doctor successfully deleted");
+                        MessageBox.Show($"Doctor ID {docID} deleted from the database", "Doctor successfully deleted",MessageBoxButtons.OK,MessageBoxIcon.Information);
                         btnCancel_Click(sender, e);             // return to the Search form
                     }
                     else                    // doctor was not deleted successfully
                     {
-                        MessageBox.Show("Delete of Doctor failed", "Delete failed");
+                        MessageBox.Show($"Error: Delete of Doctor ID {docID} failed", "Delete failed",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
 
                 } else
                 {
-                    MessageBox.Show("Doctor ID not in numeric format", "Invalid Doctor ID");
+                    MessageBox.Show("Doctor ID not in numeric format", "Invalid Doctor ID",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     lblDocID.Focus();
                 }
             } else
             {
-                MessageBox.Show("Delete of doctor cancelled", "Doctor not deleted");
+                MessageBox.Show("Delete of doctor cancelled", "Doctor not deleted",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         /*
@@ -227,7 +237,7 @@ namespace HMSLogin
                 }
                 catch (Exception ex1)                                       // if any error opening the file, display error message
                 {
-                    MessageBox.Show($"Error opening the file.\n\n\nError message: {ex1.Message}", "Error opening file");
+                    MessageBox.Show($"Error opening the file.\n\n\nError message: {ex1.Message}", "Error opening file",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     Console.WriteLine($"\n\nError opening the file.\n\n Error message: \n{ex1.Message}\n\nDetails: \n{ex1.StackTrace}\n\n\n");
                 }
             }

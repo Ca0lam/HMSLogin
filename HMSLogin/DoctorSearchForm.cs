@@ -21,6 +21,19 @@ namespace HMSLogin
 
         private void BtnSearch_Click(object sender, EventArgs e)        // search the dataset returned from the database for doctors based on search text boxes
         {
+            int result;
+            if (txtDocIdSearch.Text != "" && !int.TryParse(txtDocIdSearch.Text, out result))
+            {
+                MessageBox.Show("Doctor ID must be in numeric format only","Invalid value for Doctor ID",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                txtDocIdSearch.Focus();
+                txtDocIdSearch.SelectAll();
+            }
+            else if (txtDocDeptSearch.Text != "" && !int.TryParse(txtDocDeptSearch.Text, out result))
+            {
+                MessageBox.Show("Department ID must be in numeric format only", "Invalid value for Department ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDocDeptSearch.Focus();
+                txtDocDeptSearch.SelectAll();
+            }
             //  Call the searchDoctor method in the DAO class, which returns a dataset
             //  The dataset contains a single data table called DoctorTable
             // the searchDoctor method needs 3 values (from the comboBoxes and text box)
@@ -37,6 +50,9 @@ namespace HMSLogin
                 dataGridView1.DataMember = "DoctorTable";
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;      // select the entire row when clicking on a cell
                 btnEdit.Enabled = true;                                                     // allow view or edit of a single doctor
+            } else
+            {
+                MessageBox.Show("No matching doctors found","No match",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
         }
         /*
@@ -66,7 +82,7 @@ namespace HMSLogin
                 dRow = dataSet1.Tables[0].Rows[currentRow];                         //  get the row of the table (in dataset) that is selected
             } catch (Exception e1)                                                  // if any problem,
             {                                                                       // display an error message and exit method
-                MessageBox.Show("Unable to edit.\n\nYou must first select a single row from the grid of doctors.", "No doctor selected");
+                MessageBox.Show("Unable to edit.\n\nYou must first select a single row from the grid of doctors.", "No doctor selected",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
             Doctor editDoc = new Doctor();                                          // new Doctor object for the selected doctor

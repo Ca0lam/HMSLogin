@@ -262,6 +262,64 @@ namespace HMSLogin
          * Search the doctor table in the database for a doctor or doctors depending
          * upon the search criteria of the three textboxes on the search form.
          */
+        public bool searchDepartment(int deptID)
+        {
+            bool success = false;
+            SqlDataReader rdr = null;
+
+            try
+            {
+                // Open connection to the database
+                connection1.Open();
+                // Set up a command with the given query and associate
+                // this with the current connection.
+                string CommandText = "SELECT DeptId" +
+                                     "  FROM tblDeptDetails" +
+                                     " WHERE (DeptId = @Find)";
+                SqlCommand cmd = new SqlCommand(CommandText);
+                cmd.Connection = connection1;
+
+                // Add LastName to the above defined paramter @Find
+                cmd.Parameters.Add(
+                    new SqlParameter(
+                    "@Find",                // The name of the parameter to map
+                    System.Data.SqlDbType.Int,      // SqlDbType values
+                    8,                      // The width of the parameter
+                    "DeptId"));             // The name of the source column
+
+                // Fill the parameter with the value retrieved
+                // from the text field
+                cmd.Parameters["@Find"].Value = deptID;
+
+                // Execute the query
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    success = true;
+                }
+            }
+            catch (SqlException ex1)
+            {
+                Console.WriteLine("*************** SQL exception \n" + ex1);
+            }
+            catch (Exception ex2)
+            {
+                Console.WriteLine("*************** non-SQL exception  \n" + ex2);
+            }  finally
+            {
+                // Close data reader object and database connection
+                if (rdr != null)
+                    rdr.Close();
+
+                if (connection1.State == ConnectionState.Open)
+                    connection1.Close();
+            }
+            return success;
+        }
+        /*
+        * Search the doctor table in the database for a doctor or doctors depending
+        * upon the search criteria of the three textboxes on the search form.
+        */
         public DataSet searchDoctor(String searchID, String searchSurname, String searchDept, out bool success)
         {
             success = false;
@@ -278,7 +336,7 @@ namespace HMSLogin
                     sqlText += " AND ";
                 else
                     sqlText += " WHERE ";
-                sqlText += $"DocSurname = '{searchSurname}'";
+                sqlText += $"DocSurname LIKE '%{searchSurname}%'";
                 whereIncluded = true;               // indicate WHERE clause added to search SQL
             }
             if (searchDept != string.Empty)         // if search to be on department
