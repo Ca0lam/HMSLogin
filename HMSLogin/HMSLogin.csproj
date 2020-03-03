@@ -74,11 +74,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DoctorsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NewPatientVisit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NewPatientVisit.Designer.cs">
+      <DependentUpon>NewPatientVisit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ViewPatientNote.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ViewPatientNote.Designer.cs">
       <DependentUpon>ViewPatientNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewPatientVisit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewPatientVisit.Designer.cs">
+      <DependentUpon>ViewPatientVisit.cs</DependentUpon>
     </Compile>
     <Compile Include="HMSBilling.cs">
       <SubType>Form</SubType>
@@ -152,6 +164,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DoctorMenu.resx">
       <DependentUpon>DoctorMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NewPatientVisit.resx">
+      <DependentUpon>NewPatientVisit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewPatientVisit.resx">
+      <DependentUpon>ViewPatientVisit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HMSBilling.resx">
       <DependentUpon>HMSBilling.cs</DependentUpon>
