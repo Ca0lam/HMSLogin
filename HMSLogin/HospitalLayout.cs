@@ -64,5 +64,11 @@ namespace HMSLogin
             ViewBeds bed = new ViewBeds();
             bed.Show();
         }
+
+        private void Btn_Vacant_Click(object sender, EventArgs e)
+        {
+            VacantBeds vacant = new VacantBeds();
+            vacant.Show();
+        }
     }
 }

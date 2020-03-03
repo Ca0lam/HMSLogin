@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace HMSLogin
 {
-    
+
     public partial class ViewWard : Form
     {
         HospitalMSDataContext hMS;
@@ -21,6 +21,18 @@ namespace HMSLogin
             hMS = new HospitalMSDataContext();
             updateBoxes();
 
+        }
+
+        public ViewWard(string wardName)
+        {
+            InitializeComponent();
+            hMS = new HospitalMSDataContext();
+            Cbx_Ward.Items.Add(wardName);
+            Cbx_Ward.SelectedIndex = 0;
+            updateDept();
+            updateRoom();
+            updateBed();
+            Cbx_Ward.Enabled = false;
         }
 
         private void updateBoxes()

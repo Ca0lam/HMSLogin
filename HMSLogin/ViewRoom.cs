@@ -21,6 +21,18 @@ namespace HMSLogin
             updateBoxes();
         }
 
+        public ViewRoom(int roomId)
+        {
+            InitializeComponent();
+            hMS = new HospitalMSDataContext();
+            Cbx_Room.Items.Add(roomId);
+            Cbx_Room.SelectedIndex = 0;
+            updateDept();
+            updateWard();
+            updateBed();
+            Cbx_Room.Enabled = false;
+        }
+
         private void updateBoxes()
         {
             updateRoom();
@@ -63,6 +75,25 @@ namespace HMSLogin
             Cbx_Bed.Items.AddRange(hMS.tblRoomDetails.SingleOrDefault(x => x.RoomId.ToString() == Cbx_Room.Text.ToString()).tblBedDetails.Select(y=>(object)y.BedId).ToArray());
             if (Cbx_Bed.Items.Count != 0)
                 Cbx_Bed.SelectedIndex = 0;
+        }
+
+        private void Btn_View_Ward_Click(object sender, EventArgs e)
+        {
+            ViewWard ward = new ViewWard(Cbx_Ward.Text);
+            ward.Show();
+        }
+
+
+        private void Btn_View_Bed_Click(object sender, EventArgs e)
+        {
+            ViewBeds beds = new ViewBeds(int.Parse(Cbx_Bed.Text));
+            beds.Show();
+        }
+
+        private void Btn_ViewDepartment_Click(object sender, EventArgs e)
+        {
+            ViewDepartment dept = new ViewDepartment(Cbx_Department.Text);
+            dept.Show();
         }
     }
 }
