@@ -416,6 +416,7 @@
 			this.CbxVisitDetails.Name = "CbxVisitDetails";
 			this.CbxVisitDetails.Size = new System.Drawing.Size(246, 21);
 			this.CbxVisitDetails.TabIndex = 46;
+			this.CbxVisitDetails.Click += new System.EventHandler(this.CbxVisitDetails_Click);
 			// 
 			// BtnNewVisit
 			// 

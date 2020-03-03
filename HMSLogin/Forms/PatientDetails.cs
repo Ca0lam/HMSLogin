@@ -35,11 +35,12 @@ namespace HMSLogin
 
 		private void FormLoad()
 		{
-			ClearComboBox();
+			ClearPatientNotesComboBox();
+			ClearPatientVisitsComboBox();
 			int patientID = hospitalMS.tblPatientDetails.FirstOrDefault().PatientId;
 			//int patientID = 1006;
 			PopulateForm(patientID);
-			PopulateComboBox(patientID);
+			PopulatePatientNoteComboBox(patientID);
 			PopulatePatientNoteList(patientID);
 
 		}
@@ -199,7 +200,7 @@ namespace HMSLogin
 			////String[] Split(selectedValue, " ")
 			int selectedPatientID = Int32.Parse(splitValue[1]);
 			PopulateForm(selectedPatientID);
-			PopulateComboBox(selectedPatientID);
+			PopulatePatientNoteComboBox(selectedPatientID);
 		}
 
 
@@ -286,34 +287,34 @@ namespace HMSLogin
 		}
 
 
-		private void PopulateComboBox(int patientId)
+		private void PopulatePatientNoteComboBox(int patientId)
 		{
-			ClearComboBox();
+			ClearPatientNotesComboBox();
 			var listofnotes = hospitalMS.tblPatientNotes.Where(x => x.PatientId.Equals(patientId)).ToList();
 			foreach (var item in listofnotes)
 			{
 				CbxPatientNotes.Items.Add("NoteID#: " + item.PatientNoteId + " Date: " + item.NoteDate.Date.ToShortDateString());
-				////CbxPatientNotes.Items.Add(item.NoteDate.ToString());
 			}
-
-
-			////CbxPatientNotes.Items.Add("One");
-			////CbxPatientNotes.Items.Add("Two");
-			////CbxPatientNotes.Items.Add("Three");
-			////CbxPatientNotes.Items.Add("Four");
-			////CbxPatientNotes.Items.Add("Five");
-			////CbxPatientNotes.Items.Add("Six");
-			////CbxPatientNotes.Items.Add("Seven");
-
 		}
 
-		private void ClearComboBox()
+		private void PopulatePatientVisitComboBox(int patientId)
+		{
+			ClearPatientVisitsComboBox();
+			var listofvisits = hospitalMS.tblVisitDetails.Where(x => x.PatientId.Equals(patientId)).ToList();
+			foreach (var item in listofvisits)
+			{
+				CbxPatientNotes.Items.Add("VisitID#: " + item.VisitId + " Date: " + item.PatientId.ToString());
+			}
+		}
+
+
+		private void ClearPatientNotesComboBox()
 		{
 			CbxPatientNotes.Text = null;
 			CbxPatientNotes.Items.Clear();
 		}
 
-		private void ClearVisitDetailsComboBox()
+		private void ClearPatientVisitsComboBox()
 		{
 			CbxVisitDetails.Text = null;
 			CbxVisitDetails.Items.Clear();
@@ -374,10 +375,19 @@ namespace HMSLogin
 
 		private void CbxPatientNotes_Click(object sender, EventArgs e)
 		{
-			ClearComboBox();
+			ClearPatientNotesComboBox();
 			int patientID = Int32.Parse(TxtPatientID.Text);
-			PopulateComboBox(patientID);
+			PopulatePatientNoteComboBox(patientID);
 		}
+
+		private void CbxVisitDetails_Click(object sender, EventArgs e)
+		{
+			ClearPatientVisitsComboBox();
+			int patientID = Int32.Parse(TxtPatientID.Text);
+			PopulatePatientVisitComboBox(patientID);
+		}
+
+
 
 		private void BtnNew_Click(object sender, EventArgs e)
 		{
@@ -416,5 +426,7 @@ namespace HMSLogin
 		{
 			FormLoad();
 		}
+
+
 	}
 }

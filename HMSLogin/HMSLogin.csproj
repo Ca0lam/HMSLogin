@@ -187,9 +187,6 @@
     <Compile Include="ViewWard.Designer.cs">
       <DependentUpon>ViewWard.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\PatientNotes.resx">
-      <DependentUpon>PatientNotes.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="NewBed.cs">
       <SubType>Form</SubType>
     </Compile>
