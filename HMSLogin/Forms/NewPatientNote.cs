@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace HMSLogin
 {
-	public partial class PatientNotes : Form
+	public partial class NewPatientNote : Form
 	{
 
 		HospitalMSDataContext hospitalMS;
 
-		public PatientNotes(int patientId)
+		public NewPatientNote(int patientId)
 		{
 			InitializeComponent();
 			hospitalMS = new HospitalMSDataContext();
@@ -46,8 +46,11 @@ namespace HMSLogin
 		private void BtnSave_Click(object sender, EventArgs e)
 		{
 			SaveNote();
-
 			this.Dispose();
+			////Form.Close();
+			///
+
 		}
+
 	}
 }

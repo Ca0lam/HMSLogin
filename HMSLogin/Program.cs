@@ -21,6 +21,7 @@ namespace HMSLogin
             //Application.Run(new HospitalLayout());
             Application.Run(new Form1());
             //Application.Run(new FrmPatientDetails());
+            //Application.Run(new FrmPatientDetails());
         }
     }
 }
