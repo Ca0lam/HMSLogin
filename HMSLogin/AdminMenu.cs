@@ -43,7 +43,8 @@ namespace HMSLogin
 
         private void btnHospitalLayout_Click(object sender, EventArgs e)
         {
-
+            HospitalLayout hospitalLayout = new HospitalLayout();
+            hospitalLayout.Show();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

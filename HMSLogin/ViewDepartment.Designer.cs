@@ -39,6 +39,8 @@
             this.Btn_View_Bed = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.Cbx_Department = new System.Windows.Forms.ComboBox();
+            this.Lbl_NumBeds = new System.Windows.Forms.Label();
+            this.Lbl_EmptyBeds = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Cbx_Ward
@@ -104,6 +106,7 @@
             this.Btn_View_Ward.TabIndex = 6;
             this.Btn_View_Ward.Text = "View Ward";
             this.Btn_View_Ward.UseVisualStyleBackColor = true;
+            this.Btn_View_Ward.Click += new System.EventHandler(this.Btn_View_Ward_Click);
             // 
             // Btn_ViewRoom
             // 
@@ -113,6 +116,7 @@
             this.Btn_ViewRoom.TabIndex = 7;
             this.Btn_ViewRoom.Text = "View Room";
             this.Btn_ViewRoom.UseVisualStyleBackColor = true;
+            this.Btn_ViewRoom.Click += new System.EventHandler(this.Btn_ViewRoom_Click);
             // 
             // Btn_View_Bed
             // 
@@ -122,6 +126,7 @@
             this.Btn_View_Bed.TabIndex = 8;
             this.Btn_View_Bed.Text = "View Bed";
             this.Btn_View_Bed.UseVisualStyleBackColor = true;
+            this.Btn_View_Bed.Click += new System.EventHandler(this.Btn_View_Bed_Click);
             // 
             // label4
             // 
@@ -142,11 +147,31 @@
             this.Cbx_Department.TabIndex = 9;
             this.Cbx_Department.SelectedIndexChanged += new System.EventHandler(this.Cbx_Department_SelectedIndexChanged);
             // 
+            // Lbl_NumBeds
+            // 
+            this.Lbl_NumBeds.AutoSize = true;
+            this.Lbl_NumBeds.Location = new System.Drawing.Point(11, 144);
+            this.Lbl_NumBeds.Name = "Lbl_NumBeds";
+            this.Lbl_NumBeds.Size = new System.Drawing.Size(151, 13);
+            this.Lbl_NumBeds.TabIndex = 11;
+            this.Lbl_NumBeds.Text = "Total Number of Beds In Dept:";
+            // 
+            // Lbl_EmptyBeds
+            // 
+            this.Lbl_EmptyBeds.AutoSize = true;
+            this.Lbl_EmptyBeds.Location = new System.Drawing.Point(11, 169);
+            this.Lbl_EmptyBeds.Name = "Lbl_EmptyBeds";
+            this.Lbl_EmptyBeds.Size = new System.Drawing.Size(96, 13);
+            this.Lbl_EmptyBeds.TabIndex = 12;
+            this.Lbl_EmptyBeds.Text = "Total Empty Beds: ";
+            // 
             // ViewDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 169);
+            this.ClientSize = new System.Drawing.Size(353, 203);
+            this.Controls.Add(this.Lbl_EmptyBeds);
+            this.Controls.Add(this.Lbl_NumBeds);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Cbx_Department);
             this.Controls.Add(this.Btn_View_Bed);
@@ -178,5 +203,7 @@
         private System.Windows.Forms.Button Btn_View_Bed;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox Cbx_Department;
+        private System.Windows.Forms.Label Lbl_NumBeds;
+        private System.Windows.Forms.Label Lbl_EmptyBeds;
     }
 }

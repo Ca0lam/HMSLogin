@@ -34,11 +34,12 @@
             this.Btn_New_Ward = new System.Windows.Forms.Button();
             this.Btn_New_Department = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Btn_Occupied = new System.Windows.Forms.Button();
+            this.Btn_Vacant = new System.Windows.Forms.Button();
             this.Btn_View_Bed = new System.Windows.Forms.Button();
             this.Btn_View_Room = new System.Windows.Forms.Button();
             this.Btn_View_Ward = new System.Windows.Forms.Button();
             this.Btn_View_Department = new System.Windows.Forms.Button();
-            this.Btn_View_Hospital = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -98,21 +99,42 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Btn_Occupied);
+            this.groupBox2.Controls.Add(this.Btn_Vacant);
             this.groupBox2.Controls.Add(this.Btn_View_Bed);
             this.groupBox2.Controls.Add(this.Btn_View_Room);
             this.groupBox2.Controls.Add(this.Btn_View_Ward);
             this.groupBox2.Controls.Add(this.Btn_View_Department);
-            this.groupBox2.Controls.Add(this.Btn_View_Hospital);
             this.groupBox2.Location = new System.Drawing.Point(81, 144);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(176, 110);
+            this.groupBox2.Size = new System.Drawing.Size(176, 157);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "View:";
             // 
+            // Btn_Occupied
+            // 
+            this.Btn_Occupied.Location = new System.Drawing.Point(7, 109);
+            this.Btn_Occupied.Name = "Btn_Occupied";
+            this.Btn_Occupied.Size = new System.Drawing.Size(157, 23);
+            this.Btn_Occupied.TabIndex = 6;
+            this.Btn_Occupied.Text = "Occupied Beds";
+            this.Btn_Occupied.UseVisualStyleBackColor = true;
+            this.Btn_Occupied.Click += new System.EventHandler(this.Btn_Occupied_Click);
+            // 
+            // Btn_Vacant
+            // 
+            this.Btn_Vacant.Location = new System.Drawing.Point(7, 79);
+            this.Btn_Vacant.Name = "Btn_Vacant";
+            this.Btn_Vacant.Size = new System.Drawing.Size(157, 23);
+            this.Btn_Vacant.TabIndex = 5;
+            this.Btn_Vacant.Text = "Vacant Beds";
+            this.Btn_Vacant.UseVisualStyleBackColor = true;
+            this.Btn_Vacant.Click += new System.EventHandler(this.Btn_Vacant_Click);
+            // 
             // Btn_View_Bed
             // 
-            this.Btn_View_Bed.Location = new System.Drawing.Point(89, 79);
+            this.Btn_View_Bed.Location = new System.Drawing.Point(89, 48);
             this.Btn_View_Bed.Name = "Btn_View_Bed";
             this.Btn_View_Bed.Size = new System.Drawing.Size(75, 23);
             this.Btn_View_Bed.TabIndex = 4;
@@ -122,7 +144,7 @@
             // 
             // Btn_View_Room
             // 
-            this.Btn_View_Room.Location = new System.Drawing.Point(7, 80);
+            this.Btn_View_Room.Location = new System.Drawing.Point(7, 49);
             this.Btn_View_Room.Name = "Btn_View_Room";
             this.Btn_View_Room.Size = new System.Drawing.Size(75, 23);
             this.Btn_View_Room.TabIndex = 3;
@@ -132,7 +154,7 @@
             // 
             // Btn_View_Ward
             // 
-            this.Btn_View_Ward.Location = new System.Drawing.Point(89, 50);
+            this.Btn_View_Ward.Location = new System.Drawing.Point(89, 19);
             this.Btn_View_Ward.Name = "Btn_View_Ward";
             this.Btn_View_Ward.Size = new System.Drawing.Size(75, 23);
             this.Btn_View_Ward.TabIndex = 2;
@@ -142,7 +164,7 @@
             // 
             // Btn_View_Department
             // 
-            this.Btn_View_Department.Location = new System.Drawing.Point(7, 50);
+            this.Btn_View_Department.Location = new System.Drawing.Point(7, 19);
             this.Btn_View_Department.Name = "Btn_View_Department";
             this.Btn_View_Department.Size = new System.Drawing.Size(75, 23);
             this.Btn_View_Department.TabIndex = 1;
@@ -150,20 +172,11 @@
             this.Btn_View_Department.UseVisualStyleBackColor = true;
             this.Btn_View_Department.Click += new System.EventHandler(this.Btn_View_Department_Click);
             // 
-            // Btn_View_Hospital
-            // 
-            this.Btn_View_Hospital.Location = new System.Drawing.Point(7, 20);
-            this.Btn_View_Hospital.Name = "Btn_View_Hospital";
-            this.Btn_View_Hospital.Size = new System.Drawing.Size(157, 23);
-            this.Btn_View_Hospital.TabIndex = 0;
-            this.Btn_View_Hospital.Text = "Hospital";
-            this.Btn_View_Hospital.UseVisualStyleBackColor = true;
-            // 
             // HospitalLayout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 318);
+            this.ClientSize = new System.Drawing.Size(390, 349);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "HospitalLayout";
@@ -186,6 +199,7 @@
         private System.Windows.Forms.Button Btn_View_Room;
         private System.Windows.Forms.Button Btn_View_Ward;
         private System.Windows.Forms.Button Btn_View_Department;
-        private System.Windows.Forms.Button Btn_View_Hospital;
+        private System.Windows.Forms.Button Btn_Occupied;
+        private System.Windows.Forms.Button Btn_Vacant;
     }
 }

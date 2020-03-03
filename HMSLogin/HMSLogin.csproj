@@ -149,6 +149,12 @@
     <Compile Include="Forms\NewPatientNote.Designer.cs">
       <DependentUpon>NewPatientNote.cs</DependentUpon>
     </Compile>
+    <Compile Include="OccupiedBeds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OccupiedBeds.Designer.cs">
+      <DependentUpon>OccupiedBeds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDAO.cs" />
@@ -158,6 +164,12 @@
     </Compile>
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VacantBeds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VacantBeds.Designer.cs">
+      <DependentUpon>VacantBeds.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AdminMenu.resx">
       <DependentUpon>AdminMenu.cs</DependentUpon>
@@ -244,6 +256,9 @@
     <EmbeddedResource Include="Forms\PatientDetails.resx">
       <DependentUpon>PatientDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OccupiedBeds.resx">
+      <DependentUpon>OccupiedBeds.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -267,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewWard.resx">
       <DependentUpon>NewWard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VacantBeds.resx">
+      <DependentUpon>VacantBeds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewBeds.resx">
       <DependentUpon>ViewBeds.cs</DependentUpon>
