@@ -22,7 +22,7 @@ namespace HMSLogin
         int bill = 0;
         BillingTestClass printTest = new BillingTestClass();
 
-        public HMSBilling()
+        public HMSBilling(/*int visitId*/)
         {
             InitializeComponent();
             HMSData = new HospitalMSDataContext();
